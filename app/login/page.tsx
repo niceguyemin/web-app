@@ -45,7 +45,8 @@ export default function LoginPage() {
             await new Promise(resolve => setTimeout(resolve, 1000));
             
             console.log("[login-page] Redirecting to /");
-            router.push("/");
+            // Use window.location for hard redirect to ensure proxy sees the cookie
+            window.location.href = "/";
         } catch (err) {
             console.error("[login-page] Error:", err);
             setError("Bir hata oluştu. Lütfen tekrar deneyin.");
