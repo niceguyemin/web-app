@@ -96,7 +96,7 @@ export default async function AccountingPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {payments.map((p) => (
+                    {payments.map((p: typeof payments[0]) => (
                       <tr key={p.id} className="border-b last:border-0">
                         <td className="p-3">
                           {format(p.date, "d MMM yyyy", { locale: tr })}
@@ -134,7 +134,7 @@ export default async function AccountingPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {expenses.map((e) => (
+                    {expenses.map((e: typeof expenses[0]) => (
                       <tr key={e.id} className="border-b last:border-0">
                         <td className="p-3">
                           {format(e.date, "d MMM yyyy", { locale: tr })}
