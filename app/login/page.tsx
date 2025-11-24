@@ -20,28 +20,35 @@ export default function LoginPage() {
         setError("");
 
         try {
+            console.log("[login-page] Submitting credentials for:", username);
             const response = await fetch("/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ username, password }),
+                credentials: "include", // Ensure cookies are sent
             });
 
+            console.log("[login-page] Response status:", response.status);
             const data = await response.json();
+            console.log("[login-page] Response data:", data);
 
             if (!response.ok) {
                 setError(data.error || "Kullanıcı adı veya şifre hatalı");
+                setIsLoading(false);
                 return;
             }
 
+            console.log("[login-page] Login successful, waiting for cookie...");
             // Wait a moment for cookie to be set, then redirect
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            console.log("[login-page] Redirecting to /");
             router.push("/");
         } catch (err) {
             console.error("[login-page] Error:", err);
             setError("Bir hata oluştu. Lütfen tekrar deneyin.");
-        } finally {
             setIsLoading(false);
         }
     };
