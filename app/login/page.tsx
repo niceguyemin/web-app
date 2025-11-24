@@ -28,14 +28,18 @@ export default function LoginPage() {
                 body: JSON.stringify({ username, password }),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                setError("Kullanıcı adı veya şifre hatalı");
+                setError(data.error || "Kullanıcı adı veya şifre hatalı");
                 return;
             }
 
-            // Redirect to dashboard
+            // Wait a moment for cookie to be set, then redirect
+            await new Promise(resolve => setTimeout(resolve, 500));
             router.push("/");
         } catch (err) {
+            console.error("[login-page] Error:", err);
             setError("Bir hata oluştu. Lütfen tekrar deneyin.");
         } finally {
             setIsLoading(false);
