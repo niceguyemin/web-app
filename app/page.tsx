@@ -1,16 +1,18 @@
+export const dynamic = "force-dynamic"; // Prisma için güvenli
+
 import prismadb from "@/lib/prismadb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, CreditCard, Activity, DollarSign } from "lucide-react";
 
-export default async function DashboardPage() {
+export default async function Page() {
   const clientCount = await prismadb.client.count();
   const serviceCount = await prismadb.service.count({
     where: { status: "ACTIVE" },
   });
 
-  // Calculate total income for this month
   const now = new Date();
   const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+
   const payments = await prismadb.payment.findMany({
     where: {
       date: {
@@ -18,9 +20,9 @@ export default async function DashboardPage() {
       },
     },
   });
+
   const totalIncome = payments.reduce((acc, curr) => acc + curr.amount, 0);
 
-  // Calculate pending payments (total service price - paid amount)
   const services = await prismadb.service.findMany({
     where: { status: "ACTIVE" },
     include: { payments: true },
@@ -69,7 +71,9 @@ export default async function DashboardPage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">₺{totalIncome.toFixed(2)}</div>
+            <div className="text-2xl font-bold">
+              ₺{totalIncome.toFixed(2)}
+            </div>
           </CardContent>
         </Card>
 
@@ -81,7 +85,9 @@ export default async function DashboardPage() {
             <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">₺{pendingPayments.toFixed(2)}</div>
+            <div className="text-2xl font-bold">
+              ₺{pendingPayments.toFixed(2)}
+            </div>
           </CardContent>
         </Card>
       </div>
