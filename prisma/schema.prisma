@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Seed configuration
+// Run: npx prisma db seed
+// Generator outputs seedClient
+generator dbSeed {
+  provider = "prisma-db-seed"
+  preview  = true
+}
+
 model Client {
   id        Int      @id @default(autoincrement())
   name      String

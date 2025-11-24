@@ -83,6 +83,22 @@ vercel deploy --prod
 
 veya GitHub'a push et - Vercel otomatik deploy edecek.
 
+### 5. ⚠️ İLK DEPLOYMENT SONRASI - Database Seed
+
+Vercel'e ilk deploy ettikten sonra, terminal'de şu komutu çalıştır:
+
+```bash
+vercel env pull  # Ortam değişkenlerini .env.local'a indir
+npm run seed     # Admin user ve default data'yı oluştur
+```
+
+**VEYA** Vercel Functions kullanarak otomatikleştir:
+
+```bash
+# Terminal'den (Vercel CLI ile)
+npx prisma db seed --preview
+```
+
 ## Veritabanı Migrasyonu
 
 ### Local'de
@@ -93,11 +109,14 @@ npx prisma migrate dev --name add_new_feature
 
 # Mevcut migrasyonları apply et
 npx prisma migrate deploy
+
+# Database seed'le (admin user oluştur)
+npm run seed
 ```
 
 ### Production (Vercel)
 
-Migrations otomatik apply olur deployment sırasında.
+Migrations otomatik apply olur deployment sırasında. Seed'i elle çalıştırmalısın (yukardaki adımlara bak).
 
 ## Kullanıcı Giriş
 
