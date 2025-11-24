@@ -1,46 +1,46 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const [username, setUsername] = useState("admin");
+    const [password, setPassword] = useState("admin123");
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
+        setIsLoading(true);
         setError("");
 
-        const formData = new FormData(e.currentTarget);
-        const username = formData.get("username") as string;
-        const password = formData.get("password") as string;
-
         try {
-            const result = await signIn("credentials", {
-                username,
-                password,
-                redirect: false,
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
             });
 
-            if (result?.error) {
+            if (!response.ok) {
                 setError("Kullanıcı adı veya şifre hatalı");
-            } else {
-                router.push("/");
-                router.refresh();
+                return;
             }
-        } catch (error) {
-            setError("Bir hata oluştu");
+
+            // Redirect to dashboard
+            router.push("/");
+        } catch (err) {
+            setError("Bir hata oluştu. Lütfen tekrar deneyin.");
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
-    }
+    };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
@@ -55,36 +55,36 @@ export default function LoginPage() {
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
+                        {error && (
+                            <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm">
+                                {error}
+                            </div>
+                        )}
                         <div className="space-y-2">
                             <Label htmlFor="username">Kullanıcı Adı</Label>
                             <Input
                                 id="username"
-                                name="username"
                                 type="text"
                                 required
-                                disabled={loading}
                                 placeholder="admin"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                disabled={isLoading}
                             />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="password">Şifre</Label>
                             <Input
                                 id="password"
-                                name="password"
                                 type="password"
                                 required
-                                disabled={loading}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={isLoading}
                             />
                         </div>
-                        {error && (
-                            <p className="text-sm text-red-600 text-center">{error}</p>
-                        )}
-                        <Button
-                            type="submit"
-                            className="w-full"
-                            disabled={loading}
-                        >
-                            {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
+                        <Button type="submit" className="w-full" disabled={isLoading}>
+                            {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
                         </Button>
                     </form>
                     <p className="text-xs text-center text-muted-foreground mt-4">
