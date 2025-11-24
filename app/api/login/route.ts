@@ -67,13 +67,26 @@ export async function POST(request: Request) {
 
         // Set session cookie
         const cookieStore = await cookies();
-        cookieStore.set("next-auth.session-token", token, {
+        const isProduction = process.env.NODE_ENV === "production";
+        const cookieOptions: any = {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: isProduction,
+            sameSite: "lax" as const,
             maxAge: 7 * 24 * 60 * 60,
             path: "/",
-        });
+        };
+        
+        // Extract domain from NEXTAUTH_URL for production
+        if (isProduction && process.env.NEXTAUTH_URL) {
+            try {
+                const url = new URL(process.env.NEXTAUTH_URL);
+                cookieOptions.domain = url.hostname;
+            } catch (e) {
+                console.error("[login] Error parsing NEXTAUTH_URL for domain:", e);
+            }
+        }
+        
+        cookieStore.set("next-auth.session-token", token, cookieOptions);
 
         console.log("[login] Success for user:", username);
         return NextResponse.json({ success: true });

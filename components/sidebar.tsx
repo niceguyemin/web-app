@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
     LayoutDashboard,
@@ -11,7 +11,8 @@ import {
     LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 const routes = [
     {
@@ -42,7 +43,27 @@ const routes = [
 
 export function Sidebar() {
     const pathname = usePathname();
+    const router = useRouter();
     const { data: session } = useSession();
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+    const handleLogout = async () => {
+        setIsLoggingOut(true);
+        try {
+            const response = await fetch("/api/logout", {
+                method: "POST",
+            });
+            
+            if (response.ok) {
+                // Redirect to login
+                router.push("/login");
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+        } finally {
+            setIsLoggingOut(false);
+        }
+    };
 
     return (
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -75,12 +96,13 @@ export function Sidebar() {
             <div className="px-3 py-2">
                 <p className="text-xs text-zinc-400 mb-2 px-3">{session?.user?.name}</p>
                 <Button
-                    onClick={() => signOut()}
+                    onClick={handleLogout}
+                    disabled={isLoggingOut}
                     variant="ghost"
                     className="w-full justify-start text-zinc-400 hover:text-white hover:bg-white/10"
                 >
                     <LogOut className="h-5 w-5 mr-3" />
-                    Çıkış Yap
+                    {isLoggingOut ? "Çıkılıyor..." : "Çıkış Yap"}
                 </Button>
             </div>
         </div>
