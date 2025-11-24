@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Danışan Takip Sistemi
 
-## Getting Started
+Danışan takip ve ön muhasebe uygulaması. [Next.js](https://nextjs.org) 16 ile geliştirilmiştir.
 
-First, run the development server:
+## Teknoloji Stack
 
+- **Framework**: Next.js 16.0.3 (Turbopack)
+- **Database**: PostgreSQL (Neon)
+- **ORM**: Prisma
+- **Authentication**: NextAuth v5 (Beta)
+- **UI Components**: Radix UI
+- **Styling**: Tailwind CSS
+
+## Başlangıç
+
+### Gereksinimler
+- Node.js 20+
+- PostgreSQL veritabanı
+
+### Kurulum
+
+1. Repo'yu klonla:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/niceguyemin/web-app.git
+cd web-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Bağımlılıkları yükle:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Environment değişkenlerini ayarla:
+```bash
+cp .env.example .env.local
+# .env.local dosyasını düzenle ve gerçek değerleri ekle
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Veritabanını setup et:
+```bash
+npx prisma migrate dev
+npm run seed  # Admin kullanıcı ve örnek veriler
+```
 
-## Learn More
+5. Development sunucusunu başlat:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Tarayıcıda [http://localhost:3000](http://localhost:3000) açarak erişebilirsin.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Vercel'de Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. Vercel'e bağlan
 
-## Deploy on Vercel
+```bash
+npm i -g vercel
+vercel login
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Projeni Vercel'e bağla
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+vercel link
+```
+
+### 3. Environment Variables ayarla
+
+Vercel Dashboard'da (Settings > Environment Variables):
+
+```
+DATABASE_URL=postgresql://...
+AUTH_SECRET=your-secret-key
+NEXTAUTH_URL=https://your-app.vercel.app
+NEXTAUTH_SECRET=your-nextauth-secret
+```
+
+### 4. Deploy et
+
+```bash
+vercel deploy --prod
+```
+
+veya GitHub'a push et - Vercel otomatik deploy edecek.
+
+## Veritabanı Migrasyonu
+
+### Local'de
+
+```bash
+# Yeni migration oluştur
+npx prisma migrate dev --name add_new_feature
+
+# Mevcut migrasyonları apply et
+npx prisma migrate deploy
+```
+
+### Production (Vercel)
+
+Migrations otomatik apply olur deployment sırasında.
+
+## Kullanıcı Giriş
+
+Varsayılan admin kullanıcısı:
+- **Kullanıcı Adı**: admin
+- **Şifre**: admin123
+
+> ⚠️ Production'da şifreyi değiştir!
+
+## API Endpoints
+
+- `POST /api/login` - Kullanıcı giriş
+- `GET /api/auth/session` - Mevcut session bilgisi
+- `POST /api/auth/signout` - Çıkış
+
+## Dosya Yapısı
+
+```
+web-app/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── login/             # Login page
+│   ├── clients/           # Danışanlar sayfası
+│   ├── accounting/        # Muhasebe sayfası
+│   └── page.tsx           # Dashboard
+├── components/            # Reusable React components
+├── lib/                   # Utilities ve helpers
+│   ├── auth.ts           # NextAuth setup
+│   └── prismadb.ts       # Prisma client
+├── prisma/               # Database schema
+└── public/               # Static files
+```
+
+## Development
+
+```bash
+# Development server (Turbopack ile hızlı reload)
+npm run dev
+
+# Build production
+npm run build
+
+# Production'da çalıştır
+npm start
+
+# Linter çalıştır
+npm run lint
+
+# Veritabanında değişiklikleri görmek için
+npx prisma studio
+```
+
+## Troubleshooting
+
+### CSRF Token Error
+Eğer login yapılırken CSRF hatası alırsan:
+- `.env` dosyasında `AUTH_SECRET` ve `NEXTAUTH_SECRET` doğru mı kontrol et
+- Tarayıcı cookies'ini sil ve tekrar dene
+
+### Database Connection Error
+- `DATABASE_URL` doğru mu kontrol et
+- Neon dashboard'da veritabanı active mi kontrol et
+- SSL sertifikası var mı: `?sslmode=require` eklenmiş mi
+
+## Lisans
+
+MIT
+
+## İletişim
+
+Proje detayları için GitHub repository'yi ziyaret et:
+https://github.com/niceguyemin/web-app
