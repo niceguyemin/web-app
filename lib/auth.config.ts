@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import prismadb from "@/lib/prismadb";
 
 export const authConfig: NextAuthConfig = {
+    secret: process.env.AUTH_SECRET,
     providers: [
         Credentials({
             credentials: {
