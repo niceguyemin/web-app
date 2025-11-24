@@ -1,0 +1,38 @@
+
+> web-app@0.1.0 build
+> next build
+
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Environments: .env.production, .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.3s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+   Generating static pages using 7 workers (0/10) ...
+   Generating static pages using 7 workers (2/10) 
+   Generating static pages using 7 workers (4/10) 
+   Generating static pages using 7 workers (7/10) 
+ ✓ Generating static pages using 7 workers (10/10) in 341.2ms
+   Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /accounting
+├ ƒ /admin/services
+├ ƒ /admin/users
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/login
+├ ƒ /clients
+├ ƒ /clients/[id]
+├ ○ /clients/new
+├ ○ /login
+└ ƒ /settings
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

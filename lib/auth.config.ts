@@ -3,8 +3,6 @@ import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prismadb from "@/lib/prismadb";
 
-const isProduction = process.env.NODE_ENV === "production";
-
 export const authConfig: NextAuthConfig = {
     secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
     trustHost: true,
@@ -83,8 +81,6 @@ export const authConfig: NextAuthConfig = {
         strategy: "jwt",
         maxAge: 7 * 24 * 60 * 60,
     },
-    // Skip CSRF check for development
-    skipCSRFCheck: !isProduction,
     // For localhost in development, explicitly allow the callback
     events: {
         async signIn({ user, isNewUser }) {
