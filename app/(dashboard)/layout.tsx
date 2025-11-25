@@ -1,8 +1,7 @@
-import { redirect } from "next/navigation";
-import ResponsiveSidebar from "@/components/ResponsiveSidebar";
 import { Sidebar } from "@/components/sidebar";
+import { MobileNav } from "@/components/mobile-nav";
 
-export default async function DashboardLayout({
+export default function DashboardLayout({
     children,
 }: {
     children: React.ReactNode;
@@ -15,10 +14,8 @@ export default async function DashboardLayout({
                 <Sidebar />
             </div>
             <div className="md:pl-72 h-full">
-                <div className="md:hidden sticky top-0 z-50 bg-gray-900/50 backdrop-blur-xl border-b border-white/10 p-4">
-                    <ResponsiveSidebar />
-                </div>
-                <main className="h-full p-8">
+                <MobileNav />
+                <main className="h-full p-4 pt-24 md:p-8 md:pt-8">
                     {children}
                 </main>
             </div>

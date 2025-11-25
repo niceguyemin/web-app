@@ -43,22 +43,22 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
     const [error, setError] = useState<string | null>(null);
 
     return (
-        <Card>
+        <Card className="glass-card border-0">
             <CardHeader className="flex flex-row items-center justify-between">
                 <div>
-                    <CardTitle>Ödemeler</CardTitle>
-                    <CardDescription>Geçmiş ödeme kayıtları.</CardDescription>
+                    <CardTitle className="text-white">Ödemeler</CardTitle>
+                    <CardDescription className="text-white/50">Geçmiş ödeme kayıtları.</CardDescription>
                 </div>
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
-                        <Button>
+                        <Button className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 rounded-xl">
                             <Plus className="mr-2 h-4 w-4" />
                             Ödeme Ekle
                         </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="glass-panel border-white/10 text-white">
                         <DialogHeader>
-                            <DialogTitle>Ödeme Al</DialogTitle>
+                            <DialogTitle className="text-white">Ödeme Al</DialogTitle>
                         </DialogHeader>
                         <form
                             action={async (formData) => {
@@ -75,14 +75,14 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                             <input type="hidden" name="clientId" value={client.id} />
 
                             <div className="grid gap-2">
-                                <Label>Hizmet</Label>
+                                <Label className="text-white/70">Hizmet</Label>
                                 <Select name="serviceId" required>
-                                    <SelectTrigger>
+                                    <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                         <SelectValue placeholder="Hizmet Seçin" />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
                                         {client.services.map((s) => (
-                                            <SelectItem key={s.id} value={s.id.toString()}>
+                                            <SelectItem key={s.id} value={s.id.toString()} className="focus:bg-white/10 focus:text-white">
                                                 {s.type} ({s.totalPrice} TL)
                                             </SelectItem>
                                         ))}
@@ -91,37 +91,38 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label>Tutar (TL)</Label>
+                                <Label className="text-white/70">Tutar (TL)</Label>
                                 <Input
                                     name="amount"
                                     type="number"
                                     step="0.01"
                                     min="0.01"
                                     required
+                                    className="glass-input text-white rounded-xl border-white/10"
                                 />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label>Ödeme Türü</Label>
+                                <Label className="text-white/70">Ödeme Türü</Label>
                                 <Select name="type" defaultValue="Nakit">
-                                    <SelectTrigger>
+                                    <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                         <SelectValue />
                                     </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Nakit">Nakit</SelectItem>
-                                        <SelectItem value="Kredi Kartı">Kredi Kartı</SelectItem>
-                                        <SelectItem value="Havale/EFT">Havale/EFT</SelectItem>
+                                    <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                                        <SelectItem value="Nakit" className="focus:bg-white/10 focus:text-white">Nakit</SelectItem>
+                                        <SelectItem value="Kredi Kartı" className="focus:bg-white/10 focus:text-white">Kredi Kartı</SelectItem>
+                                        <SelectItem value="Havale/EFT" className="focus:bg-white/10 focus:text-white">Havale/EFT</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
 
                             {error && (
-                                <div className="p-3 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+                                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-200 text-sm">
                                     {error}
                                 </div>
                             )}
 
-                            <Button type="submit" className="w-full">
+                            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl">
                                 Kaydet
                             </Button>
                         </form>
@@ -131,12 +132,12 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
             <CardContent className="space-y-6">
                 {/* Summary Cards */}
                 <div className="grid grid-cols-2 gap-4">
-                    <Card className="border-green-200 bg-green-50">
+                    <Card className="glass-card border-0 bg-green-500/5 hover:bg-green-500/10 transition-colors">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-green-700">Toplam Ödenen</CardTitle>
+                            <CardTitle className="text-sm font-medium text-green-400">Toplam Ödenen</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-green-700">
+                            <div className="text-2xl font-bold text-green-400">
                                 ₺{(() => {
                                     const totalPaid = client.services.reduce((total: number, service) => {
                                         const servicePaid = (service.payments || []).reduce((sum: number, p) => sum + p.amount, 0);
@@ -147,12 +148,12 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                             </div>
                         </CardContent>
                     </Card>
-                    <Card className="border-red-200 bg-red-50">
+                    <Card className="glass-card border-0 bg-red-500/5 hover:bg-red-500/10 transition-colors">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-red-700">Toplam Kalan</CardTitle>
+                            <CardTitle className="text-sm font-medium text-red-400">Toplam Kalan</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-red-700">
+                            <div className="text-2xl font-bold text-red-400">
                                 ₺{(() => {
                                     const totalRemaining = client.services.reduce((total: number, service) => {
                                         const servicePaid = (service.payments || []).reduce((sum: number, p) => sum + p.amount, 0);
@@ -167,29 +168,29 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                 </div>
 
                 {/* Payments Table */}
-                <div className="rounded-md border">
+                <div className="rounded-xl border border-white/10 glass-card overflow-hidden">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="border-b bg-muted/50">
-                                <th className="p-3 text-left font-medium">Tarih</th>
-                                <th className="p-3 text-left font-medium">Hizmet</th>
-                                <th className="p-3 text-left font-medium">Tür</th>
-                                <th className="p-3 text-right font-medium">Tutar</th>
+                            <tr className="border-b border-white/10 bg-white/5">
+                                <th className="p-3 text-left font-medium text-white/70">Tarih</th>
+                                <th className="p-3 text-left font-medium text-white/70">Hizmet</th>
+                                <th className="p-3 text-left font-medium text-white/70">Tür</th>
+                                <th className="p-3 text-right font-medium text-white/70">Tutar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {client.payments.map((payment) => {
                                 const service = client.services.find((s) => s.id === payment.serviceId);
                                 return (
-                                    <tr key={payment.id} className="border-b last:border-0">
-                                        <td className="p-3">
+                                    <tr key={payment.id} className="border-b border-white/10 last:border-0 hover:bg-white/5 transition-colors">
+                                        <td className="p-3 text-white">
                                             {format(payment.date, "d MMMM yyyy HH:mm", { locale: tr })}
                                         </td>
-                                        <td className="p-3">
+                                        <td className="p-3 text-white">
                                             {service ? service.type : "Genel"}
                                         </td>
-                                        <td className="p-3">{payment.type || "-"}</td>
-                                        <td className="p-3 text-right font-medium">
+                                        <td className="p-3 text-white">{payment.type || "-"}</td>
+                                        <td className="p-3 text-right font-medium text-white">
                                             ₺{payment.amount.toFixed(2)}
                                         </td>
                                     </tr>
@@ -197,7 +198,7 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                             })}
                             {client.payments.length === 0 && (
                                 <tr>
-                                    <td colSpan={4} className="p-4 text-center text-muted-foreground">
+                                    <td colSpan={4} className="p-4 text-center text-white/50">
                                         Ödeme kaydı yok.
                                     </td>
                                 </tr>

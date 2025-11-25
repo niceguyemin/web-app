@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { Plus, Search } from "lucide-react";
+import { Plus } from "lucide-react";
 import {
     Table,
     TableBody,
@@ -14,6 +14,8 @@ import {
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
+import { Search } from "@/components/search";
+
 export default async function ClientsPage({
     searchParams,
 }: {
@@ -23,9 +25,10 @@ export default async function ClientsPage({
 
     const clients = await prismadb.client.findMany({
         where: {
-            name: {
-                contains: query,
-            },
+            OR: [
+                { name: { contains: query } },
+                { phone: { contains: query } },
+            ],
         },
         orderBy: {
             createdAt: "desc",
@@ -45,17 +48,7 @@ export default async function ClientsPage({
             </div>
 
             <div className="flex items-center space-x-2">
-                <div className="relative w-full max-w-sm">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-white/50" />
-                    <form>
-                        <Input
-                            placeholder="İsim ara..."
-                            name="query"
-                            className="pl-8 glass-input text-white rounded-xl border-white/10"
-                            defaultValue={query}
-                        />
-                    </form>
-                </div>
+                <Search placeholder="İsim veya telefon ara..." />
             </div>
 
             <div className="rounded-xl border border-white/10 glass-card overflow-hidden">
