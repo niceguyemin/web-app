@@ -78,71 +78,71 @@ export default async function Page() {
   }
 
   return (
-    <div className="flex-1 space-y-4 p-8 pt-6">
+    <div className="flex-1 space-y-6 p-2">
       <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Panel</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-white">Panel</h2>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="glass-card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-white/70">
               Toplam Danışan
             </CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{clientCount}</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-2xl font-bold text-white">{clientCount}</div>
+            <p className="text-xs text-white/50">
               Sisteme kayıtlı toplam kişi
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-white/70">
               Aktif Hizmetler
             </CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
+            <Activity className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{serviceCount}</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-2xl font-bold text-white">{serviceCount}</div>
+            <p className="text-xs text-white/50">
               Devam eden paket sayısı
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-white/70">
               Bu Ay Gelir
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-white">
               ₺{totalIncome.toFixed(2)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-white/50">
               {format(now, "MMMM", { locale: tr })} ayı toplamı
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="glass-card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-white/70">
               Bekleyen Ödemeler
             </CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <CreditCard className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-white">
               ₺{pendingPayments.toFixed(2)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-white/50">
               Tahsil edilecek tutar
             </p>
           </CardContent>
@@ -150,10 +150,10 @@ export default async function Page() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+        <Card className="col-span-4 glass-card border-0">
           <CardHeader>
-            <CardTitle>Genel Bakış</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-white">Genel Bakış</CardTitle>
+            <CardDescription className="text-white/50">
               Son 6 aylık gelir grafiği
             </CardDescription>
           </CardHeader>
@@ -161,10 +161,10 @@ export default async function Page() {
             <Overview data={graphData} />
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="col-span-3 glass-card border-0">
           <CardHeader>
-            <CardTitle>Son İşlemler</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-white">Son İşlemler</CardTitle>
+            <CardDescription className="text-white/50">
               Son yapılan 5 ödeme işlemi
             </CardDescription>
           </CardHeader>

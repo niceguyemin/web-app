@@ -60,11 +60,14 @@ export function Sidebar() {
     };
 
     return (
-        <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
+        <div className="space-y-4 py-4 flex flex-col h-full text-white/80">
             <div className="px-3 py-2 flex-1">
-                <Link href="/" className="flex items-center pl-3 mb-14">
-                    <h1 className="text-2xl font-bold">
-                        Danışan<span className="text-primary">Takip</span>
+                <Link href="/" className="flex items-center pl-3 mb-10">
+                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mr-3 shadow-lg shadow-primary/20">
+                        <span className="font-bold text-white text-lg">A</span>
+                    </div>
+                    <h1 className="text-xl font-bold tracking-tight text-white">
+                        Antigravity
                     </h1>
                 </Link>
                 <div className="space-y-1">
@@ -73,10 +76,10 @@ export function Sidebar() {
                             key={route.href}
                             href={route.href}
                             className={cn(
-                                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:bg-white/10 rounded-xl transition-all duration-200",
                                 pathname === route.href
-                                    ? "text-white bg-white/10"
-                                    : "text-zinc-400"
+                                    ? "bg-white/10 text-white shadow-sm"
+                                    : "text-white/60 hover:text-white"
                             )}
                         >
                             <div className="flex items-center flex-1">
@@ -88,12 +91,15 @@ export function Sidebar() {
                 </div>
             </div>
             <div className="px-3 py-2">
-                <p className="text-xs text-zinc-400 mb-2 px-3">{session?.user?.name}</p>
+                <div className="mx-3 mb-4 p-3 rounded-xl bg-white/5 border border-white/5">
+                    <p className="text-xs text-white/40 font-medium uppercase mb-1">Giriş Yapıldı</p>
+                    <p className="text-sm text-white font-medium truncate">{session?.user?.name}</p>
+                </div>
                 <Button
                     onClick={handleLogout}
                     disabled={isLoggingOut}
                     variant="ghost"
-                    className="w-full justify-start text-zinc-400 hover:text-white hover:bg-white/10"
+                    className="w-full justify-start text-white/60 hover:text-white hover:bg-white/10 rounded-xl"
                 >
                     <LogOut className="h-5 w-5 mr-3" />
                     {isLoggingOut ? "Çıkılıyor..." : "Çıkış Yap"}

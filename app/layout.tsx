@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { AppWindow } from "@/components/ui/app-window";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Danışan Takip Sistemi",
+  title: "Antigravity",
   description: "Danışan Takip ve Ön Muhasebe Uygulaması",
 };
 
@@ -16,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
+    <html lang="tr" className="dark">
       <body className={inter.className}>
         <Providers>
-          {children}
+          <AppWindow>
+            {children}
+          </AppWindow>
         </Providers>
       </body>
     </html>
