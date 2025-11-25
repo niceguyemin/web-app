@@ -1,6 +1,5 @@
-
-const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcryptjs');
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -14,7 +13,7 @@ async function checkUser() {
             console.log('User "admin" not found.');
             // Create the user if it doesn't exist
             const hashedPassword = await bcrypt.hash('admin123', 10);
-            const newUser = await prisma.user.create({
+            await prisma.user.create({
                 data: {
                     username: 'admin',
                     password: hashedPassword,

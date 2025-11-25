@@ -35,3 +35,23 @@ export async function toggleServiceType(formData: FormData) {
 
     revalidatePath("/settings");
 }
+
+export async function deleteServiceType(formData: FormData) {
+    const session = await auth();
+    if (session?.user?.role !== "ADMIN") {
+        throw new Error("Unauthorized");
+    }
+
+    const id = parseInt(formData.get("id") as string);
+
+    try {
+        await prismadb.serviceType.delete({
+            where: { id },
+        });
+    } catch (error) {
+        console.error("Failed to delete service type:", error);
+        // Optionally handle error (e.g. if foreign key constraint fails)
+    }
+
+    revalidatePath("/settings");
+}

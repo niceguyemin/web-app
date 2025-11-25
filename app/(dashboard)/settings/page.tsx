@@ -8,12 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createUser, deleteUser } from "@/app/actions/user";
-import { createServiceType, toggleServiceType } from "@/app/actions/servicetype";
+import { createServiceType, toggleServiceType, deleteServiceType } from "@/app/actions/servicetype";
 import { Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default async function SettingsPage() {
     const session = await auth();
+
     if (session?.user?.role !== "ADMIN") {
         redirect("/");
     }
@@ -160,11 +161,17 @@ export default async function SettingsPage() {
                                                     )}
                                                 </td>
                                                 <td className="p-3 text-right">
-                                                    <form action={toggleServiceType} className="inline">
+                                                    <form action={toggleServiceType} className="inline mr-2">
                                                         <input type="hidden" name="id" value={service.id} />
                                                         <input type="hidden" name="active" value={(!service.active).toString()} />
                                                         <Button type="submit" variant="outline" size="sm">
                                                             {service.active ? "Pasifleştir" : "Aktifleştir"}
+                                                        </Button>
+                                                    </form>
+                                                    <form action={deleteServiceType} className="inline">
+                                                        <input type="hidden" name="id" value={service.id} />
+                                                        <Button type="submit" variant="ghost" size="sm">
+                                                            <Trash className="h-4 w-4 text-red-500" />
                                                         </Button>
                                                     </form>
                                                 </td>

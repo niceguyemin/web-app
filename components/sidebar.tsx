@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { signOut } from "@/app/actions/auth";
 
 const routes = [
     {
@@ -50,14 +51,7 @@ export function Sidebar() {
     const handleLogout = async () => {
         setIsLoggingOut(true);
         try {
-            const response = await fetch("/api/logout", {
-                method: "POST",
-            });
-            
-            if (response.ok) {
-                // Redirect to login
-                router.push("/login");
-            }
+            await signOut();
         } catch (error) {
             console.error("Logout error:", error);
         } finally {

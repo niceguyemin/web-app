@@ -1,6 +1,6 @@
 "use client";
 
-// Removed invalid Prisma model imports; using any for client data
+import { Client, Service, Payment } from "@prisma/client";
 import {
     Card,
     CardContent,
@@ -32,7 +32,10 @@ import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
 interface ClientPaymentsProps {
-    client: any; // using any because exact Prisma types are not imported; structure is provided by parent component
+    client: Client & {
+        services: (Service & { payments: Payment[] })[];
+        payments: Payment[];
+    };
 }
 
 export function ClientPayments({ client }: ClientPaymentsProps) {
@@ -78,7 +81,7 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                                         <SelectValue placeholder="Hizmet Seçin" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {client.services.map((s: any) => (
+                                        {client.services.map((s) => (
                                             <SelectItem key={s.id} value={s.id.toString()}>
                                                 {s.type} ({s.totalPrice} TL)
                                             </SelectItem>
@@ -135,8 +138,8 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                         <CardContent>
                             <div className="text-2xl font-bold text-green-700">
                                 ₺{(() => {
-                                    const totalPaid = client.services.reduce((total: number, service: any) => {
-                                        const servicePaid = (service.payments || []).reduce((sum: number, p: any) => sum + p.amount, 0);
+                                    const totalPaid = client.services.reduce((total: number, service) => {
+                                        const servicePaid = (service.payments || []).reduce((sum: number, p) => sum + p.amount, 0);
                                         return total + servicePaid;
                                     }, 0);
                                     return totalPaid.toFixed(2);
@@ -151,8 +154,8 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                         <CardContent>
                             <div className="text-2xl font-bold text-red-700">
                                 ₺{(() => {
-                                    const totalRemaining = client.services.reduce((total: number, service: any) => {
-                                        const servicePaid = (service.payments || []).reduce((sum: number, p: any) => sum + p.amount, 0);
+                                    const totalRemaining = client.services.reduce((total: number, service) => {
+                                        const servicePaid = (service.payments || []).reduce((sum: number, p) => sum + p.amount, 0);
                                         const remaining = service.totalPrice - servicePaid;
                                         return total + (remaining > 0 ? remaining : 0);
                                     }, 0);
@@ -175,8 +178,8 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            {client.payments.map((payment: any) => {
-                                const service = client.services.find((s: any) => s.id === payment.serviceId);
+                            {client.payments.map((payment) => {
+                                const service = client.services.find((s) => s.id === payment.serviceId);
                                 return (
                                     <tr key={payment.id} className="border-b last:border-0">
                                         <td className="p-3">

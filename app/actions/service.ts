@@ -2,14 +2,8 @@
 
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
-import { z } from "zod";
 
-const ServiceSchema = z.object({
-    clientId: z.number(),
-    type: z.string(),
-    totalSessions: z.number().min(1),
-    totalPrice: z.number().min(0),
-});
+
 
 export async function createService(formData: FormData) {
     const clientId = parseInt(formData.get("clientId") as string);

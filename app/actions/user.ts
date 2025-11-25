@@ -4,7 +4,6 @@ import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 export async function createUser(formData: FormData) {
     const session = await auth();

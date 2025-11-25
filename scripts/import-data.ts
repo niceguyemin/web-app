@@ -8,6 +8,45 @@ const prisma = new PrismaClient();
 // Adjust this path to point to your JSON file
 const JSON_FILE_PATH = path.join(process.cwd(), "../domalovski/veriler_v2_20_kisi.json");
 
+interface ServiceData {
+    tarih: string;
+    tur: string;
+    seans: number;
+    kalan: number;
+    tutar: number;
+    oden?: number;
+}
+
+interface WeightHistory {
+    kilo: string;
+    boy?: string;
+    bmi?: string;
+    tarih: string;
+}
+
+interface PaymentHistory {
+    tutar: number;
+    tarih: string;
+}
+
+interface PatientData {
+    ad: string;
+    cinsiyet?: string;
+    telefon?: string;
+    dogum?: string;
+    boy?: string;
+    kilo?: string;
+    not?: string;
+    hizmetler?: ServiceData[];
+    kilo_gecmis?: WeightHistory[];
+    odeme_gecmis?: PaymentHistory[];
+}
+
+interface ImportData {
+    patients?: PatientData[];
+}
+
+
 async function main() {
     console.log(`Reading data from ${JSON_FILE_PATH}...`);
 
@@ -17,12 +56,15 @@ async function main() {
     }
 
     const rawData = fs.readFileSync(JSON_FILE_PATH, "utf-8");
-    let data: any[] = JSON.parse(rawData);
+    const parsedData = JSON.parse(rawData);
+    let data: PatientData[] = [];
 
     // Handle if the JSON is wrapped in an object like { patients: [...] }
-    if (!Array.isArray(data) && (data as any).patients) {
-        data = (data as any).patients;
-    } else if (!Array.isArray(data)) {
+    if (Array.isArray(parsedData)) {
+        data = parsedData as PatientData[];
+    } else if ((parsedData as ImportData).patients) {
+        data = (parsedData as ImportData).patients!;
+    } else {
         console.error("Invalid JSON format. Expected an array or object with 'patients' key.");
         process.exit(1);
     }
@@ -134,7 +176,7 @@ function parseDate(dateStr: string): Date {
         // Format: "dd.mm.yyyy HH:MM"
         // We can use date-fns parse
         return parse(dateStr, "dd.MM.yyyy HH:mm", new Date());
-    } catch (e) {
+    } catch {
         return new Date();
     }
 }

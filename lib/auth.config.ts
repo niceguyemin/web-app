@@ -1,59 +1,28 @@
-import type { NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import prismadb from "@/lib/prismadb";
+import type { NextAuthConfig, User, Account, Session } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 
 export const authConfig: NextAuthConfig = {
     secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
     trustHost: true,
-    providers: [
-        Credentials({
-            credentials: {
-                username: { label: "Username", type: "text" },
-                password: { label: "Password", type: "password" },
-            },
-            async authorize(credentials) {
-                try {
-                    if (!credentials?.username || !credentials?.password) {
-                        return null;
-                    }
-
-                    const user = await prismadb.user.findUnique({
-                        where: { username: credentials.username as string },
-                    });
-
-                    if (!user) {
-                        return null;
-                    }
-
-                    const passwordMatch = await bcrypt.compare(
-                        credentials.password as string,
-                        user.password
-                    );
-
-                    if (!passwordMatch) {
-                        return null;
-                    }
-
-                    return {
-                        id: user.id.toString(),
-                        name: user.name || user.username,
-                        email: user.username,
-                        role: user.role,
-                    };
-                } catch (error) {
-                    console.error("Auth error:", error);
-                    return null;
-                }
-            },
-        }),
-    ],
+    providers: [], // Providers will be added in auth.ts to avoid Edge Runtime issues with Prisma
     callbacks: {
-        async jwt({ token, user, account }) {
+        authorized({ auth, request: { nextUrl } }) {
+            const isLoggedIn = !!auth?.user;
+            const isOnDashboard = !nextUrl.pathname.startsWith("/login");
+
+            if (isOnDashboard) {
+                if (isLoggedIn) return true;
+                return false; // Redirect unauthenticated users to login page
+            } else if (isLoggedIn) {
+                return Response.redirect(new URL("/", nextUrl));
+            }
+            return true;
+        },
+        async jwt({ token, user }: { token: JWT; user?: User; account?: Account | null }) {
             try {
                 if (user) {
-                    token.role = (user as any)?.role || "USER";
-                    token.id = (user as any)?.id;
+                    token.role = user.role || "USER";
+                    token.id = user.id || "";
                 }
                 return token;
             } catch (error) {
@@ -61,7 +30,7 @@ export const authConfig: NextAuthConfig = {
                 return token;
             }
         },
-        async session({ session, token }) {
+        async session({ session, token }: { session: Session; token: JWT }) {
             try {
                 if (session.user) {
                     session.user.role = (token.role as string) || "USER";
@@ -80,11 +49,5 @@ export const authConfig: NextAuthConfig = {
     session: {
         strategy: "jwt",
         maxAge: 7 * 24 * 60 * 60,
-    },
-    // For localhost in development, explicitly allow the callback
-    events: {
-        async signIn({ user, isNewUser }) {
-            console.log(`User ${user?.name} signed in`);
-        },
     },
 };

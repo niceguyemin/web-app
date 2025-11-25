@@ -40,12 +40,13 @@ export default function NewClientPage() {
                         try {
                             setError(null);
                             await createClient(formData);
-                        } catch (err: any) {
+                        } catch (err: unknown) {
                             // Handle Zod validation errors
-                            if (err.errors && Array.isArray(err.errors)) {
-                                setError(err.errors.map((e: any) => e.message).join(", "));
-                            } else if (err.message) {
-                                setError(err.message);
+                            const errorObj = err as { errors?: { message: string }[]; message?: string };
+                            if (errorObj.errors && Array.isArray(errorObj.errors)) {
+                                setError(errorObj.errors.map((e) => e.message).join(", "));
+                            } else if (errorObj.message) {
+                                setError(errorObj.message);
                             } else {
                                 setError("Bir hata oluştu");
                             }

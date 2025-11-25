@@ -4,19 +4,27 @@ import { cookies } from "next/headers";
 export async function POST() {
     try {
         console.log("[logout] POST request received");
-        
+
         const cookieStore = await cookies();
         const isProduction = process.env.NODE_ENV === "production";
-        
+
         // Delete session cookie
-        const deleteOptions: any = {
+        // Delete session cookie
+        const deleteOptions: {
+            httpOnly: boolean;
+            secure: boolean;
+            sameSite: "lax" | "strict" | "none";
+            maxAge: number;
+            path: string;
+            domain?: string;
+        } = {
             httpOnly: true,
             secure: isProduction,
-            sameSite: "lax" as const,
+            sameSite: "lax",
             maxAge: 0,
             path: "/",
         };
-        
+
         // Extract domain from NEXTAUTH_URL for production
         if (isProduction && process.env.NEXTAUTH_URL) {
             try {
@@ -26,9 +34,9 @@ export async function POST() {
                 console.error("[logout] Error parsing NEXTAUTH_URL for domain:", e);
             }
         }
-        
+
         cookieStore.set("next-auth.session-token", "", deleteOptions);
-        
+
         console.log("[logout] Session cookie deleted");
         return NextResponse.json({ success: true });
     } catch (error) {
