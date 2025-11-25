@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     format,
     startOfMonth,
@@ -37,7 +37,15 @@ interface AppointmentCalendarProps {
 }
 
 export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) {
-    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const [currentMonth, setCurrentMonth] = useState<Date | null>(null);
+
+    useEffect(() => {
+        setCurrentMonth(new Date());
+    }, []);
+
+    if (!currentMonth) {
+        return null; // Or a loading skeleton
+    }
 
     const firstDayOfMonth = startOfMonth(currentMonth);
     const lastDayOfMonth = endOfMonth(currentMonth);
