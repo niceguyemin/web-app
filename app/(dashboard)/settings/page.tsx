@@ -38,73 +38,125 @@ export default async function SettingsPage() {
                 </TabsList>
 
                 <TabsContent value="users" className="space-y-4">
-                    <Card>
+                    <Card className="glass-card border-white/10">
                         <CardHeader>
-                            <CardTitle>Yeni Kullanıcı</CardTitle>
-                            <CardDescription>Sisteme yeni kullanıcı ekleyin.</CardDescription>
+                            <CardTitle className="text-white">Yeni Kullanıcı</CardTitle>
+                            <CardDescription className="text-white/50">Sisteme yeni kullanıcı ekleyin.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <form action={createUser} className="flex flex-wrap gap-4 items-end">
                                 <div className="grid gap-2 w-[180px]">
-                                    <Label>Kullanıcı Adı</Label>
-                                    <Input name="username" required />
+                                    <Label className="text-white/70">Kullanıcı Adı</Label>
+                                    <Input name="username" required className="glass-input text-white rounded-xl border-white/10" />
                                 </div>
                                 <div className="grid gap-2 w-[180px]">
-                                    <Label>Şifre</Label>
-                                    <Input name="password" type="password" required />
+                                    <Label className="text-white/70">Şifre</Label>
+                                    <Input name="password" type="password" required className="glass-input text-white rounded-xl border-white/10" />
                                 </div>
                                 <div className="grid gap-2 w-[180px]">
-                                    <Label>İsim</Label>
-                                    <Input name="name" />
+                                    <Label className="text-white/70">İsim</Label>
+                                    <Input name="name" className="glass-input text-white rounded-xl border-white/10" />
                                 </div>
                                 <div className="grid gap-2 w-[150px]">
-                                    <Label>Rol</Label>
+                                    <Label className="text-white/70">Rol</Label>
                                     <Select name="role" defaultValue="USER">
-                                        <SelectTrigger>
+                                        <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                             <SelectValue />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
                                             <SelectItem value="USER">Kullanıcı</SelectItem>
                                             <SelectItem value="ADMIN">Admin</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <Button type="submit">Ekle</Button>
+                                <div className="grid gap-2 w-[150px]">
+                                    <Label className="text-white/70">Renk</Label>
+                                    <Select name="color" defaultValue="#F97316">
+                                        <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                                            <SelectItem value="#F97316">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-orange-500" />
+                                                    <span>Turuncu</span>
+                                                </div>
+                                            </SelectItem>
+                                            <SelectItem value="#3B82F6">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-blue-500" />
+                                                    <span>Mavi</span>
+                                                </div>
+                                            </SelectItem>
+                                            <SelectItem value="#22C55E">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-green-500" />
+                                                    <span>Yeşil</span>
+                                                </div>
+                                            </SelectItem>
+                                            <SelectItem value="#A855F7">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-purple-500" />
+                                                    <span>Mor</span>
+                                                </div>
+                                            </SelectItem>
+                                            <SelectItem value="#EC4899">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-pink-500" />
+                                                    <span>Pembe</span>
+                                                </div>
+                                            </SelectItem>
+                                            <SelectItem value="#06B6D4">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-4 h-4 rounded-full bg-cyan-500" />
+                                                    <span>Turkuaz</span>
+                                                </div>
+                                            </SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <Button type="submit" className="bg-primary hover:bg-primary/90 text-white rounded-xl">Ekle</Button>
                             </form>
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="glass-card border-white/10">
                         <CardHeader>
-                            <CardTitle>Kullanıcılar</CardTitle>
+                            <CardTitle className="text-white">Kullanıcılar</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="rounded-md border">
-                                <table className="w-full text-sm">
+                            <div className="rounded-xl border border-white/10 overflow-hidden">
+                                <table className="w-full text-sm text-white">
                                     <thead>
-                                        <tr className="border-b bg-muted/50">
+                                        <tr className="border-b border-white/10 bg-white/5">
                                             <th className="p-3 text-left font-medium">Kullanıcı Adı</th>
                                             <th className="p-3 text-left font-medium">İsim</th>
                                             <th className="p-3 text-left font-medium">Rol</th>
+                                            <th className="p-3 text-left font-medium">Renk</th>
                                             <th className="p-3 text-right font-medium">İşlem</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {users.map((user) => (
-                                            <tr key={user.id} className="border-b last:border-0">
+                                            <tr key={user.id} className="border-b border-white/10 last:border-0 hover:bg-white/5">
                                                 <td className="p-3">{user.username}</td>
                                                 <td className="p-3">{user.name || "-"}</td>
                                                 <td className="p-3">
-                                                    <span className={user.role === "ADMIN" ? "text-orange-600 font-medium" : ""}>
+                                                    <span className={user.role === "ADMIN" ? "text-orange-400 font-medium" : "text-white/70"}>
                                                         {user.role === "ADMIN" ? "Admin" : "Kullanıcı"}
                                                     </span>
+                                                </td>
+                                                <td className="p-3">
+                                                    {user.color && (
+                                                        <div className="w-6 h-6 rounded-full border border-white/20" style={{ backgroundColor: user.color }} />
+                                                    )}
                                                 </td>
                                                 <td className="p-3 text-right">
                                                     {user.username !== "admin" && (
                                                         <form action={deleteUser} className="inline">
                                                             <input type="hidden" name="id" value={user.id} />
-                                                            <Button type="submit" variant="ghost" size="sm">
-                                                                <Trash className="h-4 w-4 text-red-500" />
+                                                            <Button type="submit" variant="ghost" size="sm" className="hover:bg-red-500/20 hover:text-red-400 rounded-lg">
+                                                                <Trash className="h-4 w-4" />
                                                             </Button>
                                                         </form>
                                                     )}

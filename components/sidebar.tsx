@@ -9,6 +9,7 @@ import {
     Calculator,
     Settings,
     LogOut,
+    Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
@@ -27,6 +28,12 @@ const routes = [
         icon: Users,
         href: "/clients",
         color: "text-violet-500",
+    },
+    {
+        label: "Randevular",
+        icon: Calendar,
+        href: "/appointments",
+        color: "text-orange-500",
     },
     {
         label: "Muhasebe",

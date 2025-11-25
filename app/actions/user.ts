@@ -15,6 +15,7 @@ export async function createUser(formData: FormData) {
     const password = formData.get("password") as string;
     const name = formData.get("name") as string;
     const role = formData.get("role") as string;
+    const color = formData.get("color") as string;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -24,6 +25,7 @@ export async function createUser(formData: FormData) {
             password: hashedPassword,
             name,
             role,
+            color,
         },
     });
 
