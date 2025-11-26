@@ -4,96 +4,105 @@ import path from "path";
 import { parse } from "date-fns";
 
 const prisma = new PrismaClient();
-
-// Adjust this path to point to your JSON file
-const JSON_FILE_PATH = path.join(process.cwd(), "../domalovski/veriler_v2_20_kisi.json");
+const JSON_FILE_PATH = path.join(__dirname, "../data.json");
 
 interface ServiceData {
-    tarih: string;
     tur: string;
     seans: number;
     kalan: number;
     tutar: number;
-    oden?: number;
+    oden: number;
+    tarih: string;
 }
 
 interface WeightHistory {
-    kilo: string;
-    boy?: string;
-    bmi?: string;
     tarih: string;
+    kilo: string | number;
+    boy?: string | number;
+    bmi?: string | number;
 }
 
 interface PaymentHistory {
-    tutar: number;
     tarih: string;
+    tur: string;
+    tutar: number;
 }
 
 interface PatientData {
     ad: string;
-    cinsiyet?: string;
-    telefon?: string;
-    dogum?: string;
-    boy?: string;
-    kilo?: string;
-    not?: string;
-    hizmetler?: ServiceData[];
-    kilo_gecmis?: WeightHistory[];
-    odeme_gecmis?: PaymentHistory[];
+    cinsiyet: string;
+    telefon: string;
+    dogum: string;
+    boy: number | null;
+    kilo: number | null;
+    bmi: number | null;
+    not: string;
+    kilo_gecmis: WeightHistory[];
+    hizmetler: ServiceData[];
+    odeme_gecmis: PaymentHistory[];
+}
+
+interface ExpenseData {
+    tarih: string;
+    kategori: string;
+    tutar: number;
+    not: string;
 }
 
 interface ImportData {
-    patients?: PatientData[];
+    patients: PatientData[];
+    expenses: ExpenseData[];
 }
 
+function parseDate(dateStr: string): Date {
+    if (!dateStr) return new Date();
+    try {
+        return parse(dateStr, "dd.MM.yyyy HH:mm", new Date());
+    } catch (e) {
+        return new Date();
+    }
+}
 
 async function main() {
-    console.log(`Reading data from ${JSON_FILE_PATH}...`);
-
     if (!fs.existsSync(JSON_FILE_PATH)) {
         console.error("File not found!");
         process.exit(1);
     }
 
     const rawData = fs.readFileSync(JSON_FILE_PATH, "utf-8");
-    const parsedData = JSON.parse(rawData);
-    let data: PatientData[] = [];
+    const parsedData = JSON.parse(rawData) as ImportData;
+    const patients = parsedData.patients || [];
+    const expenses = parsedData.expenses || [];
 
-    // Handle if the JSON is wrapped in an object like { patients: [...] }
-    if (Array.isArray(parsedData)) {
-        data = parsedData as PatientData[];
-    } else if ((parsedData as ImportData).patients) {
-        data = (parsedData as ImportData).patients!;
-    } else {
-        console.error("Invalid JSON format. Expected an array or object with 'patients' key.");
-        process.exit(1);
-    }
+    console.log(`Found ${patients.length} patients, ${expenses.length} expenses.`);
 
-    console.log(`Found ${data.length} patients. Importing...`);
-
-    for (const p of data) {
+    for (const p of patients) {
         try {
-            // Create Client
             const client = await prisma.client.create({
                 data: {
                     name: p.ad,
                     gender: p.cinsiyet || null,
                     phone: p.telefon || null,
                     birthDate: p.dogum || null,
-                    height: p.boy ? parseFloat(p.boy) : null,
-                    weight: p.kilo ? parseFloat(p.kilo) : null,
+                    height: p.boy ? parseFloat(p.boy.toString()) : null,
+                    weight: p.kilo ? parseFloat(p.kilo.toString()) : null,
                     notes: p.not || null,
                 },
             });
 
-            console.log(`Created client: ${client.name} (${client.id})`);
-
-            // Import Services
-            if (p.hizmetler && Array.isArray(p.hizmetler)) {
+            if (p.hizmetler?.length) {
                 for (const h of p.hizmetler) {
                     const serviceDate = parseDate(h.tarih);
+                    const serviceTypeSlug = h.tur.trim();
+                    if (serviceTypeSlug) {
+                        await prisma.serviceType.upsert({
+                            where: { name: serviceTypeSlug },
+                            update: {},
+                            create: { name: serviceTypeSlug, active: true }
+                        });
+                    }
 
-                    const service = await prisma.service.create({
+                    await prisma.service.create({
                         data: {
                             clientId: client.id,
                             type: h.tur,
@@ -104,80 +113,53 @@ async function main() {
                             status: h.kalan > 0 ? "ACTIVE" : "COMPLETED",
                         },
                     });
-
-                    // If there is a "paid" amount (oden > 0), we record it as a payment
-                    if (h.oden && h.oden > 0) {
-                        await prisma.payment.create({
-                            data: {
-                                clientId: client.id,
-                                serviceId: service.id,
-                                amount: h.oden,
-                                date: serviceDate, // Assuming payment was made at service creation
-                                type: "Nakit", // Default to Cash as source doesn't specify
-                            },
-                        });
-                    }
                 }
             }
 
-            // Import Weight History
-            if (p.kilo_gecmis && Array.isArray(p.kilo_gecmis)) {
+            if (p.kilo_gecmis?.length) {
                 for (const k of p.kilo_gecmis) {
                     await prisma.measurement.create({
                         data: {
                             clientId: client.id,
-                            weight: parseFloat(k.kilo),
-                            height: k.boy ? parseFloat(k.boy) : null,
-                            bmi: k.bmi ? parseFloat(k.bmi) : null,
+                            weight: parseFloat(k.kilo.toString()),
+                            height: k.boy ? parseFloat(k.boy.toString()) : null,
+                            bmi: k.bmi ? parseFloat(k.bmi.toString()) : null,
                             date: parseDate(k.tarih),
                         },
                     });
                 }
             }
 
-            // Import Payment History (if exists separately)
-            if (p.odeme_gecmis && Array.isArray(p.odeme_gecmis)) {
+            if (p.odeme_gecmis?.length) {
                 for (const pay of p.odeme_gecmis) {
-                    // Check if this payment is already covered by the service "oden" field to avoid duplicates?
-                    // The python app logic seemed to append to odeme_gecmis whenever a payment was made.
-                    // However, the "hizmetler" list also has "oden". 
-                    // Strategy: We will import these as separate payments if they don't match exactly what we just created?
-                    // Actually, to be safe and avoid double counting if the JSON is consistent, 
-                    // we should rely on 'odeme_gecmis' for the payment records if it exists, 
-                    // BUT the 'hizmetler' loop above creates payments based on 'oden'.
-                    // Let's assume 'odeme_gecmis' is the source of truth for transaction history.
-                    // But wait, the file I read didn't have 'odeme_gecmis' in the first few records.
-                    // Let's just import them if they exist.
-
                     await prisma.payment.create({
                         data: {
                             clientId: client.id,
                             amount: pay.tutar,
                             date: parseDate(pay.tarih),
                             type: "Nakit",
-                            // We can't easily link to a specific service unless we match by name/date, 
-                            // but for now let's leave serviceId null (General Payment) or try to match?
-                            // Let's leave it null for simplicity.
                         },
                     });
                 }
             }
-
         } catch (error) {
-            console.error(`Failed to import client ${p.ad}:`, error);
+            console.error(`Failed client ${p.ad}:`, error);
         }
     }
 
-    console.log("Import completed!");
-}
-
-function parseDate(dateStr: string): Date {
-    try {
-        // Format: "dd.mm.yyyy HH:MM"
-        // We can use date-fns parse
-        return parse(dateStr, "dd.MM.yyyy HH:mm", new Date());
-    } catch {
-        return new Date();
+    for (const e of expenses) {
+        try {
+            await prisma.expense.create({
+                data: {
+                    category: e.kategori,
+                    amount: e.tutar,
+                    description: e.not || null,
+                    date: parseDate(e.tarih),
+                },
+            });
+        } catch (error) {
+            console.error("Failed expense:", error);
+        }
     }
 }
 
