@@ -4,6 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import { ExpenseForm } from "./components/expense-form";
+import { AccountingSummary } from "./components/accounting-summary";
+import { IncomeList } from "./components/income-list";
+import { ExpenseList } from "./components/expense-list";
 
 export const dynamic = "force-dynamic"; // Prisma için
 export const runtime = "nodejs";
@@ -32,125 +35,83 @@ export default async function AccountingPage() {
   const netProfit = totalIncome - totalExpense;
 
   return (
-    <div className="p-8 space-y-8">
-      <h2 className="text-3xl font-bold tracking-tight">Muhasebe</h2>
+    <div className="p-4 md:p-8 space-y-4 md:space-y-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Muhasebe</h2>
+        <div className="text-white/70 text-sm md:text-base">
+          {new Intl.DateTimeFormat('tr-TR', {
+            day: 'numeric',
+            month: 'long',
+            weekday: 'long',
+            timeZone: 'Europe/Istanbul'
+          }).format(new Date())}
+        </div>
+      </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Toplam Gelir</CardTitle>
+      <div className="grid gap-3 md:gap-4 grid-cols-3">
+        <Card className="glass-card border-0">
+          <CardHeader className="pb-2 p-3 md:p-6">
+            <CardTitle className="text-xs md:text-sm font-medium text-white/70">Toplam Gelir</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">
+          <CardContent className="p-3 pt-0 md:p-6 md:pt-0">
+            <div className="text-xl md:text-2xl font-bold text-green-500">
               ₺{totalIncome.toFixed(2)}
             </div>
+            <p className="text-[10px] md:text-xs text-white/50 mt-1">
+              {payments.length} ödeme
+            </p>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Toplam Gider</CardTitle>
+        <Card className="glass-card border-0">
+          <CardHeader className="pb-2 p-3 md:p-6">
+            <CardTitle className="text-xs md:text-sm font-medium text-white/70">Toplam Gider</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">
+          <CardContent className="p-3 pt-0 md:p-6 md:pt-0">
+            <div className="text-xl md:text-2xl font-bold text-red-400">
               ₺{totalExpense.toFixed(2)}
             </div>
+            <p className="text-[10px] md:text-xs text-white/50 mt-1">
+              {expenses.length} gider
+            </p>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Net Kâr</CardTitle>
+        <Card className="glass-card border-0">
+          <CardHeader className="pb-2 p-3 md:p-6">
+            <CardTitle className="text-xs md:text-sm font-medium text-white/70">Net Kâr</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-3 pt-0 md:p-6 md:pt-0">
             <div
-              className={`text-2xl font-bold ${
-                netProfit >= 0 ? "text-blue-600" : "text-red-600"
-              }`}
+              className={`text-xl md:text-2xl font-bold ${netProfit >= 0 ? "text-blue-400" : "text-red-400"
+                }`}
             >
               ₺{netProfit.toFixed(2)}
             </div>
+            <p className="text-[10px] md:text-xs text-white/50 mt-1">
+              {netProfit >= 0 ? "Kâr" : "Zarar"}
+            </p>
           </CardContent>
         </Card>
       </div>
 
       {/* Aşağısı aynı kaldı */}
-      <Tabs defaultValue="income" className="space-y-4">
-        <TabsList>
+      <Tabs defaultValue="summary" className="space-y-4">
+        <TabsList className="glass-card border-0">
+          <TabsTrigger value="summary">Özet</TabsTrigger>
           <TabsTrigger value="income">Gelirler</TabsTrigger>
           <TabsTrigger value="expense">Giderler</TabsTrigger>
         </TabsList>
 
+        <TabsContent value="summary">
+          <AccountingSummary payments={payments} expenses={expenses} />
+        </TabsContent>
+
         <TabsContent value="income">
-          <Card>
-            <CardHeader>
-              <CardTitle>Gelir Listesi</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="rounded-md border">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b bg-muted/50">
-                      <th className="p-3 text-left font-medium">Tarih</th>
-                      <th className="p-3 text-left font-medium">Danışan</th>
-                      <th className="p-3 text-left font-medium">Hizmet</th>
-                      <th className="p-3 text-right font-medium">Tutar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {payments.map((p: typeof payments[0]) => (
-                      <tr key={p.id} className="border-b last:border-0">
-                        <td className="p-3">
-                          {format(p.date, "d MMM yyyy", { locale: tr })}
-                        </td>
-                        <td className="p-3">{p.client.name}</td>
-                        <td className="p-3">{p.service?.type || "Genel"}</td>
-                        <td className="p-3 text-right text-green-600 font-medium">
-                          +₺{p.amount.toFixed(2)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
+          <IncomeList payments={payments} />
         </TabsContent>
 
         <TabsContent value="expense" className="space-y-4">
           <ExpenseForm />
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Gider Listesi</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="rounded-md border">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b bg-muted/50">
-                      <th className="p-3 text-left font-medium">Tarih</th>
-                      <th className="p-3 text-left font-medium">Kategori</th>
-                      <th className="p-3 text-left font-medium">Açıklama</th>
-                      <th className="p-3 text-right font-medium">Tutar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {expenses.map((e: typeof expenses[0]) => (
-                      <tr key={e.id} className="border-b last:border-0">
-                        <td className="p-3">
-                          {format(e.date, "d MMM yyyy", { locale: tr })}
-                        </td>
-                        <td className="p-3">{e.category}</td>
-                        <td className="p-3">{e.description || "-"}</td>
-                        <td className="p-3 text-right text-red-600 font-medium">
-                          -₺{e.amount.toFixed(2)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
+          <ExpenseList expenses={expenses} />
         </TabsContent>
       </Tabs>
     </div>

@@ -148,12 +148,12 @@ export default async function ClientsPage({
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex flex-col md:flex-row justify-end gap-1 md:gap-2">
-                                                <Button variant="outline" size="sm" asChild className="border-primary/20 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
+                                                <Button variant="outline" size="sm" asChild className="bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
                                                     <Link href={`/clients/${client.id}?tab=services`}>
                                                         Hizmetler
                                                     </Link>
                                                 </Button>
-                                                <Button variant="outline" size="sm" asChild className="border-green-500/20 bg-green-500/10 text-green-500 hover:bg-green-500/20 hover:text-green-500 rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
+                                                <Button variant="outline" size="sm" asChild className="bg-green-500/10 border-green-500/20 text-green-400 hover:bg-green-500/20 hover:text-green-300 rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
                                                     <Link href={`/clients/${client.id}?tab=payments`}>
                                                         Ödemeler
                                                     </Link>
