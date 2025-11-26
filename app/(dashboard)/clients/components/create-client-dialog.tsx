@@ -13,7 +13,7 @@ import { createClient } from "@/app/actions/client";
 interface ServiceType {
     id: number;
     name: string;
-    defaultPrice: number | null;
+    defaultPrice?: number | null;
 }
 
 interface CreateClientDialogProps {
@@ -52,12 +52,22 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
 
             const serviceData = formData.serviceType
                 ? {
-                    serviceTypeId: parseInt(formData.serviceType),
-                    totalPrice: parseFloat(formData.servicePrice),
+                    name: serviceTypes.find((s) => s.id.toString() === formData.serviceType)?.name ?? "",
+                    price: formData.servicePrice,
                 }
                 : undefined;
 
-            await createClient(clientData, serviceData);
+            const payload = new FormData();
+            payload.append("name", clientData.name);
+            payload.append("phone", clientData.phone);
+            if (clientData.email) payload.append("email", clientData.email);
+            if (clientData.height !== undefined) payload.append("height", clientData.height.toString());
+            if (clientData.weight !== undefined) payload.append("weight", clientData.weight.toString());
+            if (clientData.birthDate) payload.append("birthDate", clientData.birthDate.toISOString().split("T")[0]);
+            if (serviceData?.name) payload.append("serviceType", serviceData.name);
+            if (serviceData?.price) payload.append("servicePrice", serviceData.price);
+
+            await createClient(payload);
 
             setOpen(false);
             setFormData({
