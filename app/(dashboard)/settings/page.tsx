@@ -11,6 +11,8 @@ import { createUser, deleteUser } from "@/app/actions/user";
 import { createServiceType, toggleServiceType, deleteServiceType } from "@/app/actions/servicetype";
 import { Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { DownloadBackupButton } from "@/components/download-backup-button";
+import { UploadBackupButton } from "@/components/upload-backup-button";
 
 export default async function SettingsPage() {
     const session = await auth();
@@ -35,6 +37,7 @@ export default async function SettingsPage() {
                 <TabsList>
                     <TabsTrigger value="users">Kullanıcılar</TabsTrigger>
                     <TabsTrigger value="services">Hizmet Türleri</TabsTrigger>
+                    <TabsTrigger value="backup">Yedekleme</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="users" className="space-y-4">
@@ -120,6 +123,11 @@ export default async function SettingsPage() {
                         </CardContent>
                     </Card>
 
+                    <div className="flex gap-2">
+                        <div className="flex-1" />
+                        <DownloadBackupButton variant="default" />
+                    </div>
+
                     <Card className="glass-card border-white/10">
                         <CardHeader>
                             <CardTitle className="text-white">Kullanıcılar</CardTitle>
@@ -187,6 +195,11 @@ export default async function SettingsPage() {
                         </CardContent>
                     </Card>
 
+                    <div className="flex gap-2">
+                        <div className="flex-1" />
+                        <DownloadBackupButton variant="outline" />
+                    </div>
+
                     <Card>
                         <CardHeader>
                             <CardTitle>Mevcut Hizmet Türleri</CardTitle>
@@ -231,6 +244,28 @@ export default async function SettingsPage() {
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                <TabsContent value="backup" className="space-y-4">
+                    <Card className="glass-card border-white/10">
+                        <CardHeader>
+                            <CardTitle className="text-white">Veritabanı Yedeklemesi</CardTitle>
+                            <CardDescription className="text-white/50">Tüm veritabanını JSON formatında indirin ve güvenli bir yere saklayın.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                                    <p className="text-sm text-blue-200">
+                                        ℹ️ Yedekleme işlemi tüm danışanlar, randevular, ödemeler, giderler ve ölçümleri içerir.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col sm:flex-row gap-3">
+                                    <DownloadBackupButton variant="default" />
+                                    <UploadBackupButton variant="secondary" />
+                                </div>
                             </div>
                         </CardContent>
                     </Card>
