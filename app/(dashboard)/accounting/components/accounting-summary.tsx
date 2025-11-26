@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format, startOfMonth, endOfMonth, startOfYear, endOfYear, isWithinInterval } from "date-fns";
@@ -27,12 +27,20 @@ interface AccountingSummaryProps {
 }
 
 export function AccountingSummary({ payments, expenses }: AccountingSummaryProps) {
-    const currentDate = new Date();
-    const [selectedMonth, setSelectedMonth] = useState(format(currentDate, "yyyy-MM"));
+    const [selectedMonth, setSelectedMonth] = useState("");
     const [viewType, setViewType] = useState<"monthly" | "yearly">("monthly");
+    const [mounted, setMounted] = useState(false);
+
+    // Initialize on client side only
+    useEffect(() => {
+        const currentDate = new Date();
+        setSelectedMonth(format(currentDate, "yyyy-MM"));
+        setMounted(true);
+    }, []);
 
     // Generate month options for the last 12 months
     const monthOptions = useMemo(() => {
+        if (!mounted) return [];
         const options = [];
         for (let i = 0; i < 12; i++) {
             const date = new Date();
@@ -43,10 +51,11 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
             });
         }
         return options;
-    }, []);
+    }, [mounted]);
 
     // Generate year options
     const yearOptions = useMemo(() => {
+        if (!mounted) return [];
         const currentYear = new Date().getFullYear();
         const options = [];
         for (let i = 0; i < 5; i++) {
@@ -57,10 +66,20 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
             });
         }
         return options;
-    }, []);
+    }, [mounted]);
 
     // Filter data based on selected period
     const filteredData = useMemo(() => {
+        if (!mounted || !selectedMonth) {
+            return {
+                payments: [],
+                expenses: [],
+                totalIncome: 0,
+                totalExpense: 0,
+                netProfit: 0,
+            };
+        }
+
         let dateRange: { start: Date; end: Date };
 
         if (viewType === "monthly") {
@@ -97,7 +116,27 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
             totalExpense,
             netProfit: totalIncome - totalExpense,
         };
-    }, [payments, expenses, selectedMonth, viewType]);
+    }, [payments, expenses, selectedMonth, viewType, mounted]);
+
+    if (!mounted) {
+        return (
+            <Card className="glass-card border-0">
+                <CardHeader>
+                    <CardTitle className="text-white">Finansal Özet</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="animate-pulse space-y-4">
+                        <div className="h-10 bg-white/5 rounded"></div>
+                        <div className="grid gap-3 grid-cols-3">
+                            {[...Array(3)].map((_, i) => (
+                                <div key={i} className="h-20 bg-white/5 rounded"></div>
+                            ))}
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        );
+    }
 
     return (
         <Card className="glass-card border-0">

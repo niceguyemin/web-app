@@ -41,7 +41,7 @@ export default async function AppointmentsPage() {
                     <p className="text-white/50 text-sm md:text-base">Randevuları görüntüle ve yönet.</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                    <div className="text-white/70 text-sm md:text-base">
+                    <div className="text-white/70 text-sm md:text-base" suppressHydrationWarning>
                         {new Intl.DateTimeFormat('tr-TR', {
                             day: 'numeric',
                             month: 'long',

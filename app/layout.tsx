@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className="dark">
+    <html lang="tr" className="dark" style={{ background: 'radial-gradient(circle at top left, #1a1b4b, #000000), radial-gradient(circle at bottom right, #2e1065, #000000)' }}>
       <body className={inter.className}>
         <Providers>
           {children}

@@ -11,18 +11,16 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { format } from "date-fns";
-import { tr } from "date-fns/locale";
-
-import { Search } from "@/components/search";
-
-import { formatPhoneNumber } from "@/lib/utils";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+
+import { Search } from "@/components/search";
+import { formatPhoneNumber } from "@/lib/utils";
+import { CreateClientDialog } from "./components/create-client-dialog";
 
 export default async function ClientsPage({
     searchParams,
@@ -34,14 +32,17 @@ export default async function ClientsPage({
     const clients = await prismadb.client.findMany({
         where: {
             OR: [
-                { name: { contains: query } },
+                { name: { contains: query, mode: "insensitive" } },
                 { phone: { contains: query } },
             ],
         },
         include: {
             services: {
                 where: { status: "ACTIVE" },
-                orderBy: { createdAt: "desc" }
+                orderBy: { createdAt: "desc" },
+                include: {
+                    payments: true,
+                },
             },
             payments: true
         },
@@ -50,16 +51,20 @@ export default async function ClientsPage({
         },
     });
 
+    const serviceTypes = await prismadb.serviceType.findMany({
+        where: {
+            active: true,
+        },
+        orderBy: {
+            name: "asc",
+        },
+    });
+
     return (
         <div className="p-4 md:p-8 space-y-4 md:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Danışanlar</h2>
-                <Button asChild className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 rounded-xl w-full sm:w-auto">
-                    <Link href="/clients/new">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Yeni Danışan
-                    </Link>
-                </Button>
+                <CreateClientDialog serviceTypes={serviceTypes} />
             </div>
 
             <div className="flex items-center space-x-2">
@@ -94,8 +99,8 @@ export default async function ClientsPage({
 
                                 return (
                                     <TableRow key={client.id} className="border-white/10 hover:bg-white/5 transition-colors">
-                                        <TableCell className="font-medium text-white">
-                                            <Link href={`/clients/${client.id}`} className="hover:underline">
+                                        <TableCell className="font-medium text-white max-w-[150px] md:max-w-none">
+                                            <Link href={`/clients/${client.id}`} className="hover:underline break-words">
                                                 {client.name}
                                             </Link>
                                         </TableCell>

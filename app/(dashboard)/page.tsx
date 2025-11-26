@@ -130,7 +130,7 @@ export default async function Page() {
             <QuickAddClient serviceTypes={serviceTypes} />
           </div>
         </div>
-        <div className="text-white/70 text-sm md:text-base">
+        <div className="text-white/70 text-sm md:text-base" suppressHydrationWarning>
           {new Intl.DateTimeFormat('tr-TR', {
             day: 'numeric',
             month: 'long',
