@@ -10,10 +10,14 @@ import { ClientProfile } from "./components/client-profile";
 
 export default async function ClientDetailPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ id: string }>;
+    searchParams: Promise<{ tab?: string }>;
 }) {
     const { id } = await params;
+    const { tab } = await searchParams;
+    const defaultTab = tab || "services";
 
     const [client, serviceTypes] = await Promise.all([
         prismadb.client.findUnique({
@@ -48,7 +52,7 @@ export default async function ClientDetailPage({
                 <h2 className="text-3xl font-bold tracking-tight">{client.name}</h2>
             </div>
 
-            <Tabs defaultValue="services" className="space-y-4">
+            <Tabs defaultValue={defaultTab} className="space-y-4">
                 <TabsList>
                     <TabsTrigger value="services">Hizmetler</TabsTrigger>
                     <TabsTrigger value="payments">Ödemeler</TabsTrigger>

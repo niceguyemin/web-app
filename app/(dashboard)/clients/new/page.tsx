@@ -66,7 +66,21 @@ export default function NewClientPage() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="phone">Telefon</Label>
-                                <Input id="phone" name="phone" placeholder="0555..." />
+                                <div className="flex">
+                                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-input bg-muted text-muted-foreground text-sm">
+                                        +90
+                                    </span>
+                                    <Input
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="545 654 4533"
+                                        maxLength={10}
+                                        className="rounded-l-none"
+                                        onInput={(e) => {
+                                            e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '').slice(0, 10);
+                                        }}
+                                    />
+                                </div>
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="gender">Cinsiyet</Label>

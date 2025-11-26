@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 export default async function SettingsPage() {
     const session = await auth();
 
-    if (session?.user?.role !== "ADMIN") {
+    if ((session?.user as any)?.role !== "ADMIN") {
         redirect("/");
     }
 

@@ -34,13 +34,23 @@ export default async function AppointmentsPage() {
     });
 
     return (
-        <div className="p-8 space-y-8">
-            <div className="flex items-center justify-between">
+        <div className="p-4 md:p-8 space-y-4 md:space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight text-white">Randevu Takvimi</h2>
-                    <p className="text-white/50">Randevuları görüntüle ve yönet.</p>
+                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Randevu Takvimi</h2>
+                    <p className="text-white/50 text-sm md:text-base">Randevuları görüntüle ve yönet.</p>
                 </div>
-                <CreateAppointmentDialog clients={clients} users={users} />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <div className="text-white/70 text-sm md:text-base">
+                        {new Intl.DateTimeFormat('tr-TR', {
+                            day: 'numeric',
+                            month: 'long',
+                            weekday: 'long',
+                            timeZone: 'Europe/Istanbul'
+                        }).format(new Date())}
+                    </div>
+                    <CreateAppointmentDialog clients={clients} users={users} />
+                </div>
             </div>
 
             <AppointmentCalendar appointments={appointments} />

@@ -27,6 +27,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { cancelAppointment } from "@/app/actions/appointment";
 import { Trash2 } from "lucide-react";
+import Link from "next/link";
 
 interface AppointmentCalendarProps {
     appointments: (Appointment & {
@@ -183,7 +184,9 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                         <div className="space-y-1">
                                                             <h4 className="text-sm font-semibold flex items-center gap-2">
                                                                 <User className="h-4 w-4" style={{ color: userColor }} />
-                                                                {appt.client.name}
+                                                                <Link href={`/clients/${appt.client.id}?tab=profile`} className="hover:underline">
+                                                                    {appt.client.name}
+                                                                </Link>
                                                             </h4>
                                                             {appt.user && (
                                                                 <p className="text-xs text-white/50 flex items-center gap-2">

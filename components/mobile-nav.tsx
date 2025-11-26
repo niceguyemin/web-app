@@ -10,6 +10,7 @@ import {
     Calculator,
     Settings,
     LogOut,
+    Calendar,
 } from "lucide-react";
 import { signOut } from "@/app/actions/auth";
 
@@ -25,6 +26,12 @@ const routes = [
         icon: Users,
         href: "/clients",
         color: "text-violet-500",
+    },
+    {
+        label: "Randevular",
+        icon: Calendar,
+        href: "/appointments",
+        color: "text-orange-500",
     },
     {
         label: "Muhasebe",

@@ -24,6 +24,10 @@ import {
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
+import { EditClientDialog } from "./edit-client-dialog";
+
+import { formatPhoneNumber } from "@/lib/utils";
+
 interface ClientProfileProps {
     client: Client & {
         measurements: Measurement[];
@@ -41,14 +45,19 @@ export function ClientProfile({ client }: ClientProfileProps) {
     return (
         <div className="grid gap-4 md:grid-cols-2">
             <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle>Profil Bilgileri</CardTitle>
+                    <EditClientDialog client={client} />
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <Label className="text-muted-foreground">Telefon</Label>
-                            <p className="font-medium">{client.phone || "-"}</p>
+                            <p className="font-medium">
+                                <a href={`tel:${client.phone}`} className="hover:text-primary transition-colors">
+                                    {formatPhoneNumber(client.phone)}
+                                </a>
+                            </p>
                         </div>
                         <div>
                             <Label className="text-muted-foreground">Cinsiyet</Label>
