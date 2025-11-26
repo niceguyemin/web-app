@@ -18,12 +18,12 @@ const ClientSchema = z.object({
 export async function createClient(formData: FormData) {
     const rawData = {
         name: formData.get("name"),
-        phone: formData.get("phone"),
-        gender: formData.get("gender"),
-        birthDate: formData.get("birthDate"),
-        height: formData.get("height"),
-        weight: formData.get("weight"),
-        notes: formData.get("notes"),
+        phone: formData.get("phone") || undefined,
+        gender: formData.get("gender") || undefined,
+        birthDate: formData.get("birthDate") || undefined,
+        height: formData.get("height") || undefined,
+        weight: formData.get("weight") || undefined,
+        notes: formData.get("notes") || undefined,
     };
 
     const validatedData = ClientSchema.parse(rawData);

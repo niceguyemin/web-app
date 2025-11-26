@@ -28,6 +28,11 @@ export default async function AppointmentsPage() {
     });
 
     const users = await prismadb.user.findMany({
+        where: {
+            username: {
+                not: "admin",
+            },
+        },
         orderBy: {
             name: "asc",
         },

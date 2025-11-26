@@ -23,6 +23,7 @@ import {
 } from "recharts";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import { MessageCircle } from "lucide-react";
 
 import { EditClientDialog } from "./edit-client-dialog";
 
@@ -42,6 +43,8 @@ export function ClientProfile({ client }: ClientProfileProps) {
             weight: m.weight,
         }));
 
+    const whatsappLink = `https://wa.me/${client.phone?.replace(/\D/g, '')}`;
+
     return (
         <div className="grid gap-4 md:grid-cols-2">
             <Card>
@@ -53,11 +56,22 @@ export function ClientProfile({ client }: ClientProfileProps) {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <Label className="text-muted-foreground">Telefon</Label>
-                            <p className="font-medium">
-                                <a href={`tel:${client.phone}`} className="hover:text-primary transition-colors">
-                                    {formatPhoneNumber(client.phone)}
+                            <div className="flex items-center gap-2">
+                                <p className="font-medium">
+                                    <a href={`tel:${client.phone}`} className="hover:text-primary transition-colors">
+                                        {formatPhoneNumber(client.phone)}
+                                    </a>
+                                </p>
+                                <a
+                                    href={whatsappLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 hover:bg-green-600 text-white transition-colors"
+                                    title="WhatsApp ile mesaj gönder"
+                                >
+                                    <MessageCircle className="w-3.5 h-3.5" />
                                 </a>
-                            </p>
+                            </div>
                         </div>
                         <div>
                             <Label className="text-muted-foreground">Cinsiyet</Label>

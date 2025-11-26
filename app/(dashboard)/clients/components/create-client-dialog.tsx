@@ -31,6 +31,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
         email: "",
         serviceType: "",
         servicePrice: "",
+        serviceSessions: "",
         height: "",
         weight: "",
         birthDate: "",
@@ -54,6 +55,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                 ? {
                     name: serviceTypes.find((s) => s.id.toString() === formData.serviceType)?.name ?? "",
                     price: formData.servicePrice,
+                    sessions: formData.serviceSessions,
                 }
                 : undefined;
 
@@ -66,6 +68,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
             if (clientData.birthDate) payload.append("birthDate", clientData.birthDate.toISOString().split("T")[0]);
             if (serviceData?.name) payload.append("serviceType", serviceData.name);
             if (serviceData?.price) payload.append("servicePrice", serviceData.price);
+            if (serviceData?.sessions) payload.append("serviceSessions", serviceData.sessions);
 
             await createClient(payload);
 
@@ -76,6 +79,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                 email: "",
                 serviceType: "",
                 servicePrice: "",
+                serviceSessions: "",
                 height: "",
                 weight: "",
                 birthDate: "",
@@ -197,19 +201,34 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                         </div>
 
                         {formData.serviceType && (
-                            <div>
-                                <Label htmlFor="servicePrice" className="text-white/70">
-                                    Ücret (₺)
-                                </Label>
-                                <Input
-                                    id="servicePrice"
-                                    type="number"
-                                    step="0.01"
-                                    value={formData.servicePrice}
-                                    onChange={(e) => setFormData({ ...formData, servicePrice: e.target.value })}
-                                    className="glass-input text-white rounded-xl"
-                                    placeholder="0.00"
-                                />
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <Label htmlFor="servicePrice" className="text-white/70">
+                                        Ücret (₺)
+                                    </Label>
+                                    <Input
+                                        id="servicePrice"
+                                        type="number"
+                                        step="0.01"
+                                        value={formData.servicePrice}
+                                        onChange={(e) => setFormData({ ...formData, servicePrice: e.target.value })}
+                                        className="glass-input text-white rounded-xl"
+                                        placeholder="0.00"
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="serviceSessions" className="text-white/70">
+                                        Seans Sayısı
+                                    </Label>
+                                    <Input
+                                        id="serviceSessions"
+                                        type="number"
+                                        value={formData.serviceSessions}
+                                        onChange={(e) => setFormData({ ...formData, serviceSessions: e.target.value })}
+                                        className="glass-input text-white rounded-xl"
+                                        placeholder="1"
+                                    />
+                                </div>
                             </div>
                         )}
                     </div>

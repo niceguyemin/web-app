@@ -138,6 +138,14 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
         );
     }
 
+    const formatCurrency = (amount: number) => {
+        const hasDecimals = amount % 1 !== 0;
+        return new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: hasDecimals ? 2 : 0,
+            maximumFractionDigits: hasDecimals ? 2 : 0,
+        }).format(amount);
+    };
+
     return (
         <Card className="glass-card border-0">
             <CardHeader>
@@ -193,13 +201,13 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                     <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
                         <p className="text-white/50 text-xs md:text-sm mb-1">Toplam Gelir</p>
                         <p className="text-lg md:text-2xl font-bold text-green-500">
-                            ₺{filteredData.totalIncome.toFixed(2)}
+                            ₺{formatCurrency(filteredData.totalIncome)}
                         </p>
                     </div>
                     <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
                         <p className="text-white/50 text-xs md:text-sm mb-1">Toplam Gider</p>
                         <p className="text-lg md:text-2xl font-bold text-red-400">
-                            ₺{filteredData.totalExpense.toFixed(2)}
+                            ₺{formatCurrency(filteredData.totalExpense)}
                         </p>
                     </div>
                     <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
@@ -208,7 +216,7 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                             className={`text-lg md:text-2xl font-bold ${filteredData.netProfit >= 0 ? "text-blue-400" : "text-red-400"
                                 }`}
                         >
-                            ₺{filteredData.netProfit.toFixed(2)}
+                            ₺{formatCurrency(filteredData.netProfit)}
                         </p>
                     </div>
                 </div>
@@ -227,7 +235,7 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                                 <span className="text-green-500 font-medium">
                                     ₺
                                     {filteredData.payments.length > 0
-                                        ? (filteredData.totalIncome / filteredData.payments.length).toFixed(2)
+                                        ? formatCurrency(filteredData.totalIncome / filteredData.payments.length)
                                         : "0.00"}
                                 </span>
                             </div>
@@ -245,7 +253,7 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                                 <span className="text-red-400 font-medium">
                                     ₺
                                     {filteredData.expenses.length > 0
-                                        ? (filteredData.totalExpense / filteredData.expenses.length).toFixed(2)
+                                        ? formatCurrency(filteredData.totalExpense / filteredData.expenses.length)
                                         : "0.00"}
                                 </span>
                             </div>

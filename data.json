@@ -1,0 +1,4246 @@
+{
+  "patients": [
+    {
+      "ad": "BURHAN KOCAMAN",
+      "cinsiyet": "Erkek",
+      "telefon": "05449703847",
+      "dogum": "21.09.1989",
+      "boy": 168.0,
+      "kilo": 73.8,
+      "bmi": 26.15,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "14.05.2025 16:01"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "14.05.2025 16:01"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "14.06.2025 10:17"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "17.05.2025 22:34",
+          "tur": "EMS",
+          "tutar": 2700.0
+        },
+        {
+          "tarih": "23.06.2025 09:47",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "DERYA ACI",
+      "cinsiyet": "Kadın",
+      "telefon": "9",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "17.05.2025 22:39"
+        },
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.05.2025 22:39"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "31.05.2025 13:08"
+        },
+        {
+          "tur": "EMS",
+          "seans": 2,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "23.06.2025 09:49"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "17.05.2025 22:40",
+          "tur": "EMS",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "31.05.2025 13:08",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "BÜŞRA MUTLU",
+      "cinsiyet": "Kadın",
+      "telefon": "0",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "17.05.2025 22:43"
+        },
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.05.2025 22:43"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "21.05.2025 12:33",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "EMRİYE ALAN",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "24.05.2025 09:18"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "24.05.2025 09:18"
+        },
+        {
+          "tur": "G8",
+          "seans": 16,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "30.06.2025 12:14"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 3000.0,
+          "oden": 3000.0,
+          "tarih": "30.06.2025 12:14"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.07.2025 13:32"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "08.09.2025 17:17"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "10.10.2025 22:14"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 100.0,
+          "oden": 100.0,
+          "tarih": "10.10.2025 22:19"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "12.06.2025 10:58",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "12.06.2025 10:58",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "15.08.2025 20:32",
+          "tur": "EMS",
+          "tutar": 3000.0
+        },
+        {
+          "tarih": "10.10.2025 22:14",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "10.10.2025 22:14",
+          "tur": "EMS",
+          "tutar": 100.0
+        },
+        {
+          "tarih": "16.10.2025 13:28",
+          "tur": "G8",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "16.10.2025 13:29",
+          "tur": "EMS",
+          "tutar": 2400.0
+        },
+        {
+          "tarih": "16.10.2025 13:29",
+          "tur": "G8",
+          "tutar": 100.0
+        }
+      ]
+    },
+    {
+      "ad": "AYSUN SÖYLEMEZ",
+      "cinsiyet": "Kadın",
+      "telefon": "9",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "31.05.2025 13:48"
+        },
+        {
+          "tur": "EMS",
+          "seans": 6,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "12.06.2025 10:53"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "03.06.2025 12:55",
+          "tur": "EMS",
+          "tutar": 4200.0
+        }
+      ]
+    },
+    {
+      "ad": "GÜLŞEN KARA",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "03.06.2025 12:55"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "03.06.2025 12:55"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "12.06.2025 10:59",
+          "tur": "EMS",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "29.08.2025 17:24",
+          "tur": "EMS",
+          "tutar": 3000.0
+        }
+      ]
+    },
+    {
+      "ad": "HANNAT BOZKURT",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 500.0,
+          "oden": 500.0,
+          "tarih": "12.06.2025 11:00"
+        },
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 500.0,
+          "oden": 500.0,
+          "tarih": "12.07.2025 14:49"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "12.06.2025 11:01",
+          "tur": "Online Danışmanlık",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "12.07.2025 14:49",
+          "tur": "Online Danışmanlık",
+          "tutar": 500.0
+        }
+      ]
+    },
+    {
+      "ad": "BÜŞRA ERSÖZ",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "23.06.2025 09:36"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 09:48",
+          "tur": "EMS",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "03.07.2025 19:46",
+          "tur": "EMS",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "AYŞE BİLECEN",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "23.06.2025 09:36"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 09:47",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "NEBİYE HANIM",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:37"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:37"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "10.07.2025 10:25"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "10.07.2025 10:25"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "26.06.2025 20:54",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "26.06.2025 20:55",
+          "tur": "Lenf Drenaj",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "30.06.2025 14:55",
+          "tur": "Lenf Drenaj",
+          "tutar": 1700.0
+        },
+        {
+          "tarih": "30.07.2025 11:15",
+          "tur": "EMS",
+          "tutar": 25.0
+        },
+        {
+          "tarih": "12.08.2025 21:01",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "12.08.2025 21:01",
+          "tur": "EMS",
+          "tutar": 1975.0
+        }
+      ]
+    },
+    {
+      "ad": "MURADİYE GÜLER",
+      "cinsiyet": "Kadın",
+      "telefon": "1",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:38"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:38"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 09:58",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "23.06.2025 09:58",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "HAVVA ULUÇINAR",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 10,
+          "kalan": 5,
+          "tutar": 2500.0,
+          "oden": 1500.0,
+          "tarih": "23.06.2025 09:38"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "26.06.2025 19:58",
+          "tur": "EMS",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "ŞEVKİYE UYSAL",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2200.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:39"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:39"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2700.0,
+          "oden": 2000.0,
+          "tarih": "03.09.2025 17:50"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 10:03",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "08.07.2025 11:49",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "10.10.2025 09:44",
+          "tur": "EMS",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "NEVİN GÖĞCEN",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "23.06.2025 09:39"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "25.07.2025 10:55"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 10:00",
+          "tur": "EMS",
+          "tutar": 2700.0
+        },
+        {
+          "tarih": "25.07.2025 11:25",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "HİLAL OSANMAZ",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2200.0,
+          "oden": 2200.0,
+          "tarih": "23.06.2025 09:40"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.06.2025 09:40"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "31.07.2025 12:22"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 09:57",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "23.06.2025 09:57",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "31.07.2025 12:22",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "SARE DEMİRCAN",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "23.06.2025 09:43"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.07.2025 17:12",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "SALİHA BİLECEN",
+      "cinsiyet": "Kadın",
+      "telefon": "1",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "23.06.2025 09:44"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 10:00",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİF GÜREL",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 18,
+          "kalan": 0,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "23.06.2025 09:45"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "26.07.2025 12:15"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "26.07.2025 12:15"
+        },
+        {
+          "tur": "G8",
+          "seans": 20,
+          "kalan": 0,
+          "tutar": 6500.0,
+          "oden": 6500.0,
+          "tarih": "08.09.2025 17:12"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "08.09.2025 17:12"
+        },
+        {
+          "tur": "G8",
+          "seans": 18,
+          "kalan": 7,
+          "tutar": 6000.0,
+          "oden": 6000.0,
+          "tarih": "20.10.2025 19:25"
+        },
+        {
+          "tur": "EMS",
+          "seans": 9,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "20.10.2025 19:25"
+        },
+        {
+          "tur": "EMS",
+          "seans": 3,
+          "kalan": 3,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "22.11.2025 13:46"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.06.2025 09:49",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "26.06.2025 16:32",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "31.07.2025 23:39",
+          "tur": "G8",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "31.07.2025 23:39",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "20.09.2025 15:37",
+          "tur": "G8",
+          "tutar": 6500.0
+        },
+        {
+          "tarih": "03.11.2025 16:44",
+          "tur": "G8",
+          "tutar": 6000.0
+        }
+      ]
+    },
+    {
+      "ad": "MEHMET DEMİRCAN",
+      "cinsiyet": "Erkek",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "23.06.2025 09:58"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.07.2025 17:12",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "BAHAR KISA",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 2200.0,
+          "oden": 2200.0,
+          "tarih": "25.06.2025 14:14"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "25.06.2025 14:14"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "27.06.2025 09:32",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "27.06.2025 09:32",
+          "tur": "G8",
+          "tutar": 100.0
+        },
+        {
+          "tarih": "21.07.2025 15:41",
+          "tur": "G8",
+          "tutar": 1900.0
+        }
+      ]
+    },
+    {
+      "ad": "SEVGİ DURA",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "25.06.2025 14:15"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 3000.0,
+          "oden": 3000.0,
+          "tarih": "25.06.2025 14:15"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "25.06.2025 14:15"
+        },
+        {
+          "tur": "EMS",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "24.07.2025 19:54"
+        },
+        {
+          "tur": "G8",
+          "seans": 16,
+          "kalan": 16,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "13.08.2025 23:18"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 8,
+          "tutar": 6000.0,
+          "oden": 0.0,
+          "tarih": "13.08.2025 23:19"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.07.2025 17:12",
+          "tur": "EMS",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "15.07.2025 17:12",
+          "tur": "G8",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "15.08.2025 17:47",
+          "tur": "G8",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "BANU GÖÇÜK",
+      "cinsiyet": "Kadın",
+      "telefon": "5",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 3500.0,
+          "oden": 3500.0,
+          "tarih": "28.06.2025 10:33"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "28.06.2025 10:33"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "28.06.2025 12:48",
+          "tur": "EMS",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "02.07.2025 19:23",
+          "tur": "EMS",
+          "tutar": 1000.0
+        }
+      ]
+    },
+    {
+      "ad": "ŞEHRİ BELDEK",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 2600.0,
+          "oden": 2600.0,
+          "tarih": "28.06.2025 16:52"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "28.06.2025 16:52",
+          "tur": "EMS",
+          "tutar": 2600.0
+        }
+      ]
+    },
+    {
+      "ad": "SEZGİN ÇAMUR",
+      "cinsiyet": "Erkek",
+      "telefon": "9",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 2,
+          "tutar": 1250.0,
+          "oden": 1250.0,
+          "tarih": "30.06.2025 13:57"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "30.06.2025 13:57",
+          "tur": "Danışmanlık",
+          "tutar": 1250.0
+        }
+      ]
+    },
+    {
+      "ad": "DİLEK SEZER",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "30.06.2025 19:57"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "30.06.2025 19:57"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "04.07.2025 13:56",
+          "tur": "G8",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "04.07.2025 13:57",
+          "tur": "EMS",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "15.07.2025 11:57",
+          "tur": "EMS",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "NEHİR SEZER",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 0,
+          "tutar": 1000.0,
+          "oden": 1000.0,
+          "tarih": "30.06.2025 19:57"
+        },
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 1,
+          "tutar": 1000.0,
+          "oden": 1000.0,
+          "tarih": "29.07.2025 11:32"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.07.2025 11:58",
+          "tur": "Danışmanlık",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "12.08.2025 21:02",
+          "tur": "Danışmanlık",
+          "tutar": 1000.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİF KÖKSAL",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 16,
+          "kalan": 0,
+          "tutar": 5000.0,
+          "oden": 5000.0,
+          "tarih": "01.07.2025 14:33"
+        },
+        {
+          "tur": "EMS",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "04.08.2025 17:55"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "04.08.2025 17:55"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "04.08.2025 17:55"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 5000.0,
+          "oden": 5000.0,
+          "tarih": "05.08.2025 20:33"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "17.07.2025 13:18",
+          "tur": "EMS",
+          "tutar": 5000.0
+        },
+        {
+          "tarih": "05.08.2025 20:34",
+          "tur": "G8",
+          "tutar": 5000.0
+        }
+      ]
+    },
+    {
+      "ad": "HİCRAN İNAN",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "01.07.2025 14:34"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "02.07.2025 14:40",
+          "tur": "EMS",
+          "tutar": 700.0
+        },
+        {
+          "tarih": "08.07.2025 18:23",
+          "tur": "EMS",
+          "tutar": 1600.0
+        },
+        {
+          "tarih": "08.07.2025 18:23",
+          "tur": "EMS",
+          "tutar": 200.0
+        }
+      ]
+    },
+    {
+      "ad": "TÜLAY DEMİREL",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "02.07.2025 14:43"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 4,
+          "tutar": 2000.0,
+          "oden": 0.0,
+          "tarih": "01.08.2025 14:39"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "02.07.2025 17:57",
+          "tur": "EMS",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "MUZAFFER ARLI",
+      "cinsiyet": "Erkek",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "08.07.2025 18:25"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "25.07.2025 19:34",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "AYSUN ARLI",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "08.07.2025 18:25"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "08.07.2025 18:25"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "25.07.2025 19:34",
+          "tur": "EMS",
+          "tutar": 4000.0
+        }
+      ]
+    },
+    {
+      "ad": "SEHER UÇAR",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "10.07.2025 16:34"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "10.07.2025 16:34"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 1000.0,
+          "oden": 1000.0,
+          "tarih": "10.07.2025 16:34"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 5500.0,
+          "oden": 5150.0,
+          "tarih": "04.08.2025 17:56"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "08.08.2025 16:35"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "08.08.2025 16:35"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 4,
+          "tutar": 5500.0,
+          "oden": 3500.0,
+          "tarih": "06.11.2025 12:13"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 5,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "06.11.2025 12:13"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 5,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "06.11.2025 12:13"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "17.07.2025 16:22",
+          "tur": "EMS",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "17.07.2025 16:22",
+          "tur": "Lenf Drenaj",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "15.08.2025 17:46",
+          "tur": "G8",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "15.08.2025 17:46",
+          "tur": "Lenf Drenaj",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "15.08.2025 17:46",
+          "tur": "EMS",
+          "tutar": 2500.0
+        },
+        {
+          "tarih": "16.09.2025 18:54",
+          "tur": "EMS",
+          "tutar": 2650.0
+        },
+        {
+          "tarih": "22.11.2025 13:40",
+          "tur": "G8",
+          "tutar": 3500.0
+        }
+      ]
+    },
+    {
+      "ad": "MENŞURE AKŞA",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "11.07.2025 10:52"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "11.07.2025 10:52"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "25.07.2025 19:34",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "25.07.2025 19:34",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "BEREN ÇALPAK",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "11.07.2025 10:52"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "08.09.2025 17:32",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "AYŞEGÜL KURT",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2200.0,
+          "oden": 2200.0,
+          "tarih": "14.07.2025 16:54"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "14.07.2025 16:54"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "16.07.2025 00:06",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "16.07.2025 00:06",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "YELİZ BAYRAKTAR",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2200.0,
+          "oden": 2200.0,
+          "tarih": "14.07.2025 16:55"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "14.07.2025 16:55"
+        },
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 1250.0,
+          "oden": 1250.0,
+          "tarih": "19.07.2025 11:47"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "19.07.2025 12:32"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "19.07.2025 12:32",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "19.07.2025 12:32",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "19.07.2025 12:32",
+          "tur": "Online Danışmanlık",
+          "tutar": 1250.0
+        },
+        {
+          "tarih": "19.07.2025 12:32",
+          "tur": "G8",
+          "tutar": 250.0
+        }
+      ]
+    },
+    {
+      "ad": "SONGÜL KALABALIK",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2200.0,
+          "oden": 2200.0,
+          "tarih": "14.07.2025 18:24"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "14.07.2025 18:24"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 4,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "02.08.2025 11:30"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "20.08.2025 17:50",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "20.08.2025 17:50",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "20.08.2025 17:50",
+          "tur": "EMS",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "17.10.2025 17:22",
+          "tur": "EMS",
+          "tutar": 2400.0
+        }
+      ]
+    },
+    {
+      "ad": "AHSEN KAYA",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 4,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "18.07.2025 10:36"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "26.09.2025 21:45",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "DİLARA KURT",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "22.07.2025 12:02"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "22.07.2025 15:58",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "AYNUR BAŞARAN",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 4,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "22.07.2025 16:44"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.07.2025 14:17",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "SEVİLAY ŞAHİN",
+      "cinsiyet": "Kadın",
+      "telefon": "5",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "23.07.2025 14:06"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.07.2025 14:06",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "TÜLAY AYDIN",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "25.07.2025 18:37"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "13.08.2025 19:08",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "ESİN İŞGÜR",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "26.07.2025 12:15"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.08.2025 17:47",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "KADİR ACI",
+      "cinsiyet": "Erkek",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "26.07.2025 14:38"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 1000.0,
+          "oden": 1000.0,
+          "tarih": "06.08.2025 20:24"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "30.08.2025 11:19"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.08.2025 20:33",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "15.08.2025 20:33",
+          "tur": "Lenf Drenaj",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "11.10.2025 14:34",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "NESLİHAN ACI",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "26.07.2025 14:39"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "26.07.2025 14:39"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 5,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "30.08.2025 11:18"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.08.2025 20:33",
+          "tur": "EMS",
+          "tutar": 4000.0
+        },
+        {
+          "tarih": "11.10.2025 14:34",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİF YALÇINKAYA",
+      "cinsiyet": "Kadın",
+      "telefon": "78",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "31.07.2025 12:21"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 0.0,
+          "tarih": "09.09.2025 23:06"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "20.09.2025 15:01",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "ÖZGE KURU",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "05.08.2025 20:21"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "05.08.2025 20:21"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "09.09.2025 10:30"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "09.09.2025 10:30"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "21.08.2025 20:31",
+          "tur": "EMS",
+          "tutar": 1200.0
+        },
+        {
+          "tarih": "21.08.2025 20:32",
+          "tur": "EMS",
+          "tutar": 1800.0
+        },
+        {
+          "tarih": "26.08.2025 11:03",
+          "tur": "EMS",
+          "tutar": 1200.0
+        },
+        {
+          "tarih": "22.10.2025 11:00",
+          "tur": "EMS",
+          "tutar": 4200.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİF ÇANKAYA",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 7000.0,
+          "oden": 7000.0,
+          "tarih": "06.08.2025 17:29"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "06.08.2025 17:29"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "08.08.2025 19:15",
+          "tur": "EMS",
+          "tutar": 7000.0
+        }
+      ]
+    },
+    {
+      "ad": "HACI NİHAT ÇANKAYA",
+      "cinsiyet": "Erkek",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "06.08.2025 17:29"
+        }
+      ],
+      "odeme_gecmis": []
+    },
+    {
+      "ad": "MÜCAHİDE YÜCEL",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "09.08.2025 14:00"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "09.08.2025 14:00"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "20.08.2025 00:33"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "20.08.2025 00:33"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 5,
+          "tutar": 4000.0,
+          "oden": 4000.0,
+          "tarih": "23.10.2025 22:24"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 5,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "23.10.2025 22:25"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "20.08.2025 00:33",
+          "tur": "EMS",
+          "tutar": 4000.0
+        },
+        {
+          "tarih": "20.08.2025 00:33",
+          "tur": "EMS",
+          "tutar": 4000.0
+        },
+        {
+          "tarih": "03.11.2025 19:18",
+          "tur": "EMS",
+          "tutar": 4000.0
+        }
+      ]
+    },
+    {
+      "ad": "FATMA ÖZER",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 4200.0,
+          "oden": 3000.0,
+          "tarih": "12.08.2025 20:57"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "12.08.2025 20:57"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "12.08.2025 20:57",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "30.08.2025 11:18",
+          "tur": "Lenf Drenaj",
+          "tutar": 1000.0
+        }
+      ]
+    },
+    {
+      "ad": "NURCAN ERÇİN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "15.08.2025 17:45"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "15.08.2025 17:45"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 100.0,
+          "oden": 100.0,
+          "tarih": "20.09.2025 15:37"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.08.2025 17:45",
+          "tur": "EMS",
+          "tutar": 2200.0
+        },
+        {
+          "tarih": "20.09.2025 15:37",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "20.09.2025 15:37",
+          "tur": "G8",
+          "tutar": 100.0
+        }
+      ]
+    },
+    {
+      "ad": "KERİME KAYHAN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "26.08.2025 20:19"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "24.09.2025 18:06",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "GÜLAY YILDIRIM",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 3,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "28.08.2025 10:13"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "28.08.2025 10:13",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİFNUR BARAN",
+      "cinsiyet": "Kadın",
+      "telefon": "65",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 4200.0,
+          "oden": 0.0,
+          "tarih": "03.09.2025 17:50"
+        },
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 7,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "03.09.2025 17:50"
+        }
+      ],
+      "odeme_gecmis": []
+    },
+    {
+      "ad": "HÜMEYRA BEHCET",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "09.09.2025 23:05"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "09.09.2025 23:05"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "30.10.2025 22:14",
+          "tur": "G8",
+          "tutar": 4200.0
+        }
+      ]
+    },
+    {
+      "ad": "DUYGU BABACAN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "10.09.2025 17:35"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "13.09.2025 17:29"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "10.09.2025 17:35",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "13.09.2025 17:28",
+          "tur": "EMS",
+          "tutar": 2100.0
+        },
+        {
+          "tarih": "13.09.2025 17:29",
+          "tur": "EMS",
+          "tutar": 2100.0
+        },
+        {
+          "tarih": "22.09.2025 10:46",
+          "tur": "EMS",
+          "tutar": 2100.0
+        }
+      ]
+    },
+    {
+      "ad": "İLKNUR SADIÇ",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "12.09.2025 22:12"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "12.09.2025 22:12"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "17.10.2025 17:11"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.10.2025 17:11"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "12.09.2025 22:13",
+          "tur": "EMS",
+          "tutar": 2100.0
+        },
+        {
+          "tarih": "03.10.2025 01:20",
+          "tur": "EMS",
+          "tutar": 2100.0
+        },
+        {
+          "tarih": "31.10.2025 10:35",
+          "tur": "EMS",
+          "tutar": 4200.0
+        }
+      ]
+    },
+    {
+      "ad": "MERVE KANBER",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "16.09.2025 10:10"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "16.09.2025 10:10",
+          "tur": "EMS",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "18.09.2025 10:47",
+          "tur": "EMS",
+          "tutar": 1200.0
+        }
+      ]
+    },
+    {
+      "ad": "- KİRPİK LİFTİNG -",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 750.0,
+          "oden": 750.0,
+          "tarih": "17.09.2025 23:56"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 500.0,
+          "oden": 500.0,
+          "tarih": "20.09.2025 15:38"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 500.0,
+          "oden": 500.0,
+          "tarih": "24.09.2025 16:27"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 750.0,
+          "oden": 750.0,
+          "tarih": "03.10.2025 01:20"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 700.0,
+          "oden": 700.0,
+          "tarih": "20.10.2025 19:26"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 800.0,
+          "oden": 800.0,
+          "tarih": "27.10.2025 19:36"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 700.0,
+          "oden": 700.0,
+          "tarih": "10.11.2025 17:58"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "17.09.2025 23:57",
+          "tur": "G8",
+          "tutar": 750.0
+        },
+        {
+          "tarih": "20.09.2025 15:38",
+          "tur": "G8",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "24.09.2025 16:27",
+          "tur": "G8",
+          "tutar": 500.0
+        },
+        {
+          "tarih": "03.10.2025 01:20",
+          "tur": "G8",
+          "tutar": 750.0
+        },
+        {
+          "tarih": "20.10.2025 19:26",
+          "tur": "G8",
+          "tutar": 700.0
+        },
+        {
+          "tarih": "27.10.2025 19:37",
+          "tur": "G8",
+          "tutar": 800.0
+        },
+        {
+          "tarih": "10.11.2025 17:59",
+          "tur": "G8",
+          "tutar": 700.0
+        }
+      ]
+    },
+    {
+      "ad": "SENA BAŞARAN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 200.0,
+          "oden": 200.0,
+          "tarih": "20.09.2025 15:39"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "20.09.2025 15:39",
+          "tur": "Online Danışmanlık",
+          "tutar": 200.0
+        }
+      ]
+    },
+    {
+      "ad": "MERVE GÜNGÖR",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "22.09.2025 12:58"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "22.09.2025 13:02",
+          "tur": "Online Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "DİLEK AŞÇI",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 4200.0,
+          "oden": 4200.0,
+          "tarih": "24.09.2025 16:29"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "24.09.2025 16:29"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "09.10.2025 01:14",
+          "tur": "EMS",
+          "tutar": 2000.0
+        },
+        {
+          "tarih": "17.11.2025 17:51",
+          "tur": "EMS",
+          "tutar": 2200.0
+        }
+      ]
+    },
+    {
+      "ad": "FİLİZ KIZILCİNLİ",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "27.09.2025 15:25"
+        },
+        {
+          "tur": "EMS",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "01.10.2025 23:16"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "01.10.2025 11:37",
+          "tur": "EMS",
+          "tutar": 2500.0
+        }
+      ]
+    },
+    {
+      "ad": "- CİLT BAKIMI -",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "06.10.2025 19:07"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 1000.0,
+          "oden": 1000.0,
+          "tarih": "11.10.2025 14:34"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "20.10.2025 19:24"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 800.0,
+          "oden": 800.0,
+          "tarih": "25.10.2025 00:03"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "30.10.2025 22:18"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "10.11.2025 17:59"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 800.0,
+          "oden": 800.0,
+          "tarih": "10.11.2025 18:00"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 3000.0,
+          "oden": 3000.0,
+          "tarih": "12.11.2025 14:39"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1200.0,
+          "oden": 1200.0,
+          "tarih": "12.11.2025 14:45"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "22.11.2025 13:37"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "06.10.2025 19:07",
+          "tur": "G8",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "11.10.2025 14:35",
+          "tur": "G8",
+          "tutar": 1000.0
+        },
+        {
+          "tarih": "20.10.2025 19:24",
+          "tur": "G8",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "25.10.2025 00:03",
+          "tur": "G8",
+          "tutar": 800.0
+        },
+        {
+          "tarih": "30.10.2025 22:18",
+          "tur": "G8",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "10.11.2025 17:59",
+          "tur": "G8",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "10.11.2025 18:00",
+          "tur": "G8",
+          "tutar": 800.0
+        },
+        {
+          "tarih": "12.11.2025 14:39",
+          "tur": "G8",
+          "tutar": 3000.0
+        },
+        {
+          "tarih": "12.11.2025 14:42",
+          "tur": "G8",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "12.11.2025 14:45",
+          "tur": "G8",
+          "tutar": 1200.0
+        },
+        {
+          "tarih": "22.11.2025 13:37",
+          "tur": "G8",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "- ALTIN ORAN KAŞ ALIM -",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "09.10.2025 11:00"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "11.10.2025 17:47"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "11.10.2025 17:48"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "14.10.2025 11:36"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "15.10.2025 12:54"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "24.10.2025 11:31"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "25.10.2025 00:02"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "30.10.2025 22:15"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "09.11.2025 12:17"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "09.11.2025 12:59"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "10.11.2025 17:58"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 100.0,
+          "oden": 100.0,
+          "tarih": "16.11.2025 14:05"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "17.11.2025 17:50"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "17.11.2025 17:50"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 350.0,
+          "oden": 350.0,
+          "tarih": "19.11.2025 13:20"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "22.11.2025 13:37"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "09.10.2025 11:00",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "11.10.2025 17:48",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "11.10.2025 17:48",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "14.10.2025 11:36",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "15.10.2025 12:54",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "24.10.2025 11:31",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "25.10.2025 00:02",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "30.10.2025 22:15",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "09.11.2025 12:18",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "09.11.2025 13:00",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "10.11.2025 17:58",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "16.11.2025 14:06",
+          "tur": "G8",
+          "tutar": 100.0
+        },
+        {
+          "tarih": "17.11.2025 17:51",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "17.11.2025 17:51",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "19.11.2025 13:20",
+          "tur": "G8",
+          "tutar": 350.0
+        },
+        {
+          "tarih": "22.11.2025 13:38",
+          "tur": "G8",
+          "tutar": 300.0
+        }
+      ]
+    },
+    {
+      "ad": "FATİH BALCI",
+      "cinsiyet": "Erkek",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "13.10.2025 18:19"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "13.10.2025 18:20",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    },
+    {
+      "ad": "safa dişli",
+      "cinsiyet": "Erkek",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "15.10.2025 13:14"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "15.10.2025 13:14",
+          "tur": "Online Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "-MANİKÜR-",
+      "cinsiyet": "Kadın",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "17.10.2025 17:10"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "23.10.2025 22:35"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "23.10.2025 22:35"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "25.10.2025 00:03"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "25.10.2025 00:03"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "27.10.2025 19:38"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "30.10.2025 22:16"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "03.11.2025 18:20"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "15.11.2025 13:22"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "17.11.2025 17:50"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "17.11.2025 17:50"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "23.10.2025 22:35",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "23.10.2025 22:35",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "23.10.2025 22:35",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "25.10.2025 00:03",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "25.10.2025 00:03",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "27.10.2025 19:38",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "30.10.2025 22:17",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "03.11.2025 18:20",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "15.11.2025 13:22",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "17.11.2025 17:50",
+          "tur": "G8",
+          "tutar": 300.0
+        },
+        {
+          "tarih": "17.11.2025 17:50",
+          "tur": "G8",
+          "tutar": 300.0
+        }
+      ]
+    },
+    {
+      "ad": "HİLAL İPEK",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "18.10.2025 16:17"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "09.11.2025 15:43",
+          "tur": "Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "TUANA AKDENİZ",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 4,
+          "kalan": 4,
+          "tutar": 1200.0,
+          "oden": 0.0,
+          "tarih": "20.10.2025 20:12"
+        }
+      ],
+      "odeme_gecmis": []
+    },
+    {
+      "ad": "MERVE YILMAZ",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "21.10.2025 11:24"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "21.10.2025 11:24",
+          "tur": "Online Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "SİBEL AYDIN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.10.2025 11:10"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "31.10.2025 10:28",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "BÜŞRA YILDIZ",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 0,
+          "tutar": 2000.0,
+          "oden": 2000.0,
+          "tarih": "23.10.2025 11:10"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 8,
+          "tutar": 2700.0,
+          "oden": 0.0,
+          "tarih": "25.11.2025 09:41"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "31.10.2025 10:27",
+          "tur": "Lenf Drenaj",
+          "tutar": 2000.0
+        }
+      ]
+    },
+    {
+      "ad": "-PROTEZ TIRNAK-",
+      "cinsiyet": "Erkek",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 0,
+          "tutar": 900.0,
+          "oden": 900.0,
+          "tarih": "25.10.2025 00:02"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 900.0,
+          "oden": 900.0,
+          "tarih": "05.11.2025 11:27"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 400.0,
+          "oden": 400.0,
+          "tarih": "05.11.2025 11:28"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 900.0,
+          "oden": 900.0,
+          "tarih": "09.11.2025 19:14"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 250.0,
+          "oden": 250.0,
+          "tarih": "15.11.2025 19:01"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 900.0,
+          "oden": 900.0,
+          "tarih": "15.11.2025 19:05"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 950.0,
+          "oden": 950.0,
+          "tarih": "19.11.2025 13:20"
+        },
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 300.0,
+          "oden": 300.0,
+          "tarih": "22.11.2025 13:47"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "25.10.2025 00:02",
+          "tur": "G8",
+          "tutar": 900.0
+        },
+        {
+          "tarih": "05.11.2025 11:27",
+          "tur": "G8",
+          "tutar": 900.0
+        },
+        {
+          "tarih": "05.11.2025 11:28",
+          "tur": "G8",
+          "tutar": 400.0
+        },
+        {
+          "tarih": "09.11.2025 19:40",
+          "tur": "G8",
+          "tutar": 900.0
+        },
+        {
+          "tarih": "15.11.2025 19:01",
+          "tur": "G8",
+          "tutar": 250.0
+        },
+        {
+          "tarih": "15.11.2025 19:05",
+          "tur": "G8",
+          "tutar": 900.0
+        },
+        {
+          "tarih": "19.11.2025 13:20",
+          "tur": "G8",
+          "tutar": 950.0
+        },
+        {
+          "tarih": "22.11.2025 13:47",
+          "tur": "G8",
+          "tutar": 300.0
+        }
+      ]
+    },
+    {
+      "ad": "-KAŞ LAMİNASYON-",
+      "cinsiyet": "Kadın",
+      "telefon": "7",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 800.0,
+          "oden": 800.0,
+          "tarih": "27.10.2025 19:37"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "27.10.2025 19:37",
+          "tur": "G8",
+          "tutar": 800.0
+        }
+      ]
+    },
+    {
+      "ad": "UFUK AYDIN",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 1,
+          "tutar": 2700.0,
+          "oden": 0.0,
+          "tarih": "30.10.2025 22:15"
+        }
+      ],
+      "odeme_gecmis": []
+    },
+    {
+      "ad": "BAŞAK ÖZ",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 0,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "31.10.2025 10:26"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "31.10.2025 10:26",
+          "tur": "Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "EDA ARACI",
+      "cinsiyet": "Kadın",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 2,
+          "tutar": 2500.0,
+          "oden": 2500.0,
+          "tarih": "31.10.2025 11:18"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "31.10.2025 11:43",
+          "tur": "EMS",
+          "tutar": 1500.0
+        },
+        {
+          "tarih": "07.11.2025 10:50",
+          "tur": "EMS",
+          "tutar": 1000.0
+        }
+      ]
+    },
+    {
+      "ad": "ZELİŞ KIRBIYIK",
+      "cinsiyet": "Kadın",
+      "telefon": "5",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 2,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "01.11.2025 14:38"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "19.11.2025 13:21",
+          "tur": "Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "ELİF DEMİR",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Danışmanlık",
+          "seans": 4,
+          "kalan": 1,
+          "tutar": 1500.0,
+          "oden": 1500.0,
+          "tarih": "01.11.2025 16:12"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "01.11.2025 16:12",
+          "tur": "Danışmanlık",
+          "tutar": 1500.0
+        }
+      ]
+    },
+    {
+      "ad": "ŞEVVAL KUUNDUZ",
+      "cinsiyet": "Erkek",
+      "telefon": "6",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 2850.0,
+          "oden": 2850.0,
+          "tarih": "13.11.2025 14:39"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "13.11.2025 14:40",
+          "tur": "EMS",
+          "tutar": 2850.0
+        }
+      ]
+    },
+    {
+      "ad": "DİLBER YILMAZ",
+      "cinsiyet": "Erkek",
+      "telefon": "8",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "Online Danışmanlık",
+          "seans": 1,
+          "kalan": 1,
+          "tutar": 1250.0,
+          "oden": 1250.0,
+          "tarih": "16.11.2025 15:50"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "16.11.2025 15:50",
+          "tur": "Online Danışmanlık",
+          "tutar": 1250.0
+        }
+      ]
+    },
+    {
+      "ad": "SEVAL ÇAKIR",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 7,
+          "tutar": 5500.0,
+          "oden": 0.0,
+          "tarih": "17.11.2025 17:48"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.11.2025 17:48"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.11.2025 17:48"
+        }
+      ],
+      "odeme_gecmis": []
+    },
+    {
+      "ad": "EMİNE YAMAN",
+      "cinsiyet": "Kadın",
+      "telefon": "3",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "G8",
+          "seans": 8,
+          "kalan": 7,
+          "tutar": 5500.0,
+          "oden": 5000.0,
+          "tarih": "17.11.2025 17:49"
+        },
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.11.2025 17:49"
+        },
+        {
+          "tur": "Lenf Drenaj",
+          "seans": 8,
+          "kalan": 6,
+          "tutar": 0.0,
+          "oden": 0.0,
+          "tarih": "17.11.2025 17:49"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "22.11.2025 18:26",
+          "tur": "G8",
+          "tutar": 5000.0
+        }
+      ]
+    },
+    {
+      "ad": "GÜLÇİN DEMİR",
+      "cinsiyet": "Kadın",
+      "telefon": "2",
+      "dogum": "",
+      "boy": null,
+      "kilo": null,
+      "bmi": null,
+      "not": "",
+      "kilo_gecmis": [],
+      "hizmetler": [
+        {
+          "tur": "EMS",
+          "seans": 8,
+          "kalan": 7,
+          "tutar": 2700.0,
+          "oden": 2700.0,
+          "tarih": "22.11.2025 14:13"
+        }
+      ],
+      "odeme_gecmis": [
+        {
+          "tarih": "22.11.2025 14:13",
+          "tur": "EMS",
+          "tutar": 2700.0
+        }
+      ]
+    }
+  ],
+  "expenses": [
+    {
+      "tarih": "13.05.2025 20:03",
+      "kategori": "KİRA",
+      "tutar": 15000.0,
+      "not": ""
+    },
+    {
+      "tarih": "23.06.2025 10:07",
+      "kategori": "KİRA",
+      "tutar": 15000.0,
+      "not": ""
+    },
+    {
+      "tarih": "23.06.2025 10:08",
+      "kategori": "SERTİFİKA",
+      "tutar": 1100.0,
+      "not": ""
+    },
+    {
+      "tarih": "23.06.2025 10:08",
+      "kategori": "MUHASEBE",
+      "tutar": 1950.0,
+      "not": ""
+    },
+    {
+      "tarih": "23.06.2025 10:12",
+      "kategori": "TARTI 3/9",
+      "tutar": 16546.0,
+      "not": ""
+    },
+    {
+      "tarih": "26.06.2025 20:05",
+      "kategori": "ELEKTRİK FATURASI",
+      "tutar": 2500.0,
+      "not": ""
+    },
+    {
+      "tarih": "28.06.2025 16:50",
+      "kategori": "İNTTERNET",
+      "tutar": 850.0,
+      "not": ""
+    },
+    {
+      "tarih": "02.07.2025 19:29",
+      "kategori": "TARTI 4/9",
+      "tutar": 16560.0,
+      "not": ""
+    },
+    {
+      "tarih": "09.07.2025 09:51",
+      "kategori": "AİDAT TEMMUZ",
+      "tutar": 1000.0,
+      "not": ""
+    },
+    {
+      "tarih": "09.07.2025 09:53",
+      "kategori": "GARANTİ KREDİ KART",
+      "tutar": 22400.0,
+      "not": "4500 BABA"
+    },
+    {
+      "tarih": "26.07.2025 14:38",
+      "kategori": "MUHASEBE",
+      "tutar": 14330.0,
+      "not": "STOPAJ + MUHASEBE"
+    },
+    {
+      "tarih": "27.07.2025 22:22",
+      "kategori": "ELEKTRİK",
+      "tutar": 2750.0,
+      "not": ""
+    },
+    {
+      "tarih": "01.08.2025 14:46",
+      "kategori": "halk eğitim",
+      "tutar": 5000.0,
+      "not": ""
+    },
+    {
+      "tarih": "04.08.2025 17:01",
+      "kategori": "TARTI 5/9",
+      "tutar": 16540.0,
+      "not": ""
+    },
+    {
+      "tarih": "11.10.2025 14:35",
+      "kategori": "Tartı 7/9",
+      "tutar": 16500.0,
+      "not": ""
+    },
+    {
+      "tarih": "11.10.2025 14:36",
+      "kategori": "kdv kadir acı",
+      "tutar": 1200.0,
+      "not": ""
+    },
+    {
+      "tarih": "11.10.2025 14:36",
+      "kategori": "aidat",
+      "tutar": 1000.0,
+      "not": ""
+    },
+    {
+      "tarih": "13.10.2025 18:20",
+      "kategori": "KDV FATİH BALCI",
+      "tutar": 450.0,
+      "not": ""
+    },
+    {
+      "tarih": "18.10.2025 16:17",
+      "kategori": "KDV HİLAL İPEK",
+      "tutar": 300.0,
+      "not": ""
+    },
+    {
+      "tarih": "13.11.2025 14:42",
+      "kategori": "ŞEVVAL KUNDUZ KDV",
+      "tutar": 570.0,
+      "not": ""
+    },
+    {
+      "tarih": "15.11.2025 19:06",
+      "kategori": "KDV İLKNUR GÜRPINAR",
+      "tutar": 180.0,
+      "not": ""
+    },
+    {
+      "tarih": "24.11.2025 19:55",
+      "kategori": "ELEKTRİK",
+      "tutar": 2500.0,
+      "not": ""
+    },
+    {
+      "tarih": "24.11.2025 19:56",
+      "kategori": "KİRA",
+      "tutar": 15000.0,
+      "not": ""
+    },
+    {
+      "tarih": "24.11.2025 19:56",
+      "kategori": "TARTI TAKSİDİ",
+      "tutar": 16500.0,
+      "not": ""
+    },
+    {
+      "tarih": "24.11.2025 19:56",
+      "kategori": "MUHASEBE",
+      "tutar": 3000.0,
+      "not": ""
+    }
+  ]
+}
