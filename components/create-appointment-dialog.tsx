@@ -47,7 +47,18 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
     const [error, setError] = useState<string | null>(null);
     const [date, setDate] = useState<Date>();
 
-    const selectedClient = clients.find((c) => c.id.toString() === selectedClientId);
+    const [clientsList, setClientsList] = useState(clients);
+
+    // Fetch fresh clients when dialog opens
+    useEffect(() => {
+        if (open) {
+            import("@/app/actions/client").then(({ getClients }) => {
+                getClients().then(setClientsList);
+            });
+        }
+    }, [open]);
+
+    const selectedClient = clientsList.find((c) => c.id.toString() === selectedClientId);
 
     // Generate time slots (09:00 to 19:00, 15 min intervals)
     const timeSlots = useMemo(() => {
@@ -63,11 +74,11 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
 
     // Filter clients based on search term
     const filteredClients = useMemo(() => {
-        if (!searchTerm) return clients;
-        return clients.filter(client =>
-            client.name.toLowerCase().includes(searchTerm.toLowerCase())
+        if (!searchTerm) return clientsList;
+        return clientsList.filter(client =>
+            client.name.toLocaleLowerCase('tr').includes(searchTerm.toLocaleLowerCase('tr'))
         );
-    }, [clients, searchTerm]);
+    }, [clientsList, searchTerm]);
 
     // Handle click outside to close dropdown
     useEffect(() => {
@@ -85,14 +96,14 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
     // Update search term when a client is selected
     useEffect(() => {
         if (selectedClientId) {
-            const client = clients.find(c => c.id.toString() === selectedClientId);
+            const client = clientsList.find(c => c.id.toString() === selectedClientId);
             if (client) {
                 setSearchTerm(client.name);
             }
         } else {
             setSearchTerm("");
         }
-    }, [selectedClientId, clients]);
+    }, [selectedClientId, clientsList]);
 
     const handleSelectClient = (client: typeof clients[0]) => {
         setSelectedClientId(client.id.toString());

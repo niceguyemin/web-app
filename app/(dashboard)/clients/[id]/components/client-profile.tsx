@@ -24,6 +24,7 @@ import {
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import { MessageCircle } from "lucide-react";
+import { toast } from "sonner";
 
 import { EditClientDialog } from "./edit-client-dialog";
 
@@ -92,17 +93,25 @@ export function ClientProfile({ client }: ClientProfileProps) {
                     </div>
 
                     <div className="pt-4 border-t">
-                        <form action={async (formData) => {
-                            if (confirm(`${client.name} adlı danışanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve tüm ilişkili veriler (hizmetler, ödemeler, ölçümler) silinecektir.`)) {
-                                const { deleteClient } = await import("@/app/actions/client");
-                                await deleteClient(formData);
-                            }
-                        }}>
-                            <input type="hidden" name="id" value={client.id} />
-                            <Button type="submit" variant="destructive" className="w-full">
-                                Danışanı Sil
-                            </Button>
-                        </form>
+                        <Button
+                            variant="destructive"
+                            className="w-full"
+                            onClick={async () => {
+                                if (confirm(`${client.name} adlı danışanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve tüm ilişkili veriler (hizmetler, ödemeler, ölçümler) silinecektir.`)) {
+                                    try {
+                                        const { deleteClient } = await import("@/app/actions/client");
+                                        const formData = new FormData();
+                                        formData.append("id", client.id.toString());
+                                        await deleteClient(formData);
+                                        toast.success("Danışan başarıyla silindi");
+                                    } catch (error) {
+                                        toast.error("Silme işlemi başarısız");
+                                    }
+                                }
+                            }}
+                        >
+                            Danışanı Sil
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
@@ -113,7 +122,17 @@ export function ClientProfile({ client }: ClientProfileProps) {
                     <CardDescription>Yeni ölçüm ekle ve grafiği gör.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    <form action={addMeasurement} className="flex gap-4 items-end">
+                    <form
+                        action={async (formData) => {
+                            try {
+                                await addMeasurement(formData);
+                                toast.success("Ölçüm başarıyla eklendi");
+                            } catch (error) {
+                                toast.error("Ölçüm eklenirken hata oluştu");
+                            }
+                        }}
+                        className="flex gap-4 items-end"
+                    >
                         <input type="hidden" name="clientId" value={client.id} />
                         <input type="hidden" name="height" value={client.height || ""} />
                         <div className="grid gap-2 flex-1">

@@ -127,7 +127,7 @@ export function ClientServices({ client, serviceTypes }: ClientServicesProps) {
                         return (
                             <div
                                 key={service.id}
-                                className="flex items-center justify-between p-4 border rounded-lg"
+                                className="flex flex-col md:flex-row md:items-center justify-between p-4 border rounded-lg gap-4"
                             >
                                 <div className="space-y-1">
                                     <p className="font-medium">{service.type}</p>
@@ -140,14 +140,14 @@ export function ClientServices({ client, serviceTypes }: ClientServicesProps) {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto">
                                     <div className="text-center">
                                         <p className="text-2xl font-bold">
                                             {service.remainingSessions}
                                         </p>
                                         <p className="text-xs text-muted-foreground">Kalan</p>
                                     </div>
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex items-center gap-2">
                                         <Button
                                             size="sm"
                                             variant="outline"

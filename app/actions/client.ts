@@ -70,7 +70,23 @@ export async function createClient(formData: FormData) {
 
     revalidatePath("/clients");
     revalidatePath("/"); // Revalidate dashboard
+    revalidatePath("/appointments"); // Revalidate appointments
     // redirect("/clients"); // Don't redirect if called from quick add
+}
+
+export async function getClients() {
+    return await prismadb.client.findMany({
+        include: {
+            services: {
+                where: {
+                    status: "ACTIVE",
+                },
+            },
+        },
+        orderBy: {
+            name: "asc",
+        },
+    });
 }
 
 export async function deleteClient(formData: FormData) {

@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/select";
 import { createPayment } from "@/app/actions/payment";
 import { useState } from "react";
+import { toast } from "sonner";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
@@ -71,6 +72,7 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                                     try {
                                         setError(null);
                                         await createPayment(formData);
+                                        toast.success("Ödeme başarıyla alındı");
                                         setOpen(false);
                                     } catch (err) {
                                         setError(err instanceof Error ? err.message : "Bir hata oluştu");
@@ -157,42 +159,44 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
             <CardContent className="space-y-6">
                 {/* Payments Table */}
                 <div className="rounded-xl border border-white/10 glass-card overflow-hidden">
-                    <table className="w-full text-sm">
-                        <thead>
-                            <tr className="border-b border-white/10 bg-white/5">
-                                <th className="p-3 text-left font-medium text-white/70">Tarih</th>
-                                <th className="p-3 text-left font-medium text-white/70">Hizmet</th>
-                                <th className="p-3 text-left font-medium text-white/70">Tür</th>
-                                <th className="p-3 text-right font-medium text-white/70">Tutar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {client.payments.map((payment) => {
-                                const service = client.services.find((s) => s.id === payment.serviceId);
-                                return (
-                                    <tr key={payment.id} className="border-b border-white/10 last:border-0 hover:bg-white/5 transition-colors">
-                                        <td className="p-3 text-white">
-                                            {format(payment.date, "d MMMM yyyy HH:mm", { locale: tr })}
-                                        </td>
-                                        <td className="p-3 text-white">
-                                            {service ? service.type : "Genel"}
-                                        </td>
-                                        <td className="p-3 text-white">{payment.type || "-"}</td>
-                                        <td className="p-3 text-right font-medium text-white">
-                                            ₺{payment.amount.toFixed(2)}
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="border-b border-white/10 bg-white/5">
+                                    <th className="p-3 text-left font-medium text-white/70">Tarih</th>
+                                    <th className="p-3 text-left font-medium text-white/70">Hizmet</th>
+                                    <th className="p-3 text-left font-medium text-white/70">Tür</th>
+                                    <th className="p-3 text-right font-medium text-white/70">Tutar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {client.payments.map((payment) => {
+                                    const service = client.services.find((s) => s.id === payment.serviceId);
+                                    return (
+                                        <tr key={payment.id} className="border-b border-white/10 last:border-0 hover:bg-white/5 transition-colors">
+                                            <td className="p-3 text-white">
+                                                {format(payment.date, "d MMMM yyyy HH:mm", { locale: tr })}
+                                            </td>
+                                            <td className="p-3 text-white">
+                                                {service ? service.type : "Genel"}
+                                            </td>
+                                            <td className="p-3 text-white">{payment.type || "-"}</td>
+                                            <td className="p-3 text-right font-medium text-white">
+                                                ₺{payment.amount.toFixed(2)}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                                {client.payments.length === 0 && (
+                                    <tr>
+                                        <td colSpan={4} className="p-4 text-center text-white/50">
+                                            Ödeme kaydı yok.
                                         </td>
                                     </tr>
-                                );
-                            })}
-                            {client.payments.length === 0 && (
-                                <tr>
-                                    <td colSpan={4} className="p-4 text-center text-white/50">
-                                        Ödeme kaydı yok.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </CardContent>
         </Card>
