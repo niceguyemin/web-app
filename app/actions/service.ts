@@ -2,7 +2,7 @@
 
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
-
+import { createLog } from "@/lib/logger";
 
 
 export async function createService(formData: FormData) {
@@ -11,7 +11,7 @@ export async function createService(formData: FormData) {
     const totalSessions = parseInt(formData.get("totalSessions") as string);
     const totalPrice = parseFloat(formData.get("totalPrice") as string);
 
-    await prismadb.service.create({
+    const service = await prismadb.service.create({
         data: {
             clientId,
             type,
@@ -20,6 +20,13 @@ export async function createService(formData: FormData) {
             totalPrice,
         },
     });
+
+    const client = await prismadb.client.findUnique({
+        where: { id: clientId },
+        select: { name: true },
+    });
+
+    await createLog("Hizmet Eklendi", `${type} - ${totalPrice} TL - ${client?.name}`, service.id, "Service", null);
 
     revalidatePath(`/clients/${clientId}`);
 }
@@ -39,12 +46,33 @@ export async function deductSession(serviceId: number, clientId: number) {
         },
     });
 
+    const client = await prismadb.client.findUnique({
+        where: { id: clientId },
+        select: { name: true },
+    });
+
+    await createLog("Seans Düşüldü", `${service.type} - Kalan: ${service.remainingSessions - 1} - ${client?.name}`, serviceId, "Service", service);
+
     revalidatePath(`/clients/${clientId}`);
 }
 
 export async function deleteService(serviceId: number, clientId: number) {
+    const service = await prismadb.service.findUnique({
+        where: { id: serviceId },
+    });
+
     await prismadb.service.delete({
         where: { id: serviceId },
     });
+
+    const client = await prismadb.client.findUnique({
+        where: { id: clientId },
+        select: { name: true },
+    });
+
+    if (service) {
+        await createLog("Hizmet Silindi", `${service.type} - ${client?.name}`, serviceId, "Service", service);
+    }
+
     revalidatePath(`/clients/${clientId}`);
 }

@@ -2,6 +2,7 @@
 
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
+import { createLog } from "@/lib/logger";
 
 export async function addMeasurement(formData: FormData) {
     const clientId = parseInt(formData.get("clientId") as string);
@@ -13,7 +14,7 @@ export async function addMeasurement(formData: FormData) {
         bmi = weight / Math.pow(height / 100, 2);
     }
 
-    await prismadb.measurement.create({
+    const measurement = await prismadb.measurement.create({
         data: {
             clientId,
             weight,
@@ -30,6 +31,13 @@ export async function addMeasurement(formData: FormData) {
             height: height || undefined,
         },
     });
+
+    const client = await prismadb.client.findUnique({
+        where: { id: clientId },
+        select: { name: true },
+    });
+
+    await createLog("Ölçüm Eklendi", `${client?.name} - Kilo: ${weight}kg`, measurement.id, "Measurement", null);
 
     revalidatePath(`/clients/${clientId}`);
 }

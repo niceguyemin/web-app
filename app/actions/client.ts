@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { createLog } from "@/lib/logger";
 
 const ClientSchema = z.object({
     name: z.string().min(2, "İsim en az 2 karakter olmalı"),
@@ -51,8 +52,10 @@ export async function createClient(formData: FormData) {
         },
     });
 
+    await createLog("Danışan Oluşturuldu", client.name, client.id, "Client", null);
+
     if (serviceType && servicePrice && serviceSessions) {
-        await prismadb.service.create({
+        const service = await prismadb.service.create({
             data: {
                 clientId: client.id,
                 type: serviceType,
@@ -62,6 +65,7 @@ export async function createClient(formData: FormData) {
                 status: "ACTIVE",
             },
         });
+        await createLog("Hizmet Eklendi", `${serviceType} - ${servicePrice} TL (Yeni Danışan)`, service.id, "Service", null);
     }
 
     revalidatePath("/clients");
@@ -72,9 +76,27 @@ export async function createClient(formData: FormData) {
 export async function deleteClient(formData: FormData) {
     const id = parseInt(formData.get("id") as string);
 
+    const client = await prismadb.client.findUnique({
+        where: { id },
+        include: {
+            services: true,
+            measurements: true,
+            appointments: true,
+            payments: {
+                include: {
+                    expenses: true
+                }
+            }
+        }
+    });
+
     await prismadb.client.delete({
         where: { id },
     });
+
+    if (client) {
+        await createLog("Danışan Silindi", `${client.name} (ID: ${id})`, id, "Client", client);
+    }
 
     revalidatePath("/clients");
     redirect("/clients");
@@ -96,6 +118,8 @@ export async function updateClient(formData: FormData) {
         phone = "+90" + phone.replace(/^0+/, ""); // Remove leading zeros if any
     }
 
+    const previousClient = await prismadb.client.findUnique({ where: { id } });
+
     await prismadb.client.update({
         where: { id },
         data: {
@@ -106,6 +130,8 @@ export async function updateClient(formData: FormData) {
             notes: rawData.notes as string,
         },
     });
+
+    await createLog("Danışan Güncellendi", rawData.name as string, id, "Client", previousClient);
 
     revalidatePath(`/clients/${id}`);
     revalidatePath("/clients");

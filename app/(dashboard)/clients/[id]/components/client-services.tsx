@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/select";
 import { createService, deductSession, deleteService } from "@/app/actions/service";
 import { useState } from "react";
+import { toast } from "sonner";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
@@ -63,8 +64,13 @@ export function ClientServices({ client, serviceTypes }: ClientServicesProps) {
                         </DialogHeader>
                         <form
                             action={async (formData) => {
-                                await createService(formData);
-                                setOpen(false);
+                                try {
+                                    await createService(formData);
+                                    toast.success("Hizmet başarıyla eklendi");
+                                    setOpen(false);
+                                } catch (error) {
+                                    toast.error("Hizmet eklenirken bir hata oluştu");
+                                }
                             }}
                             className="space-y-4"
                         >
@@ -146,7 +152,14 @@ export function ClientServices({ client, serviceTypes }: ClientServicesProps) {
                                             size="sm"
                                             variant="outline"
                                             disabled={service.remainingSessions <= 0}
-                                            onClick={() => deductSession(service.id, client.id)}
+                                            onClick={async () => {
+                                                try {
+                                                    await deductSession(service.id, client.id);
+                                                    toast.success("Seans düşüldü");
+                                                } catch (error) {
+                                                    toast.error("İşlem başarısız");
+                                                }
+                                            }}
                                         >
                                             <Minus className="h-4 w-4 mr-1" />
                                             Seans Düş
@@ -155,9 +168,14 @@ export function ClientServices({ client, serviceTypes }: ClientServicesProps) {
                                             size="sm"
                                             variant="ghost"
                                             className="text-red-500 hover:text-red-600 hover:bg-red-50"
-                                            onClick={() => {
+                                            onClick={async () => {
                                                 if (confirm("Silmek istediğinize emin misiniz?")) {
-                                                    deleteService(service.id, client.id)
+                                                    try {
+                                                        await deleteService(service.id, client.id);
+                                                        toast.success("Hizmet silindi");
+                                                    } catch (error) {
+                                                        toast.error("Silme işlemi başarısız");
+                                                    }
                                                 }
                                             }}
                                         >

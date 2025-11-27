@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -84,6 +85,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
     async function onSubmit(formData: FormData) {
         try {
             await createPayment(formData);
+            toast.success("Ödeme başarıyla alındı");
             setOpen(false);
             setSearchTerm("");
             setSelectedClientId("");

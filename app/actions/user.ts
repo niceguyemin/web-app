@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { auth } from "@/lib/auth";
+import { createLog } from "@/lib/logger";
 
 export async function createUser(formData: FormData) {
     const session = await auth();
@@ -19,7 +20,7 @@ export async function createUser(formData: FormData) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await prismadb.user.create({
+    const user = await prismadb.user.create({
         data: {
             username,
             password: hashedPassword,
@@ -28,6 +29,8 @@ export async function createUser(formData: FormData) {
             color,
         },
     });
+
+    await createLog("Kullanıcı Oluşturuldu", `${username} (${role})`, user.id, "User", null);
 
     revalidatePath("/settings");
 }
@@ -39,6 +42,14 @@ export async function deleteUser(formData: FormData) {
     }
 
     const id = parseInt(formData.get("id") as string);
+
+    const user = await prismadb.user.findUnique({ where: { id } });
+
     await prismadb.user.delete({ where: { id } });
+
+    if (user) {
+        await createLog("Kullanıcı Silindi", user.username, id, "User", user);
+    }
+
     revalidatePath("/settings");
 }

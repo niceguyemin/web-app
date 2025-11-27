@@ -2,6 +2,7 @@
 
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
+import { createLog } from "@/lib/logger";
 
 export async function createPayment(formData: FormData) {
     const clientId = parseInt(formData.get("clientId") as string);
@@ -38,7 +39,7 @@ export async function createPayment(formData: FormData) {
     }
 
     // Create payment
-    await prismadb.payment.create({
+    const payment = await prismadb.payment.create({
         data: {
             clientId,
             serviceId,
@@ -47,15 +48,17 @@ export async function createPayment(formData: FormData) {
         },
     });
 
+    // Fetch client info for logging and description
+    const client = await prismadb.client.findUnique({
+        where: { id: clientId },
+        select: { name: true },
+    });
+
+    await createLog("Ödeme Eklendi", `${amount} TL - ${client?.name} (${type})`, payment.id, "Payment", null);
+
     // If payment type is credit card, add 20% expense for VAT
     if (type === "Kredi Kartı") {
         const kdvAmount = amount * 0.20;
-
-        // Get client and service info for description
-        const client = await prismadb.client.findUnique({
-            where: { id: clientId },
-            select: { name: true },
-        });
 
         const service = serviceId
             ? await prismadb.service.findUnique({
@@ -68,14 +71,20 @@ export async function createPayment(formData: FormData) {
         const description = `${client?.name} - ${serviceName} - ${amount.toFixed(2)} TL - KDV: ${kdvAmount.toFixed(2)} TL`;
 
         // Create expense
-        await prismadb.expense.create({
+        const expense = await prismadb.expense.create({
             data: {
                 category: "KDV",
                 amount: kdvAmount,
                 description: description,
+                paymentId: payment.id,
             },
         });
+
+        await createLog("KDV Gideri Eklendi", `${kdvAmount.toFixed(2)} TL - ${description}`, expense.id, "Expense", null);
     }
 
     revalidatePath(`/clients/${clientId}`);
+    revalidatePath("/settings");
+    revalidatePath("/accounting");
+    revalidatePath("/");
 }

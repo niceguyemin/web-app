@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -34,6 +35,7 @@ export function QuickAddClient({ serviceTypes = [] }: QuickAddClientProps) {
 
     async function onSubmit(formData: FormData) {
         await createClient(formData);
+        toast.success("Danışan başarıyla eklendi");
         setOpen(false);
         router.refresh();
     }

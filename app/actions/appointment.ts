@@ -3,6 +3,7 @@
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { createLog } from "@/lib/logger";
 
 const CreateAppointmentSchema = z.object({
     clientId: z.coerce.number(),
@@ -35,7 +36,7 @@ export async function createAppointment(formData: FormData) {
     try {
         await prismadb.$transaction(async (tx) => {
             // Create the appointment
-            await tx.appointment.create({
+            const appointment = await tx.appointment.create({
                 data: {
                     clientId,
                     serviceId,
@@ -60,6 +61,13 @@ export async function createAppointment(formData: FormData) {
                     });
                 }
             }
+
+            const client = await tx.client.findUnique({
+                where: { id: clientId },
+                select: { name: true },
+            });
+
+            await createLog("Randevu Oluşturuldu", `${client?.name} - ${date} ${time}`, appointment.id, "Appointment", null);
         });
 
         revalidatePath("/appointments");
@@ -76,6 +84,7 @@ export async function cancelAppointment(id: number) {
             // Get the appointment to find the serviceId
             const appointment = await tx.appointment.findUnique({
                 where: { id },
+                include: { client: { select: { name: true } } }
             });
 
             if (!appointment) {
@@ -107,6 +116,8 @@ export async function cancelAppointment(id: number) {
                     },
                 });
             }
+
+            await createLog("Randevu İptal Edildi", `${appointment.client.name} - ${appointment.date.toLocaleString("tr-TR")}`, id, "Appointment", appointment);
         });
 
         revalidatePath("/appointments");
@@ -121,9 +132,19 @@ export async function deleteAppointment(id: number) {
     // Kept for backward compatibility or admin cleanup if needed, 
     // but user flow should use cancelAppointment for session logic.
     try {
+        const appointment = await prismadb.appointment.findUnique({
+            where: { id },
+            include: { client: { select: { name: true } } }
+        });
+
         await prismadb.appointment.delete({
             where: { id },
         });
+
+        if (appointment) {
+            await createLog("Randevu Silindi", `${appointment.client.name} - ${appointment.date.toLocaleString("tr-TR")}`, id, "Appointment", appointment);
+        }
+
         revalidatePath("/appointments");
     } catch (error) {
         throw new Error("Randevu silinirken bir hata oluştu");

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -71,6 +72,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
             if (serviceData?.sessions) payload.append("serviceSessions", serviceData.sessions);
 
             await createClient(payload);
+            toast.success("Danışan başarıyla eklendi");
 
             setOpen(false);
             setFormData({
@@ -109,7 +111,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl">
+                <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg shadow-blue-500/20 rounded-xl transition-all duration-200 hover:scale-[1.02] border-0">
                     <Plus className="w-4 h-4 mr-2" />
                     Yeni Danışan
                 </Button>

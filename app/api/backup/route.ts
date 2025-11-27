@@ -13,7 +13,7 @@ type ServiceAccountKey = {
 };
 
 async function buildBackup() {
-    const [users, clients, appointments, payments, serviceTypes, expenses, measurements, services] = await Promise.all([
+    const [users, clients, appointments, payments, serviceTypes, expenses, measurements, services, logs] = await Promise.all([
         prismadb.user.findMany(),
         prismadb.client.findMany(),
         prismadb.appointment.findMany(),
@@ -22,6 +22,7 @@ async function buildBackup() {
         prismadb.expense.findMany(),
         prismadb.measurement.findMany(),
         prismadb.service.findMany(),
+        prismadb.log.findMany(),
     ]);
 
     return {
@@ -36,6 +37,7 @@ async function buildBackup() {
             expenses,
             measurements,
             services,
+            logs,
         },
     };
 }
