@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { NotificationBell } from "@/components/notification-bell";
 import { ProfileDialog } from "@/components/profile-dialog";
-import { Settings, LogOut } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { signOut } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export function MobileHeader() {
 
                 <ProfileDialog>
                     <button className="p-2 rounded-full hover:bg-white/5 transition-colors">
-                        <Settings className="w-5 h-5 text-white/70" />
+                        <User className="w-5 h-5 text-white/70" />
                     </button>
                 </ProfileDialog>
 

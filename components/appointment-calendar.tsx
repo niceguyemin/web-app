@@ -181,7 +181,7 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
             </div>
 
             {/* Calendar Grid */}
-            <div className="card rounded-xl overflow-hidden border border-white/10 overflow-x-auto">
+            <div className="card rounded-xl overflow-hidden border border-white/10 overflow-x-auto no-scrollbar">
                 <div className="min-w-[800px]">
                     {/* Weekday Headers */}
                     <div className="grid grid-cols-7 border-b border-white/10">
