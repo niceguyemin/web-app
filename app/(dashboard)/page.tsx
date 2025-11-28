@@ -215,7 +215,7 @@ export default async function Page() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <TodayAppointments appointments={todayAppointments.filter(appt => appt.userId === parseInt(user?.id || "0"))} />
+            <TodayAppointments appointments={todayAppointments.filter((appt: any) => appt.userId === parseInt(user?.id || "0"))} />
           </CardContent>
         </Card>
 

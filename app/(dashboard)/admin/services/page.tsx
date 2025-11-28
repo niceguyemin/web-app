@@ -53,7 +53,7 @@ export default async function ServiceTypesPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {serviceTypes.map((service) => (
+                                {serviceTypes.map((service: { id: number; name: string; active: boolean }) => (
                                     <tr key={service.id} className="border-b last:border-0">
                                         <td className="p-3 font-medium">{service.name}</td>
                                         <td className="p-3">

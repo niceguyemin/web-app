@@ -45,7 +45,7 @@ export async function createPayment(formData: FormData) {
             throw new Error("Hizmet bulunamadı");
         }
 
-        const paid = service.payments.reduce((sum, p) => sum + p.amount, 0);
+        const paid = service.payments.reduce((sum: number, p: { amount: number }) => sum + p.amount, 0);
         const remaining = service.totalPrice - paid;
 
         if (remaining <= 0) {
@@ -111,7 +111,7 @@ export async function createPayment(formData: FormData) {
 
         const creatorName = session.user.name || session.user.email;
 
-        await Promise.all(admins.map(admin =>
+        await Promise.all(admins.map((admin: { id: number }) =>
             createNotification(
                 admin.id,
                 "Yeni Ödeme Alındı",

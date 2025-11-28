@@ -75,7 +75,7 @@ export default async function UsersPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user) => (
+                                {users.map((user: { id: number; username: string; name: string | null; role: string }) => (
                                     <tr key={user.id} className="border-b last:border-0">
                                         <td className="p-3">{user.username}</td>
                                         <td className="p-3">{user.name || "-"}</td>

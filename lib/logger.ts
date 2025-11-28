@@ -32,7 +32,7 @@ export async function createLog(
         });
 
         if (logsToKeep.length >= 30) {
-            const idsToKeep = logsToKeep.map(log => log.id);
+            const idsToKeep = logsToKeep.map((log: { id: number }) => log.id);
             await prismadb.log.deleteMany({
                 where: {
                     id: {

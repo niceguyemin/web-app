@@ -22,6 +22,13 @@ import { Search } from "@/components/search";
 import { formatPhoneNumber } from "@/lib/utils";
 import { CreateClientDialog } from "./components/create-client-dialog";
 
+import { Client, Service } from "@prisma/client";
+
+type ClientWithDetails = Client & {
+    services: Service[];
+    payments: { amount: number }[];
+};
+
 export default async function ClientsPage({
     searchParams,
 }: {
@@ -92,7 +99,7 @@ export default async function ClientsPage({
                                     </TableCell>
                                 </TableRow>
                             )}
-                            {clients.map((client) => {
+                            {clients.map((client: ClientWithDetails) => {
                                 const activeServices = client.services;
                                 const totalDebt = client.services.reduce((acc, s) => acc + (s.totalPrice || 0), 0);
                                 const totalPaid = client.payments.reduce((acc, p) => acc + p.amount, 0);

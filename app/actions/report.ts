@@ -37,8 +37,8 @@ export async function getFinancialReport(startDate: Date, endDate: Date, granula
     });
 
     // 3. Calculate Totals
-    const totalIncome = payments.reduce((sum, p) => sum + p.amount, 0);
-    const totalExpense = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const totalIncome = payments.reduce((sum: number, p: { amount: number }) => sum + p.amount, 0);
+    const totalExpense = expenses.reduce((sum: number, e: { amount: number }) => sum + e.amount, 0);
     const netProfit = totalIncome - totalExpense;
 
     // 4. Prepare Chart Data: Income vs Expense over time
@@ -56,7 +56,7 @@ export async function getFinancialReport(startDate: Date, endDate: Date, granula
         return date.toISOString().split("T")[0]; // YYYY-MM-DD
     };
 
-    payments.forEach((p) => {
+    payments.forEach((p: { date: Date; amount: number }) => {
         const key = getKey(p.date);
         if (!dataMap.has(key)) {
             dataMap.set(key, { date: key, income: 0, expense: 0 });
@@ -64,7 +64,7 @@ export async function getFinancialReport(startDate: Date, endDate: Date, granula
         dataMap.get(key)!.income += p.amount;
     });
 
-    expenses.forEach((e) => {
+    expenses.forEach((e: { date: Date; amount: number }) => {
         const key = getKey(e.date);
         if (!dataMap.has(key)) {
             dataMap.set(key, { date: key, income: 0, expense: 0 });
@@ -81,7 +81,7 @@ export async function getFinancialReport(startDate: Date, endDate: Date, granula
 
     // 5. Income by Service Type
     const incomeByServiceTypeMap = new Map<string, number>();
-    payments.forEach((p) => {
+    payments.forEach((p: { amount: number; service: { type: string } | null }) => {
         let type = p.service?.type;
 
         if (!type) {
@@ -99,7 +99,7 @@ export async function getFinancialReport(startDate: Date, endDate: Date, granula
 
     // 6. Expense by Category
     const expenseByCategoryMap = new Map<string, number>();
-    expenses.forEach((e) => {
+    expenses.forEach((e: { category: string; amount: number }) => {
         const category = e.category || "Diğer";
         const current = expenseByCategoryMap.get(category) || 0;
         expenseByCategoryMap.set(category, current + e.amount);

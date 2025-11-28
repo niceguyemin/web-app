@@ -221,20 +221,23 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                                 <SelectValue placeholder="Uzman Seçin" />
                             </SelectTrigger>
                             <SelectContent className="bg-popover border-white/10 text-popover-foreground">
-                                {users.map((user) => (
-                                    <SelectItem
-                                        key={user.id}
-                                        value={user.id.toString()}
-                                        className="focus:bg-primary/20 focus:text-primary"
-                                    >
-                                        <div className="flex items-center gap-2">
-                                            {user.color && (
-                                                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: user.color }} />
-                                            )}
-                                            {user.name || user.username}
-                                        </div>
-                                    </SelectItem>
-                                ))}
+                                {users.map((user) => {
+                                    if (!user.id) return null;
+                                    return (
+                                        <SelectItem
+                                            key={user.id}
+                                            value={user.id.toString()}
+                                            className="focus:bg-primary/20 focus:text-primary"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                {user.color && (
+                                                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: user.color }} />
+                                                )}
+                                                {user.name || user.username}
+                                            </div>
+                                        </SelectItem>
+                                    );
+                                })}
                             </SelectContent>
                         </Select>
                     </div>

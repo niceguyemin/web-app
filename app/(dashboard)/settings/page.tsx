@@ -14,6 +14,15 @@ import { DownloadLogsButton } from "@/components/download-logs-button";
 import { UndoButton } from "@/components/undo-button";
 import { cn } from "@/lib/utils";
 
+import { Log } from "@prisma/client";
+
+type LogWithUser = Log & {
+    user: {
+        username: string;
+        color: string | null;
+    } | null;
+};
+
 export default async function SettingsPage() {
     const session = await auth();
 
@@ -84,7 +93,7 @@ export default async function SettingsPage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {users.map((user) => (
+                                        {users.map((user: { id: number; username: string; name: string | null; role: string }) => (
                                             <tr key={user.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
                                                 <td className="p-3 text-text-heading">{user.username}</td>
                                                 <td className="p-3 text-text-heading">{user.name || "-"}</td>
@@ -141,7 +150,7 @@ export default async function SettingsPage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {serviceTypes.map((service) => (
+                                        {serviceTypes.map((service: { id: number; name: string; active: boolean }) => (
                                             <tr key={service.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
                                                 <td className="p-3 font-medium text-text-heading">{service.name}</td>
                                                 <td className="p-3">
@@ -208,7 +217,7 @@ export default async function SettingsPage() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {logs.map((log) => (
+                                            {logs.map((log: LogWithUser) => (
                                                 <tr key={log.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
                                                     <td className="p-3 font-medium">{log.action}</td>
                                                     <td className="p-3 text-text-muted">{log.details || "-"}</td>

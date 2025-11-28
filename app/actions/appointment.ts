@@ -1,5 +1,7 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
+
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -40,7 +42,7 @@ export async function createAppointment(formData: FormData) {
     const appointmentDate = new Date(`${date}T${time}`);
 
     try {
-        await prismadb.$transaction(async (tx) => {
+        await prismadb.$transaction(async (tx: Prisma.TransactionClient) => {
             // If a service is selected, check and decrement remaining sessions
             if (serviceId) {
                 const service = await tx.service.findUnique({
@@ -108,7 +110,7 @@ export async function cancelAppointment(id: number) {
         throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
     }
     try {
-        await prismadb.$transaction(async (tx) => {
+        await prismadb.$transaction(async (tx: Prisma.TransactionClient) => {
             // Get the appointment to find the serviceId
             const appointment = await tx.appointment.findUnique({
                 where: { id },

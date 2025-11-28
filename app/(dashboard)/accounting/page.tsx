@@ -41,13 +41,13 @@ export default async function AccountingPage() {
   const clientDebts = new Map<number, number>();
 
   // Add all service costs to client debt
-  services.forEach((service) => {
+  services.forEach((service: { clientId: number; totalPrice: number }) => {
     const currentDebt = clientDebts.get(service.clientId) || 0;
     clientDebts.set(service.clientId, currentDebt + service.totalPrice);
   });
 
   // Subtract all payments from client debt
-  payments.forEach((payment) => {
+  payments.forEach((payment: { clientId: number; amount: number }) => {
     const currentDebt = clientDebts.get(payment.clientId) || 0;
     clientDebts.set(payment.clientId, currentDebt - payment.amount);
   });
