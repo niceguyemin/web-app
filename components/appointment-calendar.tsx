@@ -368,7 +368,7 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                         <SwipeableItem
                                             key={appt.id}
                                             className="bg-white/5 border border-white/10 rounded-lg p-3 space-y-2"
-                                            rightAction={{
+                                            leftAction={{
                                                 label: "İptal Et",
                                                 icon: <Trash2 className="w-5 h-5" />,
                                                 color: "bg-red-500"

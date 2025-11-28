@@ -115,6 +115,16 @@
     caret-color: hsl(var(--foreground));
     transition: background-color 5000s ease-in-out 0s;
   }
+
+  /* Prevent auto-zoom on iOS inputs */
+  @media screen and (max-width: 768px) {
+
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
 }
 
 @layer components {

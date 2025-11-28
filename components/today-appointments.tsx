@@ -42,7 +42,7 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
                     <SwipeableItem
                         key={appt.id}
                         className="flex items-center bg-card rounded-lg p-2"
-                        rightAction={{
+                        leftAction={{
                             label: "İptal",
                             icon: <Trash2 className="w-4 h-4" />,
                             color: "bg-red-500"

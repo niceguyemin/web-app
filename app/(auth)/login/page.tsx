@@ -80,7 +80,6 @@ export default function LoginPage() {
                 transition-all
               "
                             placeholder="admin"
-                            defaultValue="admin"
                         />
                     </div>
 
@@ -101,7 +100,6 @@ export default function LoginPage() {
                 transition-all
               "
                             placeholder="******"
-                            defaultValue="admin123"
                         />
                     </div>
 

@@ -172,7 +172,7 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                                 <SwipeableItem
                                     key={payment.id}
                                     className="bg-white/5 border border-white/10 rounded-xl p-4"
-                                    rightAction={{
+                                    leftAction={{
                                         label: "Sil",
                                         icon: <Trash2 className="w-5 h-5" />,
                                         color: "bg-red-500"
