@@ -38,7 +38,7 @@ export default function LoginPage() {
                         {/* Inner Glow */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-50" />
                         <Image
-                            src="/logo.png"
+                            src="/logo.jpg"
                             alt="Logo"
                             fill
                             className="object-cover z-10"
