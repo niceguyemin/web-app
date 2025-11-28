@@ -74,7 +74,7 @@ export default async function ClientsPage({
             <div className="rounded-xl border border-white/10 card overflow-hidden">
                 <div className="overflow-x-auto">
                     <Table>
-                        <TableHeader className="hover:bg-transparent">
+                        <TableHeader className="bg-white/5">
                             <TableRow className="border-white/10 hover:bg-transparent">
                                 <TableHead className="text-text-muted">Ad Soyad</TableHead>
                                 <TableHead className="text-text-muted">Telefon</TableHead>
@@ -98,7 +98,7 @@ export default async function ClientsPage({
                                 const remainingDebt = totalDebt - totalPaid;
 
                                 return (
-                                    <TableRow key={client.id} className="border-white/10 hover:bg-white/5 transition-colors">
+                                    <TableRow key={client.id} className="border-white/10 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5 transition-colors">
                                         <TableCell className="font-medium text-text-heading max-w-[150px] md:max-w-none">
                                             <Link href={`/clients/${client.id}`} className="hover:text-primary transition-colors break-words">
                                                 {client.name}
