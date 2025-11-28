@@ -48,7 +48,6 @@ export default async function AppointmentsPage() {
                     username: true,
                     color: true,
                     role: true,
-                    password: true, // Ideally exclude this but type might need it if it expects full User
                     createdAt: true
                 }
             },

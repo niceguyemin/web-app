@@ -4,16 +4,25 @@ import webpush from "web-push";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@/lib/auth";
 
-webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT || "mailto:admin@example.com",
-    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-    process.env.VAPID_PRIVATE_KEY!
-);
+// Only set VAPID details if keys are available
+if (process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
+    webpush.setVapidDetails(
+        process.env.VAPID_SUBJECT || "mailto:admin@example.com",
+        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+        process.env.VAPID_PRIVATE_KEY
+    );
+}
 
 export async function subscribeUser(sub: PushSubscription) {
     const session = await auth();
     if (!session?.user?.id) {
         throw new Error("User not authenticated");
+    }
+
+    // Check if VAPID keys are configured
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+        console.warn("Push notifications not configured - VAPID keys missing");
+        return { success: false, error: "Push notifications not configured" };
     }
 
     const userId = parseInt(session.user.id);
@@ -42,6 +51,12 @@ export async function subscribeUser(sub: PushSubscription) {
 }
 
 export async function sendPushNotification(userId: number, title: string, body: string, url: string = "/") {
+    // Check if VAPID keys are configured
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+        console.warn("Push notifications not configured - VAPID keys missing");
+        return;
+    }
+
     try {
         const subscriptions = await prismadb.pushSubscription.findMany({
             where: { userId },
