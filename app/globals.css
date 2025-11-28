@@ -29,7 +29,7 @@
   /* User Requested Config */
   --color-background-dark: #020617;
   --color-background-card: #0F172A;
-  --color-primary-hover: #1D4ED8;
+  --color-primary-hover: #204085;
   --color-secondary-hover: #16A34A;
   --color-error: #EF4444;
   --color-warning: #F59E0B;
@@ -55,8 +55,8 @@
   --popover: 240 25% 10%;
   --popover-foreground: 210 40% 98%;
 
-  /* Updated Primary to Softer Blue (Less Saturated) */
-  --primary: 221 60% 50%;
+  /* Updated Primary to User Requested #2b53aa */
+  --primary: 221 59% 41%;
   --primary-foreground: 210 40% 98%;
 
   /* Updated Secondary to #22C55E (142 71% 45%) */
