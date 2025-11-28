@@ -12,7 +12,6 @@ import {
     Calendar,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { ProfileDialog } from "@/components/profile-dialog";
 
 const routes = [
     {
@@ -57,27 +56,6 @@ export function MobileNav() {
                 <div className="flex items-center justify-around p-2">
                     {routes.map((route) => {
                         const isActive = pathname === route.href;
-
-                        if (route.href === "/settings" && (session?.user as any)?.role !== "ADMIN") {
-                            return (
-                                <ProfileDialog key={route.href}>
-                                    <div
-                                        className={cn(
-                                            "flex flex-col items-center justify-center w-full py-2 transition-all duration-200 group relative cursor-pointer",
-                                            "text-zinc-400 hover:text-zinc-200"
-                                        )}
-                                    >
-                                        <Users
-                                            className="h-6 w-6 transition-all duration-300"
-                                            strokeWidth={1.5}
-                                        />
-                                        <span className="text-[9px] font-medium mt-0.5">
-                                            Profil
-                                        </span>
-                                    </div>
-                                </ProfileDialog>
-                            );
-                        }
 
                         return (
                             <Link
