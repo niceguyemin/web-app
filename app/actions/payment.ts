@@ -129,3 +129,32 @@ export async function createPayment(formData: FormData) {
     revalidatePath("/accounting");
     revalidatePath("/");
 }
+
+export async function deletePayment(id: number) {
+    const session = await auth();
+    if (!session || (session.user as any).role !== "ADMIN") {
+        throw new Error("Bu işlem için yetkiniz yok.");
+    }
+
+    const payment = await prismadb.payment.findUnique({
+        where: { id },
+        include: { client: true }
+    });
+
+    if (!payment) {
+        throw new Error("Ödeme bulunamadı");
+    }
+
+    // Delete payment (Prisma will handle cascade delete for expense if configured, but let's be safe)
+    // Assuming Expense has onDelete: Cascade relation with Payment
+    await prismadb.payment.delete({
+        where: { id }
+    });
+
+    await createLog("Ödeme Silindi", `${payment.amount} TL - ${payment.client.name}`, id, "Payment", null);
+
+    revalidatePath(`/clients/${payment.clientId}`);
+    revalidatePath("/settings");
+    revalidatePath("/accounting");
+    revalidatePath("/");
+}

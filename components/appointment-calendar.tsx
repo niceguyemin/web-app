@@ -38,6 +38,7 @@ import { cancelAppointment } from "@/app/actions/appointment";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { SwipeableItem } from "@/components/swipeable-item";
 
 interface AppointmentCalendarProps {
     appointments: {
@@ -364,7 +365,25 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                 .map((appt) => {
                                     const userColor = appt.user?.color || "#3B82F6";
                                     return (
-                                        <div key={appt.id} className="bg-white/5 border border-white/10 rounded-lg p-3 space-y-2">
+                                        <SwipeableItem
+                                            key={appt.id}
+                                            className="bg-white/5 border border-white/10 rounded-lg p-3 space-y-2"
+                                            rightAction={{
+                                                label: "İptal Et",
+                                                icon: <Trash2 className="w-5 h-5" />,
+                                                color: "bg-red-500"
+                                            }}
+                                            onSwipeLeft={async () => {
+                                                if (appt.status === "CANCELLED") return;
+                                                try {
+                                                    await cancelAppointment(appt.id);
+                                                    toast.success("Randevu iptal edildi");
+                                                } catch (error) {
+                                                    toast.error("İptal işlemi başarısız");
+                                                }
+                                            }}
+                                            disabled={appt.status === "CANCELLED"}
+                                        >
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
                                                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: userColor }} />
@@ -397,27 +416,7 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                     {appt.notes}
                                                 </p>
                                             )}
-
-                                            {appt.status !== "CANCELLED" && (
-                                                <div className="pt-2 flex justify-end">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        className="h-7 text-red-400 hover:text-red-300 hover:bg-red-500/10"
-                                                        onClick={async () => {
-                                                            try {
-                                                                await cancelAppointment(appt.id);
-                                                                toast.success("Randevu iptal edildi");
-                                                            } catch (error) {
-                                                                toast.error("İptal işlemi başarısız");
-                                                            }
-                                                        }}
-                                                    >
-                                                        İptal Et
-                                                    </Button>
-                                                </div>
-                                            )}
-                                        </div>
+                                        </SwipeableItem>
                                     );
                                 })
                         )}

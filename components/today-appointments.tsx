@@ -1,8 +1,14 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import Link from "next/link";
+import { SwipeableItem } from "@/components/swipeable-item";
+import { cancelAppointment } from "@/app/actions/appointment";
+import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
 
 interface TodayAppointmentsProps {
     appointments: {
@@ -33,7 +39,25 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
                 </p>
             ) : (
                 appointments.map((appt) => (
-                    <div key={appt.id} className="flex items-center">
+                    <SwipeableItem
+                        key={appt.id}
+                        className="flex items-center bg-card rounded-lg p-2"
+                        rightAction={{
+                            label: "İptal",
+                            icon: <Trash2 className="w-4 h-4" />,
+                            color: "bg-red-500"
+                        }}
+                        onSwipeLeft={async () => {
+                            if (appt.status === "CANCELLED") return;
+                            try {
+                                await cancelAppointment(appt.id);
+                                toast.success("Randevu iptal edildi");
+                            } catch (error) {
+                                toast.error("İptal işlemi başarısız");
+                            }
+                        }}
+                        disabled={appt.status === "CANCELLED"}
+                    >
                         <Avatar className="h-9 w-9 border border-white/10">
                             <AvatarFallback
                                 className="font-medium text-text-heading"
@@ -65,7 +89,7 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
                         {appt.status === "CANCELLED" && (
                             <Badge variant="destructive" className="ml-2 text-[10px] h-5">İptal</Badge>
                         )}
-                    </div>
+                    </SwipeableItem>
                 ))
             )}
         </div>

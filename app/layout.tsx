@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { ClientPushManager } from "@/components/push-manager";
+import { InstallPrompt } from "@/components/install-prompt";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +14,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DanışanTakip",
   description: "Danışan Takip ve Ön Muhasebe Uygulaması",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Danışan Takip",
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +32,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <ClientPushManager />
+          <InstallPrompt />
           {children}
         </Providers>
       </body>

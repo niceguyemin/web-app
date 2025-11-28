@@ -26,11 +26,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { createPayment } from "@/app/actions/payment";
+import { createPayment, deletePayment } from "@/app/actions/payment";
 import { useState } from "react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import { SwipeableItem } from "@/components/swipeable-item";
+import { Trash2 } from "lucide-react";
 
 interface ClientPaymentsProps {
     client: Client & {
@@ -157,46 +159,60 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                 </div>
             </CardHeader>
             <CardContent className="space-y-6">
-                {/* Payments Table */}
-                <div className="rounded-xl border border-white/10 glass-card overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-white/10 bg-white/5">
-                                    <th className="p-3 text-left font-medium text-white/70">Tarih</th>
-                                    <th className="p-3 text-left font-medium text-white/70">Hizmet</th>
-                                    <th className="p-3 text-left font-medium text-white/70">Tür</th>
-                                    <th className="p-3 text-right font-medium text-white/70">Tutar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {client.payments.map((payment) => {
-                                    const service = client.services.find((s) => s.id === payment.serviceId);
-                                    return (
-                                        <tr key={payment.id} className="border-b border-white/10 last:border-0 hover:bg-white/5 transition-colors">
-                                            <td className="p-3 text-white">
-                                                {format(payment.date, "d MMMM yyyy HH:mm", { locale: tr })}
-                                            </td>
-                                            <td className="p-3 text-white">
-                                                {service ? service.type : "Genel"}
-                                            </td>
-                                            <td className="p-3 text-white">{payment.type || "-"}</td>
-                                            <td className="p-3 text-right font-medium text-white">
+                {/* Payments List */}
+                <div className="space-y-2">
+                    {client.payments.length === 0 ? (
+                        <div className="text-center text-white/50 py-8 glass-card rounded-xl border border-white/10">
+                            Ödeme kaydı yok.
+                        </div>
+                    ) : (
+                        client.payments.map((payment) => {
+                            const service = client.services.find((s) => s.id === payment.serviceId);
+                            return (
+                                <SwipeableItem
+                                    key={payment.id}
+                                    className="bg-white/5 border border-white/10 rounded-xl p-4"
+                                    rightAction={{
+                                        label: "Sil",
+                                        icon: <Trash2 className="w-5 h-5" />,
+                                        color: "bg-red-500"
+                                    }}
+                                    onSwipeLeft={async () => {
+                                        if (confirm("Bu ödemeyi silmek istediğinize emin misiniz?")) {
+                                            try {
+                                                await deletePayment(payment.id);
+                                                toast.success("Ödeme silindi");
+                                            } catch (error) {
+                                                toast.error("Silme işlemi başarısız");
+                                            }
+                                        }
+                                    }}
+                                >
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-medium text-white text-lg">
                                                 ₺{payment.amount.toFixed(2)}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                                {client.payments.length === 0 && (
-                                    <tr>
-                                        <td colSpan={4} className="p-4 text-center text-white/50">
-                                            Ödeme kaydı yok.
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
+                                            </span>
+                                            <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white/70">
+                                                {payment.type || "-"}
+                                            </span>
+                                        </div>
+                                        <span className="text-sm text-white/50">
+                                            {format(payment.date, "d MMM yyyy", { locale: tr })}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-sm">
+                                        <span className="text-white/70">
+                                            {service ? service.type : "Genel Ödeme"}
+                                        </span>
+                                        <span className="text-white/30 text-xs">
+                                            {format(payment.date, "HH:mm")}
+                                        </span>
+                                    </div>
+                                </SwipeableItem>
+                            );
+                        })
+                    )}
                 </div>
             </CardContent>
         </Card>

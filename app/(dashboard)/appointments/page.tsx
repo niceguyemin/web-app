@@ -1,6 +1,10 @@
 import prismadb from "@/lib/prismadb";
 import { AppointmentCalendar } from "@/components/appointment-calendar";
-import { CreateAppointmentDialog } from "@/components/create-appointment-dialog";
+import dynamic from "next/dynamic";
+
+const CreateAppointmentDialog = dynamic(
+    () => import("@/components/create-appointment-dialog").then(mod => ({ default: mod.CreateAppointmentDialog }))
+);
 
 export default async function AppointmentsPage() {
     const appointments = await prismadb.appointment.findMany({
