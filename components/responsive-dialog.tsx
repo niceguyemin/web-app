@@ -59,12 +59,14 @@ export function ResponsiveDialog({
         <Drawer open={open} onOpenChange={onOpenChange}>
             {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
             <DrawerContent>
-                <DrawerHeader className="text-left">
-                    {title && <DrawerTitle>{title}</DrawerTitle>}
-                    {description && <DrawerDescription>{description}</DrawerDescription>}
-                </DrawerHeader>
-                <div className="px-4 pb-8">
-                    {children}
+                <div className="max-h-[85vh] overflow-y-auto">
+                    <DrawerHeader className="text-left">
+                        {title && <DrawerTitle>{title}</DrawerTitle>}
+                        {description && <DrawerDescription>{description}</DrawerDescription>}
+                    </DrawerHeader>
+                    <div className="px-4 pb-8">
+                        {children}
+                    </div>
                 </div>
             </DrawerContent>
         </Drawer>
