@@ -61,8 +61,6 @@ export function Sidebar() {
         setIsLoggingOut(true);
         try {
             await signOut();
-        } catch (error) {
-            console.error("Logout error:", error);
         } finally {
             setIsLoggingOut(false);
         }
@@ -74,7 +72,7 @@ export function Sidebar() {
                 <Link href="/" className="flex items-center justify-center mb-6 pt-2">
                     <div className="relative h-12 w-12 shadow-[0_0_15px_rgba(6,182,212,0.5)] rounded-xl overflow-hidden transition-transform hover:scale-110 duration-500 hover:shadow-[0_0_25px_rgba(6,182,212,0.8)] ring-1 ring-white/10 group-hover:ring-primary/50">
                         <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <img src="/logo.png" alt="Logo" className="object-cover w-full h-full relative z-10" />
+                        <img src="/logo.jpg" alt="Logo" className="object-cover w-full h-full relative z-10" />
                     </div>
                 </Link>
                 <div className="space-y-1">

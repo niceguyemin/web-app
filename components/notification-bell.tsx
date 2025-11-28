@@ -63,7 +63,7 @@ export function NotificationBell() {
 
                 new Notification(latestNotification?.title || "Yeni Bildirim", {
                     body: latestNotification?.message || "Okunmamış bildirimleriniz var.",
-                    icon: "/logo.png"
+                    icon: "/logo.jpg"
                 });
             }
         }

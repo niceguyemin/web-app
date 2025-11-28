@@ -78,11 +78,7 @@ export function MobileNav() {
     }, [lastScrollY]);
 
     const handleLogout = async () => {
-        try {
-            await signOut();
-        } catch (error) {
-            console.error("Logout error:", error);
-        }
+        await signOut();
     };
 
     return (
