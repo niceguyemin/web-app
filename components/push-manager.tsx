@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import { subscribeUser } from "@/app/actions/push";
 
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-
 function urlBase64ToUint8Array(base64String: string) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
@@ -60,17 +58,25 @@ export function ClientPushManager() {
         try {
             const permission = await Notification.requestPermission();
             if (permission === "granted") {
+                // Get PUBLIC_KEY at runtime from window object (injected by Next.js)
+                const PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+
                 if (!PUBLIC_KEY) {
-                    console.error("VAPID Public Key is missing");
+                    console.error("VAPID Public Key is missing. Make sure NEXT_PUBLIC_VAPID_PUBLIC_KEY is set in .env and restart the dev server.");
                     return;
                 }
+
+                console.log("VAPID Public Key loaded:", PUBLIC_KEY.substring(0, 20) + "...");
 
                 const subscription = await registration.pushManager.subscribe({
                     userVisibleOnly: true,
                     applicationServerKey: urlBase64ToUint8Array(PUBLIC_KEY),
                 });
 
-                await subscribeUser(JSON.parse(JSON.stringify(subscription)));
+                // Convert subscription to plain object for server action
+                const subscriptionObject = subscription.toJSON();
+                const result = await subscribeUser(subscriptionObject as any);
+                console.log("Subscription result:", result);
             }
         } catch (error) {
             console.error("Failed to subscribe user:", error);
