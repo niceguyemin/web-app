@@ -4,6 +4,8 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
+import { sendPushNotification } from "@/app/actions/push";
+
 export async function createNotification(
     userId: number,
     title: string,
@@ -21,6 +23,9 @@ export async function createNotification(
                 link,
             },
         });
+
+        // Send Push Notification
+        await sendPushNotification(userId, title, message, link || "/");
     } catch (error) {
         console.error("Failed to create notification:", error);
     }
