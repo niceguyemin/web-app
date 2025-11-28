@@ -6,17 +6,46 @@ import bcrypt from "bcryptjs";
 import { auth } from "@/lib/auth";
 import { createLog } from "@/lib/logger";
 
+import { z } from "zod";
+
+const CreateUserSchema = z.object({
+    username: z.string().min(3, "Kullanıcı adı en az 3 karakter olmalı"),
+    password: z.string().min(6, "Şifre en az 6 karakter olmalı"),
+    name: z.string().optional(),
+    role: z.enum(["ADMIN", "USER"]),
+    color: z.string().optional(),
+});
+
 export async function createUser(formData: FormData) {
     const session = await auth();
     if (session?.user?.role !== "ADMIN") {
         throw new Error("Unauthorized");
     }
 
-    const username = formData.get("username") as string;
-    const password = formData.get("password") as string;
-    const name = formData.get("name") as string;
-    const role = formData.get("role") as string;
-    const color = formData.get("color") as string;
+    const rawData = {
+        username: formData.get("username"),
+        password: formData.get("password"),
+        name: formData.get("name"),
+        role: formData.get("role"),
+        color: formData.get("color"),
+    };
+
+    const validatedData = CreateUserSchema.safeParse(rawData);
+
+    if (!validatedData.success) {
+        throw new Error(validatedData.error.issues[0].message);
+    }
+
+    const { username, password, name, role, color } = validatedData.data;
+
+    // Check if username exists
+    const existingUser = await prismadb.user.findUnique({
+        where: { username },
+    });
+
+    if (existingUser) {
+        throw new Error("Bu kullanıcı adı zaten kullanılıyor");
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -24,9 +53,9 @@ export async function createUser(formData: FormData) {
         data: {
             username,
             password: hashedPassword,
-            name,
+            name: name || null,
             role,
-            color,
+            color: color || "#3B82F6",
         },
     });
 

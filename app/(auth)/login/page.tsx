@@ -117,12 +117,7 @@ export default function LoginPage() {
                             </label>
                         </div>
 
-                        <button
-                            type="button"
-                            className="text-[11px] underline underline-offset-2 hover:text-text-base transition-colors"
-                        >
-                            Şifremi unuttum
-                        </button>
+
                     </div>
 
                     <button

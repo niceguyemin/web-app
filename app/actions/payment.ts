@@ -6,24 +6,33 @@ import { createLog } from "@/lib/logger";
 import { auth } from "@/lib/auth";
 import { createNotification } from "@/app/actions/notification";
 
+import { z } from "zod";
+
+const CreatePaymentSchema = z.object({
+    clientId: z.coerce.number().min(1, "Geçersiz danışan ID"),
+    serviceId: z.coerce.number().optional(),
+    amount: z.coerce.number().positive("Ödeme tutarı 0'dan büyük olmalıdır"),
+    type: z.string().min(1, "Ödeme tipi seçiniz"),
+});
+
 export async function createPayment(formData: FormData) {
     const session = await auth();
     if (!session) {
         throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
     }
-    const clientId = parseInt(formData.get("clientId") as string);
-    const serviceId = formData.get("serviceId") ? parseInt(formData.get("serviceId") as string) : null;
-    const amount = parseFloat(formData.get("amount") as string);
-    const type = formData.get("type") as string;
 
-    if (isNaN(clientId)) {
-        throw new Error("Lütfen bir danışan seçiniz.");
+    const validatedFields = CreatePaymentSchema.safeParse({
+        clientId: formData.get("clientId"),
+        serviceId: formData.get("serviceId") || undefined,
+        amount: formData.get("amount"),
+        type: formData.get("type"),
+    });
+
+    if (!validatedFields.success) {
+        throw new Error(validatedFields.error.issues[0].message);
     }
 
-    // Validate amount
-    if (amount <= 0) {
-        throw new Error("Ödeme tutarı 0'dan büyük olmalıdır");
-    }
+    const { clientId, serviceId, amount, type } = validatedFields.data;
 
     // Check if service has remaining debt
     if (serviceId) {

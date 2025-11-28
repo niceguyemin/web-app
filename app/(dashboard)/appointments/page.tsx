@@ -4,10 +4,54 @@ import { CreateAppointmentDialog } from "@/components/create-appointment-dialog"
 
 export default async function AppointmentsPage() {
     const appointments = await prismadb.appointment.findMany({
-        include: {
-            client: true,
-            service: true,
-            user: true,
+        select: {
+            id: true,
+            date: true,
+            status: true,
+            notes: true,
+            clientId: true,
+            serviceId: true,
+            userId: true,
+            createdAt: true,
+            updatedAt: true,
+            reminderSent: true,
+            client: {
+                select: {
+                    id: true,
+                    name: true,
+                    phone: true,
+                    gender: true,
+                    birthDate: true,
+                    height: true,
+                    weight: true,
+                    notes: true,
+                    createdAt: true,
+                    updatedAt: true
+                }
+            },
+            service: {
+                select: {
+                    id: true,
+                    type: true,
+                    clientId: true,
+                    totalSessions: true,
+                    remainingSessions: true,
+                    totalPrice: true,
+                    status: true,
+                    createdAt: true
+                }
+            },
+            user: {
+                select: {
+                    id: true,
+                    name: true,
+                    username: true,
+                    color: true,
+                    role: true,
+                    password: true, // Ideally exclude this but type might need it if it expects full User
+                    createdAt: true
+                }
+            },
         },
         orderBy: {
             date: "asc",
@@ -15,11 +59,18 @@ export default async function AppointmentsPage() {
     });
 
     const clients = await prismadb.client.findMany({
-        include: {
+        select: {
+            id: true,
+            name: true,
             services: {
                 where: {
                     status: "ACTIVE",
                 },
+                select: {
+                    id: true,
+                    type: true,
+                    remainingSessions: true
+                }
             },
         },
         orderBy: {

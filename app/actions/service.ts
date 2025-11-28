@@ -6,15 +6,33 @@ import { createLog } from "@/lib/logger";
 import { auth } from "@/lib/auth";
 
 
+import { z } from "zod";
+
+const CreateServiceSchema = z.object({
+    clientId: z.coerce.number().min(1, "Geçersiz danışan ID"),
+    type: z.string().min(1, "Hizmet tipi seçiniz"),
+    totalSessions: z.coerce.number().min(1, "Seans sayısı en az 1 olmalı"),
+    totalPrice: z.coerce.number().min(0, "Fiyat 0'dan küçük olamaz"),
+});
+
 export async function createService(formData: FormData) {
     const session = await auth();
     if (!session) {
         throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
     }
-    const clientId = parseInt(formData.get("clientId") as string);
-    const type = formData.get("type") as string;
-    const totalSessions = parseInt(formData.get("totalSessions") as string);
-    const totalPrice = parseFloat(formData.get("totalPrice") as string);
+
+    const validatedFields = CreateServiceSchema.safeParse({
+        clientId: formData.get("clientId"),
+        type: formData.get("type"),
+        totalSessions: formData.get("totalSessions"),
+        totalPrice: formData.get("totalPrice"),
+    });
+
+    if (!validatedFields.success) {
+        throw new Error(validatedFields.error.issues[0].message);
+    }
+
+    const { clientId, type, totalSessions, totalPrice } = validatedFields.data;
 
     const service = await prismadb.service.create({
         data: {

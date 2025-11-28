@@ -40,11 +40,24 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 interface AppointmentCalendarProps {
-    appointments: (Appointment & {
-        client: Client;
-        service: Service | null;
-        user: PrismaUser | null;
-    })[];
+    appointments: {
+        id: number;
+        date: Date;
+        status: string;
+        notes: string | null;
+        client: {
+            id: number;
+            name: string;
+        };
+        service: {
+            type: string;
+        } | null;
+        user: {
+            name: string | null;
+            username: string;
+            color: string | null;
+        } | null;
+    }[];
 }
 
 export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) {

@@ -40,11 +40,12 @@ export default async function ClientsPage({
             services: {
                 where: { status: "ACTIVE" },
                 orderBy: { createdAt: "desc" },
-                include: {
-                    payments: true,
-                },
             },
-            payments: true
+            payments: {
+                select: {
+                    amount: true
+                }
+            }
         },
         orderBy: {
             createdAt: "desc",

@@ -34,8 +34,16 @@ import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
 interface CreateAppointmentDialogProps {
-    clients: (Client & { services: Service[] })[];
-    users: User[];
+    clients: {
+        id: number;
+        name: string;
+        services: {
+            id: number;
+            type: string;
+            remainingSessions: number;
+        }[];
+    }[];
+    users: Partial<User>[];
 }
 
 export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDialogProps) {
