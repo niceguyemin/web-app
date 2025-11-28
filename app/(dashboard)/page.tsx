@@ -2,12 +2,12 @@ export const dynamic = "force-dynamic";
 
 import prismadb from "@/lib/prismadb";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Users, Calendar, Activity, Clock } from "lucide-react";
+import { Users, Calendar, Activity, Clock, UserPlus } from "lucide-react";
 import { TodayAppointments } from "@/components/today-appointments";
 import { RecentClients } from "@/components/recent-clients";
 import { QuickAddClient } from "@/components/quick-add-client";
 import { QuickAddPayment } from "@/components/quick-add-payment";
-import { startOfDay, endOfDay, addDays } from "date-fns";
+import { startOfDay, endOfDay, addDays, startOfMonth } from "date-fns";
 
 import { auth } from "@/lib/auth";
 
@@ -38,6 +38,7 @@ export default async function Page() {
   const todayStart = startOfDay(now);
   const todayEnd = endOfDay(now);
   const nextWeekEnd = endOfDay(addDays(now, 7));
+  const monthStart = startOfMonth(now);
 
   // 1. Toplam Danışan
   const clientCount = await prismadb.client.count();
@@ -115,6 +116,15 @@ export default async function Page() {
           }
         }
       }
+    },
+  });
+
+  // 8. Bu Ay Eklenen Danışanlar
+  const newClientsCount = await prismadb.client.count({
+    where: {
+      createdAt: {
+        gte: monthStart,
+      },
     },
   });
 

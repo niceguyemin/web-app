@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -27,9 +28,14 @@ export function EditClientDialog({ client }: EditClientDialogProps) {
     const router = useRouter();
 
     async function onSubmit(formData: FormData) {
-        await updateClient(formData);
-        setOpen(false);
-        router.refresh();
+        try {
+            await updateClient(formData);
+            toast.success("Danışan güncellendi");
+            setOpen(false);
+            router.refresh();
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Bir hata oluştu");
+        }
     }
 
     return (

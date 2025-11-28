@@ -9,6 +9,7 @@ import { ExpenseForm } from "./components/expense-form";
 import { AccountingSummary } from "./components/accounting-summary";
 import { IncomeList } from "./components/income-list";
 import { ExpenseList } from "./components/expense-list";
+import { DetailedReportView } from "./components/detailed-report-view";
 
 export const dynamic = "force-dynamic"; // Prisma için
 export const runtime = "nodejs";
@@ -157,6 +158,7 @@ export default async function AccountingPage() {
           <TabsTrigger value="summary">Özet</TabsTrigger>
           <TabsTrigger value="income">Gelirler</TabsTrigger>
           <TabsTrigger value="expense">Giderler</TabsTrigger>
+          <TabsTrigger value="reports">Raporlar</TabsTrigger>
         </TabsList>
 
         <TabsContent value="summary">
@@ -170,6 +172,10 @@ export default async function AccountingPage() {
         <TabsContent value="expense" className="space-y-4">
           <ExpenseForm />
           <ExpenseList expenses={expenses} />
+        </TabsContent>
+
+        <TabsContent value="reports">
+          <DetailedReportView />
         </TabsContent>
       </Tabs>
     </div>

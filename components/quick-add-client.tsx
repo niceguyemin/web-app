@@ -34,10 +34,14 @@ export function QuickAddClient({ serviceTypes = [] }: QuickAddClientProps) {
     const router = useRouter();
 
     async function onSubmit(formData: FormData) {
-        await createClient(formData);
-        toast.success("Danışan başarıyla eklendi");
-        setOpen(false);
-        router.refresh();
+        try {
+            await createClient(formData);
+            toast.success("Danışan başarıyla eklendi");
+            setOpen(false);
+            router.refresh();
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Bir hata oluştu");
+        }
     }
 
     return (

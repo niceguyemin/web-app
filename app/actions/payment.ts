@@ -3,8 +3,13 @@
 import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { createLog } from "@/lib/logger";
+import { auth } from "@/lib/auth";
 
 export async function createPayment(formData: FormData) {
+    const session = await auth();
+    if (!session) {
+        throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
+    }
     const clientId = parseInt(formData.get("clientId") as string);
     const serviceId = formData.get("serviceId") ? parseInt(formData.get("serviceId") as string) : null;
     const amount = parseFloat(formData.get("amount") as string);

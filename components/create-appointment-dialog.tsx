@@ -253,7 +253,8 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                                         <SelectItem
                                             key={service.id}
                                             value={service.id.toString()}
-                                            className="focus:bg-white/10 focus:text-white"
+                                            disabled={service.remainingSessions <= 0}
+                                            className="focus:bg-white/10 focus:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {service.type} ({service.remainingSessions} seans kaldı)
                                         </SelectItem>

@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createLog } from "@/lib/logger";
+import { auth } from "@/lib/auth";
 
 const CreateAppointmentSchema = z.object({
     clientId: z.coerce.number(),
@@ -15,6 +16,10 @@ const CreateAppointmentSchema = z.object({
 });
 
 export async function createAppointment(formData: FormData) {
+    const session = await auth();
+    if (!session) {
+        throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
+    }
     const validatedFields = CreateAppointmentSchema.safeParse({
         clientId: formData.get("clientId"),
         serviceId: formData.get("serviceId") || undefined,
@@ -25,7 +30,7 @@ export async function createAppointment(formData: FormData) {
     });
 
     if (!validatedFields.success) {
-        throw new Error("Geçersiz form verisi");
+        throw new Error("Form verileri eksik veya hatalı.");
     }
 
     const { clientId, serviceId, userId, date, time, notes } = validatedFields.data;
@@ -35,6 +40,28 @@ export async function createAppointment(formData: FormData) {
 
     try {
         await prismadb.$transaction(async (tx) => {
+            // If a service is selected, check and decrement remaining sessions
+            if (serviceId) {
+                const service = await tx.service.findUnique({
+                    where: { id: serviceId },
+                });
+
+                if (!service) {
+                    throw new Error("Seçilen hizmet bulunamadı");
+                }
+
+                if (service.remainingSessions <= 0) {
+                    throw new Error("Bu hizmet için kalan seans hakkı bulunmamaktadır");
+                }
+
+                await tx.service.update({
+                    where: { id: serviceId },
+                    data: {
+                        remainingSessions: service.remainingSessions - 1,
+                    },
+                });
+            }
+
             // Create the appointment
             const appointment = await tx.appointment.create({
                 data: {
@@ -45,22 +72,6 @@ export async function createAppointment(formData: FormData) {
                     notes,
                 },
             });
-
-            // If a service is selected, decrement remaining sessions
-            if (serviceId) {
-                const service = await tx.service.findUnique({
-                    where: { id: serviceId },
-                });
-
-                if (service && service.remainingSessions > 0) {
-                    await tx.service.update({
-                        where: { id: serviceId },
-                        data: {
-                            remainingSessions: service.remainingSessions - 1,
-                        },
-                    });
-                }
-            }
 
             const client = await tx.client.findUnique({
                 where: { id: clientId },
@@ -79,6 +90,10 @@ export async function createAppointment(formData: FormData) {
 }
 
 export async function cancelAppointment(id: number) {
+    const session = await auth();
+    if (!session) {
+        throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
+    }
     try {
         await prismadb.$transaction(async (tx) => {
             // Get the appointment to find the serviceId
@@ -129,6 +144,10 @@ export async function cancelAppointment(id: number) {
 }
 
 export async function deleteAppointment(id: number) {
+    const session = await auth();
+    if (!session) {
+        throw new Error("Bu işlem için yetkiniz yok veya oturumunuz sonlanmış.");
+    }
     // Kept for backward compatibility or admin cleanup if needed, 
     // but user flow should use cancelAppointment for session logic.
     try {

@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { signOut } from "@/app/actions/auth";
+import { ProfileDialog } from "@/components/profile-dialog";
 
 const routes = [
     {
@@ -70,11 +71,11 @@ export function Sidebar() {
         <div className="space-y-4 py-4 flex flex-col h-full text-white/80">
             <div className="px-3 py-2 flex-1">
                 <Link href="/" className="flex items-center pl-3 mb-10">
-                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mr-3 shadow-lg shadow-primary/20">
-                        <span className="font-bold text-white text-lg">A</span>
+                    <div className="relative h-10 w-10 mr-3 shadow-lg rounded-xl overflow-hidden">
+                        <img src="/logo.png" alt="Logo" className="object-cover w-full h-full" />
                     </div>
                     <h1 className="text-xl font-bold tracking-tight text-white">
-                        Antigravity
+                        DanışanTakip
                     </h1>
                 </Link>
                 <div className="space-y-1">
@@ -98,10 +99,15 @@ export function Sidebar() {
                 </div>
             </div>
             <div className="px-3 py-2">
-                <div className="mx-3 mb-4 p-3 rounded-xl bg-white/5 border border-white/5">
-                    <p className="text-xs text-white/40 font-medium uppercase mb-1">Giriş Yapıldı</p>
-                    <p className="text-sm text-white font-medium truncate">{session?.user?.name}</p>
-                </div>
+                <ProfileDialog>
+                    <div className="mx-3 mb-4 p-3 rounded-xl bg-white/5 border border-white/5 cursor-pointer hover:bg-white/10 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <p className="text-xs text-white/40 font-medium uppercase group-hover:text-white/60 transition-colors">Giriş Yapıldı</p>
+                            <Settings className="w-3 h-3 text-white/20 group-hover:text-white/60 transition-colors" />
+                        </div>
+                        <p className="text-sm text-white font-medium truncate">{session?.user?.name}</p>
+                    </div>
+                </ProfileDialog>
                 <Button
                     onClick={handleLogout}
                     disabled={isLoggingOut}

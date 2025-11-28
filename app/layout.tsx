@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Antigravity",
+  title: "DanışanTakip",
   description: "Danışan Takip ve Ön Muhasebe Uygulaması",
 };
 

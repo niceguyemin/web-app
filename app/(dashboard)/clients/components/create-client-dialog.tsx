@@ -90,7 +90,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
             router.refresh();
         } catch (error) {
             console.error("Error creating client:", error);
-            alert("Danışan eklenirken bir hata oluştu");
+            toast.error(error instanceof Error ? error.message : "Danışan eklenirken bir hata oluştu");
         } finally {
             setLoading(false);
         }
