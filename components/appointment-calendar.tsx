@@ -213,10 +213,9 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                     </div>
 
                                     <div className={cn(
-                                        "flex-1 flex flex-col gap-1 mt-1 overflow-y-auto no-scrollbar",
-                                        viewMode === "month" && "max-h-[100px]"
+                                        "flex-1 flex flex-col gap-1 mt-1 overflow-y-auto no-scrollbar"
                                     )}>
-                                        {dayAppointments.map((appt) => {
+                                        {dayAppointments.slice(0, 3).map((appt) => {
                                             const userColor = appt.user?.color || "#3B82F6"; // Default blue if no user/color
 
                                             return (
@@ -318,6 +317,11 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                 </div>
                                             );
                                         })}
+                                        {dayAppointments.length > 3 && (
+                                            <div className="text-[10px] text-white/50 font-medium pl-1 pt-1 hover:text-white transition-colors">
+                                                +{dayAppointments.length - 3} daha...
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );

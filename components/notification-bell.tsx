@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Bell, Check, Info, AlertTriangle, XCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -40,12 +40,35 @@ export function NotificationBell() {
         setUnreadCount(count);
     };
 
+    const previousUnreadCount = useRef(0);
+
+    useEffect(() => {
+        if ("Notification" in window && Notification.permission === "default") {
+            Notification.requestPermission();
+        }
+    }, []);
+
     useEffect(() => {
         fetchNotifications();
         // Poll every 30 seconds
         const interval = setInterval(fetchNotifications, 30000);
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+        if (unreadCount > previousUnreadCount.current && unreadCount > 0) {
+            if ("Notification" in window && Notification.permission === "granted") {
+                // Find the latest unread notification
+                const latestNotification = notifications.find(n => !n.read);
+
+                new Notification(latestNotification?.title || "Yeni Bildirim", {
+                    body: latestNotification?.message || "Okunmamış bildirimleriniz var.",
+                    icon: "/logo.png"
+                });
+            }
+        }
+        previousUnreadCount.current = unreadCount;
+    }, [unreadCount, notifications]);
 
     const handleMarkAsRead = async (id: number) => {
         await markAsRead(id);

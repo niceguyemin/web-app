@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { authenticate } from "@/app/actions/auth";
+import Image from "next/image";
 
 export default function LoginPage() {
     const [errorMessage, dispatch, isPending] = useActionState(authenticate, undefined);
@@ -36,7 +37,13 @@ export default function LoginPage() {
           ">
                         {/* Inner Glow */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-50" />
-                        <img src="/logo.png" alt="Logo" className="object-cover w-full h-full relative z-10" />
+                        <Image
+                            src="/logo.png"
+                            alt="Logo"
+                            fill
+                            className="object-cover z-10"
+                            priority
+                        />
                     </div>
 
                     <div className="text-center">

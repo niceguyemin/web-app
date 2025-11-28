@@ -92,17 +92,17 @@ export function MobileNav() {
                 isVisible ? "translate-y-0" : "-translate-y-full"
             )}
         >
-            <div className="mx-4 mt-4 p-2 rounded-2xl glass-panel flex items-center justify-between bg-popover/80 backdrop-blur-xl border border-white/10 shadow-2xl">
-                <div className="flex items-center space-x-1 overflow-x-auto no-scrollbar flex-1">
+            <div className="mx-2 mt-2 p-1 rounded-2xl glass-panel flex items-center justify-between bg-popover/80 backdrop-blur-xl border border-white/10 shadow-2xl">
+                <div className="flex items-center space-x-1 overflow-x-auto no-scrollbar flex-1 justify-around">
                     {routes.map((route) => {
                         if (route.href === "/settings" && (session?.user as any)?.role !== "ADMIN") {
                             return (
                                 <ProfileDialog key={route.href}>
                                     <div
-                                        className="p-3 rounded-xl transition-all duration-200 flex flex-col items-center justify-center min-w-[60px] text-white/50 hover:text-white hover:bg-white/5 cursor-pointer"
+                                        className="p-2 rounded-xl transition-all duration-200 flex flex-col items-center justify-center min-w-[50px] text-white/50 hover:text-white hover:bg-white/5 cursor-pointer"
                                     >
-                                        <route.icon className={cn("h-6 w-6", route.color)} />
-                                        <span className="text-[10px] mt-1 font-medium">Profilim</span>
+                                        <route.icon className={cn("h-5 w-5", route.color)} />
+                                        <span className="text-[9px] mt-1 font-medium">Profilim</span>
                                     </div>
                                 </ProfileDialog>
                             );
@@ -113,14 +113,14 @@ export function MobileNav() {
                                 key={route.href}
                                 href={route.href}
                                 className={cn(
-                                    "p-3 rounded-xl transition-all duration-200 flex flex-col items-center justify-center min-w-[60px]",
+                                    "p-2 rounded-xl transition-all duration-200 flex flex-col items-center justify-center min-w-[50px]",
                                     pathname === route.href
                                         ? "bg-white/10 text-white shadow-sm"
                                         : "text-white/50 hover:text-white hover:bg-white/5"
                                 )}
                             >
-                                <route.icon className={cn("h-6 w-6", pathname === route.href ? "text-white" : route.color)} />
-                                <span className="text-[10px] mt-1 font-medium">{route.label}</span>
+                                <route.icon className={cn("h-5 w-5", pathname === route.href ? "text-white" : route.color)} />
+                                <span className="text-[9px] mt-1 font-medium">{route.label}</span>
                             </Link>
                         );
                     })}
