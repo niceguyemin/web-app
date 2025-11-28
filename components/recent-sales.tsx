@@ -16,7 +16,7 @@ export function RecentSales({ payments }: RecentSalesProps) {
     return (
         <div className="space-y-8">
             {payments.length === 0 ? (
-                <p className="text-sm text-white/50 text-center">
+                <p className="text-sm text-text-muted text-center">
                     Henüz işlem yok.
                 </p>
             ) : (
@@ -28,14 +28,14 @@ export function RecentSales({ payments }: RecentSalesProps) {
                             </AvatarFallback>
                         </Avatar>
                         <div className="ml-4 space-y-1">
-                            <p className="text-sm font-medium leading-none text-white">
+                            <p className="text-sm font-medium leading-none text-text-heading">
                                 {payment.client.name}
                             </p>
-                            <p className="text-xs text-white/50">
+                            <p className="text-xs text-text-muted">
                                 {new Date(payment.date).toLocaleDateString("tr-TR")}
                             </p>
                         </div>
-                        <div className="ml-auto font-medium text-white">
+                        <div className="ml-auto font-medium text-text-heading">
                             +₺{payment.amount.toFixed(2)}
                         </div>
                     </div>

@@ -104,7 +104,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="sm" className="bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-500">
+                <Button size="sm" className="btn-primary">
                     <Wallet className="h-4 w-4 mr-2" />
                     Ödeme Ekle
                 </Button>

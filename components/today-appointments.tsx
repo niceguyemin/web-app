@@ -28,7 +28,7 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
     return (
         <div className="space-y-8">
             {appointments.length === 0 ? (
-                <p className="text-sm text-white/50 text-center py-4">
+                <p className="text-sm text-text-muted text-center py-4">
                     Bugün için planlanmış randevu bulunmuyor.
                 </p>
             ) : (
@@ -36,7 +36,7 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
                     <div key={appt.id} className="flex items-center">
                         <Avatar className="h-9 w-9 border border-white/10">
                             <AvatarFallback
-                                className="font-medium text-white"
+                                className="font-medium text-text-heading"
                                 style={{ backgroundColor: appt.user?.color || "#3B82F6" }}
                             >
                                 {appt.client.name.charAt(0)}
@@ -44,19 +44,19 @@ export function TodayAppointments({ appointments }: TodayAppointmentsProps) {
                         </Avatar>
                         <div className="ml-4 space-y-1 flex-1">
                             <div className="flex items-center justify-between">
-                                <Link href={`/clients/${appt.client.id}?tab=profile`} className="text-sm font-medium leading-none text-white hover:underline">
+                                <Link href={`/clients/${appt.client.id}?tab=profile`} className="text-sm font-medium leading-none text-text-heading hover:text-primary transition-colors">
                                     {appt.client.name}
                                 </Link>
-                                <span className="text-sm font-bold text-white">
+                                <span className="text-sm font-bold text-text-heading">
                                     {format(new Date(appt.date), "HH:mm")}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <p className="text-xs text-white/50">
+                                <p className="text-xs text-text-muted">
                                     {appt.service?.type || "Hizmet Yok"}
                                 </p>
                                 {appt.user && (
-                                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-white/70">
+                                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-text-muted">
                                         {appt.user.name || appt.user.username}
                                     </span>
                                 )}

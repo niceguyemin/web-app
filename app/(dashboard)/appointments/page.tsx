@@ -42,11 +42,11 @@ export default async function AppointmentsPage() {
         <div className="p-4 md:p-8 space-y-4 md:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Randevu Takvimi</h2>
-                    <p className="text-white/50 text-sm md:text-base">Randevuları görüntüle ve yönet.</p>
+                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Randevu Takvimi</h2>
+                    <p className="text-text-muted text-sm md:text-base">Randevuları görüntüle ve yönet.</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                    <div className="text-white/70 text-sm md:text-base" suppressHydrationWarning>
+                    <div className="text-text-muted text-sm md:text-base" suppressHydrationWarning>
                         {new Intl.DateTimeFormat('tr-TR', {
                             day: 'numeric',
                             month: 'long',

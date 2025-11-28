@@ -83,8 +83,8 @@ export default async function AccountingPage() {
   return (
     <div className="p-4 md:p-8 space-y-4 md:space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Muhasebe</h2>
-        <div className="text-white/70 text-sm md:text-base" suppressHydrationWarning>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Muhasebe</h2>
+        <div className="text-text-muted text-sm md:text-base" suppressHydrationWarning>
           {new Intl.DateTimeFormat('tr-TR', {
             day: 'numeric',
             month: 'long',
@@ -95,57 +95,57 @@ export default async function AccountingPage() {
       </div>
 
       <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="pb-1 p-2 md:p-6 md:pb-2">
-            <CardTitle className="text-[10px] md:text-sm font-medium text-white/70">Toplam Gelir</CardTitle>
+            <CardTitle className="text-[10px] md:text-sm font-medium text-text-muted">Toplam Gelir</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0 md:p-6 md:pt-0">
-            <div className="text-sm md:text-2xl font-bold text-green-500">
+            <div className="text-sm md:text-2xl font-bold text-secondary">
               ₺{formatCurrency(totalIncome)}
             </div>
-            <p className="text-[8px] md:text-xs text-white/50 mt-0.5 md:mt-1">
+            <p className="text-[8px] md:text-xs text-text-muted mt-0.5 md:mt-1">
               {payments.length} ödeme
             </p>
           </CardContent>
         </Card>
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="pb-1 p-2 md:p-6 md:pb-2">
-            <CardTitle className="text-[10px] md:text-sm font-medium text-white/70">Toplam Gider</CardTitle>
+            <CardTitle className="text-[10px] md:text-sm font-medium text-text-muted">Toplam Gider</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0 md:p-6 md:pt-0">
-            <div className="text-sm md:text-2xl font-bold text-red-400">
+            <div className="text-sm md:text-2xl font-bold text-error">
               ₺{formatCurrency(totalExpense)}
             </div>
-            <p className="text-[8px] md:text-xs text-white/50 mt-0.5 md:mt-1">
+            <p className="text-[8px] md:text-xs text-text-muted mt-0.5 md:mt-1">
               {expenses.length} gider
             </p>
           </CardContent>
         </Card>
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="pb-1 p-2 md:p-6 md:pb-2">
-            <CardTitle className="text-[10px] md:text-sm font-medium text-white/70">Net Kâr</CardTitle>
+            <CardTitle className="text-[10px] md:text-sm font-medium text-text-muted">Net Kâr</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0 md:p-6 md:pt-0">
             <div
-              className={`text-sm md:text-2xl font-bold ${netProfit >= 0 ? "text-blue-400" : "text-red-400"
+              className={`text-sm md:text-2xl font-bold ${netProfit >= 0 ? "text-primary" : "text-error"
                 }`}
             >
               ₺{formatCurrency(netProfit)}
             </div>
-            <p className="text-[8px] md:text-xs text-white/50 mt-0.5 md:mt-1">
+            <p className="text-[8px] md:text-xs text-text-muted mt-0.5 md:mt-1">
               {netProfit >= 0 ? "Kâr" : "Zarar"}
             </p>
           </CardContent>
         </Card>
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="pb-1 p-2 md:p-6 md:pb-2">
-            <CardTitle className="text-[10px] md:text-sm font-medium text-white/70">Beklenen Ödemeler</CardTitle>
+            <CardTitle className="text-[10px] md:text-sm font-medium text-text-muted">Beklenen Ödemeler</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0 md:p-6 md:pt-0">
-            <div className="text-sm md:text-2xl font-bold text-orange-400">
+            <div className="text-sm md:text-2xl font-bold text-warning">
               ₺{formatCurrency(totalExpectedPayments)}
             </div>
-            <p className="text-[8px] md:text-xs text-white/50 mt-0.5 md:mt-1">
+            <p className="text-[8px] md:text-xs text-text-muted mt-0.5 md:mt-1">
               Alacaklar
             </p>
           </CardContent>
@@ -154,7 +154,7 @@ export default async function AccountingPage() {
 
       {/* Aşağısı aynı kaldı */}
       <Tabs defaultValue="summary" className="space-y-4">
-        <TabsList className="glass-card border-0">
+        <TabsList className="card border-0">
           <TabsTrigger value="summary">Özet</TabsTrigger>
           <TabsTrigger value="income">Gelirler</TabsTrigger>
           <TabsTrigger value="expense">Giderler</TabsTrigger>

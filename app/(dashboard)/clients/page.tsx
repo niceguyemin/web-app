@@ -63,7 +63,7 @@ export default async function ClientsPage({
     return (
         <div className="p-4 md:p-8 space-y-4 md:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Danışanlar</h2>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Danışanlar</h2>
                 <CreateClientDialog serviceTypes={serviceTypes} />
             </div>
 
@@ -71,22 +71,22 @@ export default async function ClientsPage({
                 <Search placeholder="İsim veya telefon ara..." />
             </div>
 
-            <div className="rounded-xl border border-white/10 glass-card overflow-hidden">
+            <div className="rounded-xl border border-white/10 card overflow-hidden">
                 <div className="overflow-x-auto">
                     <Table>
-                        <TableHeader className="bg-white/5 hover:bg-white/5">
+                        <TableHeader className="hover:bg-transparent">
                             <TableRow className="border-white/10 hover:bg-transparent">
-                                <TableHead className="text-white/70">Ad Soyad</TableHead>
-                                <TableHead className="text-white/70">Telefon</TableHead>
-                                <TableHead className="text-white/70 hidden md:table-cell">Aktif Hizmetler</TableHead>
-                                <TableHead className="text-white/70 hidden md:table-cell">Kalan Borç</TableHead>
-                                <TableHead className="text-right text-white/70">İşlemler</TableHead>
+                                <TableHead className="text-text-muted">Ad Soyad</TableHead>
+                                <TableHead className="text-text-muted">Telefon</TableHead>
+                                <TableHead className="text-text-muted hidden md:table-cell">Aktif Hizmetler</TableHead>
+                                <TableHead className="text-text-muted hidden md:table-cell">Kalan Borç</TableHead>
+                                <TableHead className="text-right text-text-muted">İşlemler</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {clients.length === 0 && (
                                 <TableRow className="border-white/10 hover:bg-white/5">
-                                    <TableCell colSpan={5} className="text-center h-24 text-white/50">
+                                    <TableCell colSpan={5} className="text-center h-24 text-text-muted">
                                         Danışan bulunamadı.
                                     </TableCell>
                                 </TableRow>
@@ -99,22 +99,22 @@ export default async function ClientsPage({
 
                                 return (
                                     <TableRow key={client.id} className="border-white/10 hover:bg-white/5 transition-colors">
-                                        <TableCell className="font-medium text-white max-w-[150px] md:max-w-none">
-                                            <Link href={`/clients/${client.id}`} className="hover:underline break-words">
+                                        <TableCell className="font-medium text-text-heading max-w-[150px] md:max-w-none">
+                                            <Link href={`/clients/${client.id}`} className="hover:text-primary transition-colors break-words">
                                                 {client.name}
                                             </Link>
                                         </TableCell>
-                                        <TableCell className="text-white/70">
+                                        <TableCell className="text-text-muted">
                                             <a href={`tel:${client.phone}`} className="hover:text-primary transition-colors">
                                                 {formatPhoneNumber(client.phone)}
                                             </a>
                                         </TableCell>
-                                        <TableCell className="text-white/70 hidden md:table-cell">
+                                        <TableCell className="text-text-muted hidden md:table-cell">
                                             <div className="flex flex-wrap gap-1">
                                                 {activeServices.length > 0 ? (
                                                     <>
                                                         {activeServices.slice(0, 2).map((service) => (
-                                                            <span key={service.id} className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 border border-blue-500/20 whitespace-nowrap">
+                                                            <span key={service.id} className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-background-dark text-primary border border-primary/20 whitespace-nowrap">
                                                                 {service.type}
                                                             </span>
                                                         ))}
@@ -126,7 +126,7 @@ export default async function ClientsPage({
                                                                             +{activeServices.length - 2}
                                                                         </span>
                                                                     </TooltipTrigger>
-                                                                    <TooltipContent className="bg-[#0f1021] border-white/10 text-white">
+                                                                    <TooltipContent className="bg-black/80 backdrop-blur-xl border-white/10 text-white">
                                                                         <div className="flex flex-col gap-1">
                                                                             {activeServices.slice(2).map((service) => (
                                                                                 <span key={service.id} className="text-xs">
@@ -146,19 +146,19 @@ export default async function ClientsPage({
                                         </TableCell>
                                         <TableCell className="text-white/70 hidden md:table-cell">
                                             {remainingDebt > 0 ? (
-                                                <span className="text-red-400 font-medium">{remainingDebt} ₺</span>
+                                                <span className="text-error font-medium">{remainingDebt} ₺</span>
                                             ) : (
-                                                <span className="text-green-500 font-medium">Ödendi</span>
+                                                <span className="text-secondary font-medium">Ödendi</span>
                                             )}
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex flex-col md:flex-row justify-end gap-1 md:gap-2">
-                                                <Button variant="outline" size="sm" asChild className="bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
+                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-white/10 bg-transparent text-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all">
                                                     <Link href={`/clients/${client.id}?tab=services`}>
                                                         Hizmetler
                                                     </Link>
                                                 </Button>
-                                                <Button variant="outline" size="sm" asChild className="bg-green-500/10 border-green-500/20 text-green-400 hover:bg-green-500/20 hover:text-green-300 rounded-lg h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap">
+                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-white/10 bg-transparent text-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all">
                                                     <Link href={`/clients/${client.id}?tab=payments`}>
                                                         Ödemeler
                                                     </Link>

@@ -47,7 +47,7 @@ export function QuickAddClient({ serviceTypes = [] }: QuickAddClientProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="sm" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white">
+                <Button size="sm" className="btn-secondary">
                     <Plus className="h-4 w-4 mr-2" />
                     Danışan Ekle
                 </Button>

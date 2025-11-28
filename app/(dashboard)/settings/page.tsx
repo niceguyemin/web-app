@@ -43,21 +43,21 @@ export default async function SettingsPage() {
 
     return (
         <div className="p-8 space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight">Ayarlar</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-text-heading">Ayarlar</h2>
 
             <Tabs defaultValue="users" className="space-y-4">
-                <TabsList>
-                    <TabsTrigger value="users">Kullanıcılar</TabsTrigger>
-                    <TabsTrigger value="services">Hizmet Türleri</TabsTrigger>
-                    <TabsTrigger value="system">Sistem Kayıtları</TabsTrigger>
-                    <TabsTrigger value="backup">Yedekleme</TabsTrigger>
+                <TabsList className="card border-0 p-1">
+                    <TabsTrigger value="users" className="data-[state=active]:bg-primary data-[state=active]:text-white">Kullanıcılar</TabsTrigger>
+                    <TabsTrigger value="services" className="data-[state=active]:bg-primary data-[state=active]:text-white">Hizmet Türleri</TabsTrigger>
+                    <TabsTrigger value="system" className="data-[state=active]:bg-primary data-[state=active]:text-white">Sistem Kayıtları</TabsTrigger>
+                    <TabsTrigger value="backup" className="data-[state=active]:bg-primary data-[state=active]:text-white">Yedekleme</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="users" className="space-y-4">
-                    <Card className="glass-card border-white/10">
+                    <Card className="card border-0">
                         <CardHeader>
-                            <CardTitle className="text-white">Yeni Kullanıcı</CardTitle>
-                            <CardDescription className="text-white/50">Sisteme yeni kullanıcı ekleyin.</CardDescription>
+                            <CardTitle className="text-text-heading">Yeni Kullanıcı</CardTitle>
+                            <CardDescription className="text-text-muted">Sisteme yeni kullanıcı ekleyin.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <UserForm />
@@ -66,29 +66,29 @@ export default async function SettingsPage() {
 
 
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="card border-0">
                         <CardHeader>
-                            <CardTitle className="text-white">Kullanıcılar</CardTitle>
+                            <CardTitle className="text-text-heading">Kullanıcılar</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="rounded-xl border border-white/10 overflow-hidden">
                                 <table className="w-full text-sm text-white">
                                     <thead>
                                         <tr className="border-b border-white/10 bg-white/5">
-                                            <th className="p-3 text-left font-medium">Kullanıcı Adı</th>
-                                            <th className="p-3 text-left font-medium">İsim</th>
-                                            <th className="p-3 text-left font-medium">Rol</th>
-                                            <th className="p-3 text-left font-medium">Renk</th>
-                                            <th className="p-3 text-right font-medium">İşlem</th>
+                                            <th className="p-3 text-left font-medium text-text-muted">Kullanıcı Adı</th>
+                                            <th className="p-3 text-left font-medium text-text-muted">İsim</th>
+                                            <th className="p-3 text-left font-medium text-text-muted">Rol</th>
+                                            <th className="p-3 text-left font-medium text-text-muted">Renk</th>
+                                            <th className="p-3 text-right font-medium text-text-muted">İşlem</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {users.map((user) => (
-                                            <tr key={user.id} className="border-b border-white/10 last:border-0 hover:bg-white/5">
-                                                <td className="p-3">{user.username}</td>
-                                                <td className="p-3">{user.name || "-"}</td>
+                                            <tr key={user.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
+                                                <td className="p-3 text-text-heading">{user.username}</td>
+                                                <td className="p-3 text-text-heading">{user.name || "-"}</td>
                                                 <td className="p-3">
-                                                    <span className={user.role === "ADMIN" ? "text-orange-400 font-medium" : "text-white/70"}>
+                                                    <span className={user.role === "ADMIN" ? "text-warning font-medium" : "text-text-muted"}>
                                                         {user.role === "ADMIN" ? "Admin" : "Kullanıcı"}
                                                     </span>
                                                 </td>
@@ -112,10 +112,10 @@ export default async function SettingsPage() {
                 </TabsContent>
 
                 <TabsContent value="services" className="space-y-4">
-                    <Card>
+                    <Card className="card border-0">
                         <CardHeader>
-                            <CardTitle>Yeni Hizmet Türü</CardTitle>
-                            <CardDescription>Sistem genelinde kullanılacak yeni bir hizmet türü ekleyin.</CardDescription>
+                            <CardTitle className="text-text-heading">Yeni Hizmet Türü</CardTitle>
+                            <CardDescription className="text-text-muted">Sistem genelinde kullanılacak yeni bir hizmet türü ekleyin.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <ServiceTypeForm />
@@ -124,24 +124,24 @@ export default async function SettingsPage() {
 
 
 
-                    <Card>
+                    <Card className="card border-0">
                         <CardHeader>
-                            <CardTitle>Mevcut Hizmet Türleri</CardTitle>
+                            <CardTitle className="text-text-heading">Mevcut Hizmet Türleri</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="rounded-md border">
                                 <table className="w-full text-sm">
                                     <thead>
-                                        <tr className="border-b bg-muted/50">
-                                            <th className="p-3 text-left font-medium">Hizmet Adı</th>
-                                            <th className="p-3 text-left font-medium">Durum</th>
-                                            <th className="p-3 text-right font-medium">İşlem</th>
+                                        <tr className="border-b border-white/10 bg-white/5">
+                                            <th className="p-3 text-left font-medium text-text-muted">Hizmet Adı</th>
+                                            <th className="p-3 text-left font-medium text-text-muted">Durum</th>
+                                            <th className="p-3 text-right font-medium text-text-muted">İşlem</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {serviceTypes.map((service) => (
-                                            <tr key={service.id} className="border-b last:border-0">
-                                                <td className="p-3 font-medium">{service.name}</td>
+                                            <tr key={service.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
+                                                <td className="p-3 font-medium text-text-heading">{service.name}</td>
                                                 <td className="p-3">
                                                     {service.active ? (
                                                         <Badge variant="default">Aktif</Badge>
@@ -162,10 +162,10 @@ export default async function SettingsPage() {
                 </TabsContent>
 
                 <TabsContent value="backup" className="space-y-4">
-                    <Card className="glass-card border-white/10">
+                    <Card className="card border-0">
                         <CardHeader>
-                            <CardTitle className="text-white">Veritabanı Yedeklemesi</CardTitle>
-                            <CardDescription className="text-white/50">Tüm veritabanını JSON formatında indirin ve güvenli bir yere saklayın.</CardDescription>
+                            <CardTitle className="text-text-heading">Veritabanı Yedeklemesi</CardTitle>
+                            <CardDescription className="text-text-muted">Tüm veritabanını JSON formatında indirin ve güvenli bir yere saklayın.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
@@ -183,33 +183,33 @@ export default async function SettingsPage() {
                     </Card>
                 </TabsContent>
                 <TabsContent value="system" className="space-y-4">
-                    <Card className="glass-card border-white/10">
+                    <Card className="card border-0">
 
                         <CardHeader className="flex flex-row items-center justify-between">
                             <div>
-                                <CardTitle className="text-white">Sistem Kayıtları</CardTitle>
-                                <CardDescription className="text-white/50">Sistemde gerçekleşen önemli olayların kayıtları.</CardDescription>
+                                <CardTitle className="text-text-heading">Sistem Kayıtları</CardTitle>
+                                <CardDescription className="text-text-muted">Sistemde gerçekleşen önemli olayların kayıtları.</CardDescription>
                             </div>
                             <DownloadLogsButton variant="outline" size="sm" />
                         </CardHeader>
                         <CardContent>
                             <div className="rounded-xl border border-white/10 overflow-hidden">
                                 <div className="overflow-x-auto">
-                                    <table className="w-full text-sm text-white">
+                                    <table className="w-full text-sm text-text-heading">
                                         <thead>
                                             <tr className="border-b border-white/10 bg-white/5">
-                                                <th className="p-3 text-left font-medium">İşlem</th>
-                                                <th className="p-3 text-left font-medium">Detaylar</th>
-                                                <th className="p-3 text-left font-medium">Kullanıcı</th>
-                                                <th className="p-3 text-right font-medium">Tarih</th>
-                                                <th className="p-3 text-right font-medium">Geri Al</th>
+                                                <th className="p-3 text-left font-medium text-text-muted">İşlem</th>
+                                                <th className="p-3 text-left font-medium text-text-muted">Detaylar</th>
+                                                <th className="p-3 text-left font-medium text-text-muted">Kullanıcı</th>
+                                                <th className="p-3 text-right font-medium text-text-muted">Tarih</th>
+                                                <th className="p-3 text-right font-medium text-text-muted">Geri Al</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {logs.map((log) => (
-                                                <tr key={log.id} className="border-b border-white/10 last:border-0 hover:bg-white/5">
+                                                <tr key={log.id} className="border-b border-white/10 last:border-0 odd:bg-background-card/80 even:bg-background-card/60 hover:bg-white/5">
                                                     <td className="p-3 font-medium">{log.action}</td>
-                                                    <td className="p-3 text-white/70">{log.details || "-"}</td>
+                                                    <td className="p-3 text-text-muted">{log.details || "-"}</td>
                                                     <td className="p-3">
                                                         {log.user ? (
                                                             <div className="flex items-center gap-2">
@@ -219,10 +219,10 @@ export default async function SettingsPage() {
                                                                 <span>{log.user.username}</span>
                                                             </div>
                                                         ) : (
-                                                            <span className="text-white/30">Sistem</span>
+                                                            <span className="text-text-muted">Sistem</span>
                                                         )}
                                                     </td>
-                                                    <td className="p-3 text-right text-white/50">
+                                                    <td className="p-3 text-right text-text-muted">
                                                         {new Date(log.createdAt).toLocaleString("tr-TR")}
                                                     </td>
                                                     <td className="p-3 text-right">
@@ -240,7 +240,7 @@ export default async function SettingsPage() {
                                             ))}
                                             {logs.length === 0 && (
                                                 <tr>
-                                                    <td colSpan={5} className="p-4 text-center text-white/50">
+                                                    <td colSpan={5} className="p-4 text-center text-text-muted">
                                                         Henüz kayıt bulunmuyor.
                                                     </td>
                                                 </tr>

@@ -28,7 +28,7 @@ export function RecentClients({ clients }: RecentClientsProps) {
                             </AvatarFallback>
                         </Avatar>
                         <div className="ml-4 space-y-1">
-                            <p className="text-sm font-medium leading-none text-white">
+                            <p className="text-sm font-medium leading-none text-white hover:text-primary transition-colors cursor-default">
                                 {client.name}
                             </p>
                             <p className="text-xs text-white/50">

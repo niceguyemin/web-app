@@ -12,35 +12,38 @@ export default function LoginPage() {
         min-h-screen 
         flex items-center justify-center 
         px-4
-        bg-[radial-gradient(circle_at_top,_#0EA5E9_0,_#020617_55%,_#000000_100%)]
-        text-white
+        bg-background-dark
+        text-text-base
       "
         >
-            {/* Hafif parlayan blur daireler */}
-            <div className="pointer-events-none fixed inset-0 -z-10">
-                <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#22C55E]/20 blur-3xl" />
-                <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-[#0EA5E9]/30 blur-3xl" />
+            {/* Neon Glow Effects */}
+            <div className="pointer-events-none fixed inset-0 -z-10 flex items-center justify-center">
+                <div className="absolute h-96 w-96 rounded-full bg-primary/20 blur-[128px]" />
+                <div className="absolute h-64 w-64 rounded-full bg-secondary/20 blur-[96px] translate-x-1/2 translate-y-1/2" />
             </div>
 
             {/* Login Kartı */}
-            <div className="w-full max-w-md rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl p-8">
+            <div className="w-full max-w-md card backdrop-blur-xl shadow-2xl p-8">
                 {/* Logo alanı */}
                 <div className="flex flex-col items-center gap-3 mb-8">
                     <div className="
             flex h-24 w-24 items-center justify-center 
-            rounded-[2rem] bg-[#020617]/70 
+            rounded-[2rem] bg-background-dark/50
             border border-white/10
-            shadow-[0_0_25px_rgba(14,165,233,0.7)]
+            shadow-[0_0_30px_rgba(14,165,233,0.3)]
             overflow-hidden
+            relative
           ">
-                        <img src="/logo.png" alt="Logo" className="object-cover w-full h-full" />
+                        {/* Inner Glow */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-50" />
+                        <img src="/logo.png" alt="Logo" className="object-cover w-full h-full relative z-10" />
                     </div>
 
                     <div className="text-center">
-                        <h1 className="text-xl font-semibold tracking-tight">
+                        <h1 className="text-xl font-semibold tracking-tight text-text-heading">
                             Danışan Paneli
                         </h1>
-                        <p className="mt-1 text-sm text-gray-300/80">
+                        <p className="mt-1 text-sm text-text-muted">
                             Danışanlarınızı, randevularınızı ve güzellik işlemlerini tek yerden yönetin.
                         </p>
                     </div>
@@ -49,12 +52,12 @@ export default function LoginPage() {
                 {/* Form */}
                 <form action={dispatch} className="space-y-4">
                     {errorMessage && (
-                        <div className="bg-red-500/10 text-red-200 p-3 rounded-xl text-sm border border-red-500/20 text-center">
+                        <div className="bg-error/10 text-error p-3 rounded-xl text-sm border border-error/20 text-center">
                             {errorMessage}
                         </div>
                     )}
                     <div className="space-y-1.5">
-                        <label className="text-sm text-gray-200" htmlFor="username">
+                        <label className="text-sm text-text-muted" htmlFor="username">
                             Kullanıcı Adı
                         </label>
                         <input
@@ -63,10 +66,11 @@ export default function LoginPage() {
                             type="text"
                             autoComplete="username"
                             className="
-                w-full rounded-2xl border border-white/15 bg-white/5 
-                px-3.5 py-2.5 text-sm text-white 
-                placeholder:text-gray-400
-                focus:outline-none focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent
+                w-full rounded-button border border-white/10 bg-background-dark/50 
+                px-3.5 py-2.5 text-sm text-text-base 
+                placeholder:text-text-muted/50
+                focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+                transition-all
               "
                             placeholder="admin"
                             defaultValue="admin"
@@ -74,7 +78,7 @@ export default function LoginPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                        <label className="text-sm text-gray-200" htmlFor="password">
+                        <label className="text-sm text-text-muted" htmlFor="password">
                             Şifre
                         </label>
                         <input
@@ -83,22 +87,23 @@ export default function LoginPage() {
                             type="password"
                             autoComplete="current-password"
                             className="
-                w-full rounded-2xl border border-white/15 bg-white/5 
-                px-3.5 py-2.5 text-sm text-white 
-                placeholder:text-gray-400
-                focus:outline-none focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent
+                w-full rounded-button border border-white/10 bg-background-dark/50 
+                px-3.5 py-2.5 text-sm text-text-base 
+                placeholder:text-text-muted/50
+                focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+                transition-all
               "
                             placeholder="******"
                             defaultValue="admin123"
                         />
                     </div>
 
-                    <div className="flex items-center justify-between text-xs text-gray-300/80">
+                    <div className="flex items-center justify-between text-xs text-text-muted">
                         <div className="flex items-center gap-2">
                             <input
                                 id="remember"
                                 type="checkbox"
-                                className="h-3.5 w-3.5 rounded border-white/30 bg-transparent text-[#0EA5E9] focus:ring-0"
+                                className="h-3.5 w-3.5 rounded border-white/30 bg-transparent text-primary focus:ring-0"
                             />
                             <label htmlFor="remember" className="select-none">
                                 Beni hatırla
@@ -107,7 +112,7 @@ export default function LoginPage() {
 
                         <button
                             type="button"
-                            className="text-[11px] underline underline-offset-2 hover:text-white"
+                            className="text-[11px] underline underline-offset-2 hover:text-text-base transition-colors"
                         >
                             Şifremi unuttum
                         </button>
@@ -116,22 +121,14 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={isPending}
-                        className="
-              mt-4 w-full rounded-2xl 
-              bg-[#0EA5E9] 
-              px-4 py-2.5 text-sm font-medium 
-              text-white shadow-lg
-              hover:bg-[#0284C7]
-              transition-colors
-              disabled:opacity-50 disabled:cursor-not-allowed
-            "
+                        className="w-full btn-primary mt-4 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_25px_rgba(14,165,233,0.5)]"
                     >
                         {isPending ? "Giriş yapılıyor..." : "Giriş Yap"}
                     </button>
                 </form>
 
                 {/* Alt bilgi */}
-                <p className="mt-6 text-center text-[11px] text-gray-400">
+                <p className="mt-6 text-center text-[11px] text-text-muted">
                     Sağlık, güzellik ve danışan yönetimi için tasarlandı.
                 </p>
             </div>

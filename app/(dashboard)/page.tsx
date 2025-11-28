@@ -132,7 +132,7 @@ export default async function Page() {
     <div className="flex-1 space-y-6 p-2 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">
             {greeting}, {name}
           </h2>
           <div className="flex items-center gap-2">
@@ -140,7 +140,7 @@ export default async function Page() {
             <QuickAddClient serviceTypes={serviceTypes} />
           </div>
         </div>
-        <div className="text-white/70 text-sm md:text-base" suppressHydrationWarning>
+        <div className="text-text-muted text-sm md:text-base" suppressHydrationWarning>
           {new Intl.DateTimeFormat('tr-TR', {
             day: 'numeric',
             month: 'long',
@@ -151,61 +151,61 @@ export default async function Page() {
       </div>
 
       <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 md:pb-2 p-2 px-3 md:p-6">
-            <CardTitle className="text-xs md:text-sm font-medium text-white/70">
+            <CardTitle className="text-xs md:text-sm font-medium text-text-muted">
               Bugünkü Randevular
             </CardTitle>
             <Calendar className="h-3 w-3 md:h-4 md:w-4 text-primary flex-shrink-0" />
           </CardHeader>
           <CardContent className="px-3 py-1 md:p-6 md:pt-0">
-            <div className="text-xl md:text-2xl font-bold text-white">{todayAppointments.length}</div>
-            <p className="text-[10px] md:text-xs text-white/50">
+            <div className="text-xl md:text-2xl font-bold text-text-heading">{todayAppointments.length}</div>
+            <p className="text-[10px] md:text-xs text-text-muted">
               Günün yoğunluğu
             </p>
           </CardContent>
         </Card>
 
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 md:pb-2 p-2 px-3 md:p-6">
-            <CardTitle className="text-xs md:text-sm font-medium text-white/70">
+            <CardTitle className="text-xs md:text-sm font-medium text-text-muted">
               Gelecek Randevular
             </CardTitle>
             <Clock className="h-3 w-3 md:h-4 md:w-4 text-primary flex-shrink-0" />
           </CardHeader>
           <CardContent className="px-3 py-1 md:p-6 md:pt-0">
-            <div className="text-xl md:text-2xl font-bold text-white">{upcomingAppointmentsCount}</div>
-            <p className="text-[10px] md:text-xs text-white/50">
+            <div className="text-xl md:text-2xl font-bold text-text-heading">{upcomingAppointmentsCount}</div>
+            <p className="text-[10px] md:text-xs text-text-muted">
               Önümüzdeki 7 gün
             </p>
           </CardContent>
         </Card>
 
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 md:pb-2 p-2 px-3 md:p-6">
-            <CardTitle className="text-xs md:text-sm font-medium text-white/70">
+            <CardTitle className="text-xs md:text-sm font-medium text-text-muted">
               Toplam Danışan
             </CardTitle>
             <Users className="h-3 w-3 md:h-4 md:w-4 text-primary flex-shrink-0" />
           </CardHeader>
           <CardContent className="px-3 py-1 md:p-6 md:pt-0">
-            <div className="text-xl md:text-2xl font-bold text-white">{clientCount}</div>
-            <p className="text-[10px] md:text-xs text-white/50">
+            <div className="text-xl md:text-2xl font-bold text-text-heading">{clientCount}</div>
+            <p className="text-[10px] md:text-xs text-text-muted">
               Sisteme kayıtlı
             </p>
           </CardContent>
         </Card>
 
-        <Card className="glass-card border-0">
+        <Card className="card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 md:pb-2 p-2 px-3 md:p-6">
-            <CardTitle className="text-xs md:text-sm font-medium text-white/70">
+            <CardTitle className="text-xs md:text-sm font-medium text-text-muted">
               Aktif Hizmetler
             </CardTitle>
             <Activity className="h-3 w-3 md:h-4 md:w-4 text-primary flex-shrink-0" />
           </CardHeader>
           <CardContent className="px-3 py-1 md:p-6 md:pt-0">
-            <div className="text-xl md:text-2xl font-bold text-white">{serviceCount}</div>
-            <p className="text-[10px] md:text-xs text-white/50">
+            <div className="text-xl md:text-2xl font-bold text-text-heading">{serviceCount}</div>
+            <p className="text-[10px] md:text-xs text-text-muted">
               Devam eden
             </p>
           </CardContent>
@@ -213,10 +213,10 @@ export default async function Page() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4 glass-card border-0">
+        <Card className="col-span-4 card border-0">
           <CardHeader>
-            <CardTitle className="text-white">Bugünkü Randevular</CardTitle>
-            <CardDescription className="text-white/50">
+            <CardTitle className="text-text-heading">Bugünkü Randevular</CardTitle>
+            <CardDescription className="text-text-muted">
               Bugün için planlanan görüşmeler
             </CardDescription>
           </CardHeader>
@@ -225,10 +225,10 @@ export default async function Page() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-3 glass-card border-0">
+        <Card className="col-span-3 card border-0">
           <CardHeader>
-            <CardTitle className="text-white">Son Eklenen Danışanlar</CardTitle>
-            <CardDescription className="text-white/50">
+            <CardTitle className="text-text-heading">Son Eklenen Danışanlar</CardTitle>
+            <CardDescription className="text-text-muted">
               Sisteme yeni katılanlar
             </CardDescription>
           </CardHeader>

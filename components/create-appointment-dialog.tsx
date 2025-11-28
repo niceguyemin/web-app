@@ -114,7 +114,7 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg shadow-blue-500/20 rounded-xl transition-all duration-200 hover:scale-[1.02] border-0">
+                <Button className="btn-primary">
                     <Plus className="mr-2 h-4 w-4" />
                     Yeni Randevu
                 </Button>

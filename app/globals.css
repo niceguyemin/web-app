@@ -25,6 +25,20 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* User Requested Config */
+  --color-background-dark: #020617;
+  --color-background-card: #0F172A;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary-hover: #16A34A;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  --color-text-base: #F1F5F9;
+  --color-text-muted: #94A3B8;
+  --color-text-heading: #F8FAFC;
+
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
 }
 
 /* DanışanTakip Theme Variables */
@@ -41,11 +55,12 @@
   --popover: 240 25% 10%;
   --popover-foreground: 210 40% 98%;
 
-  --primary: 250 100% 70%;
-  /* Electric Purple/Blue Glow */
+  /* Updated Primary to Softer Blue (Less Saturated) */
+  --primary: 221 60% 50%;
   --primary-foreground: 210 40% 98%;
 
-  --secondary: 240 20% 15%;
+  /* Updated Secondary to #22C55E (142 71% 45%) */
+  --secondary: 142 71% 45%;
   --secondary-foreground: 210 40% 98%;
 
   --muted: 240 20% 15%;
@@ -59,7 +74,7 @@
 
   --border: 240 20% 20%;
   --input: 240 20% 20%;
-  --ring: 250 100% 70%;
+  --ring: 199 89% 48%;
 
   --radius: 1rem;
   /* 16px for that rounded iOS feel */
@@ -71,12 +86,39 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    /* Deep Space Gradient Background */
-    background: radial-gradient(circle at top left, #1a1b4b, #000000),
-      radial-gradient(circle at bottom right, #2e1065, #000000);
+    @apply text-text-base font-sans antialiased;
+    background: radial-gradient(circle at top right, #1e1b4b, #020617);
     background-attachment: fixed;
+    min-height: 100vh;
+    /* User requested solid background, overriding gradient */
+    /* background: radial-gradient(circle at top left, #1a1b4b, #000000),
+      radial-gradient(circle at bottom right, #2e1065, #000000); */
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+
+  /* Kart ve panel görünümleri */
+  .card {
+    @apply bg-white/8 backdrop-blur-md border border-white/10 rounded-card shadow-lg p-6;
+  }
+
+  /* Butonlar */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-hover text-white font-medium rounded-button px-4 py-2 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-hover text-white font-medium rounded-button px-4 py-2 transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-error hover:bg-red-700 text-white rounded-button px-4 py-2;
+  }
+
+  .btn-warning {
+    @apply bg-warning hover:bg-amber-600 text-white rounded-button px-4 py-2;
   }
 }
 
@@ -114,5 +156,18 @@
 
   .control-green {
     @apply bg-[#27C93F];
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
