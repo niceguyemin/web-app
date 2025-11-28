@@ -53,10 +53,25 @@ export default async function ClientDetailPage({
             </div>
 
             <Tabs defaultValue={defaultTab} className="space-y-4">
-                <TabsList>
-                    <TabsTrigger value="services">Hizmetler</TabsTrigger>
-                    <TabsTrigger value="payments">Ödemeler</TabsTrigger>
-                    <TabsTrigger value="profile">Profil & Gelişim</TabsTrigger>
+                <TabsList className="bg-card border border-white/10 p-1 h-auto">
+                    <TabsTrigger
+                        value="services"
+                        className="data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-2"
+                    >
+                        Hizmetler
+                    </TabsTrigger>
+                    <TabsTrigger
+                        value="payments"
+                        className="data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-2"
+                    >
+                        Ödemeler
+                    </TabsTrigger>
+                    <TabsTrigger
+                        value="profile"
+                        className="data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-2"
+                    >
+                        Profil & Gelişim
+                    </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="services" className="space-y-4">

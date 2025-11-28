@@ -94,6 +94,7 @@ model User {
 
   appointments Appointment[]
   logs         Log[]
+  notifications Notification[]
 }
 
 model ServiceType {
@@ -116,6 +117,7 @@ model Appointment {
   status    String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  reminderSent Boolean @default(false)
 }
 
 model Log {
@@ -129,4 +131,16 @@ model Log {
   relatedTable String?
   previousData Json?
   isUndone     Boolean  @default(false)
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   @default("INFO") // INFO, SUCCESS, WARNING, ERROR
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
 }

@@ -61,17 +61,17 @@ export default async function ClientsPage({
     });
 
     return (
-        <div className="p-4 md:p-8 space-y-4 md:space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-0 md:p-8 space-y-4 md:space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:p-0">
                 <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Danışanlar</h2>
                 <CreateClientDialog serviceTypes={serviceTypes} />
             </div>
 
-            <div className="flex items-center space-x-2">
-                <Search placeholder="İsim veya telefon ara..." />
+            <div className="flex items-center space-x-2 px-4 md:px-0">
+                <Search placeholder="İsim veya telefon ara (Örn: Ali Yılmaz, 0555...)" />
             </div>
 
-            <div className="rounded-xl border border-white/10 card overflow-hidden">
+            <div className="md:rounded-xl md:border md:border-white/10 md:card overflow-hidden">
                 <div className="overflow-x-auto">
                     <Table>
                         <TableHeader className="bg-white/5">
@@ -114,7 +114,7 @@ export default async function ClientsPage({
                                                 {activeServices.length > 0 ? (
                                                     <>
                                                         {activeServices.slice(0, 2).map((service) => (
-                                                            <span key={service.id} className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-background-dark text-primary border border-primary/20 whitespace-nowrap">
+                                                            <span key={service.id} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 whitespace-nowrap">
                                                                 {service.type}
                                                             </span>
                                                         ))}
@@ -153,12 +153,12 @@ export default async function ClientsPage({
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex flex-col md:flex-row justify-end gap-1 md:gap-2">
-                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-white/10 bg-transparent text-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all">
+                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-primary/20 bg-primary/10 text-primary hover:text-white hover:bg-primary hover:border-primary transition-all">
                                                     <Link href={`/clients/${client.id}?tab=services`}>
                                                         Hizmetler
                                                     </Link>
                                                 </Button>
-                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-white/10 bg-transparent text-text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all">
+                                                <Button variant="outline" size="sm" asChild className="h-7 md:h-8 text-[10px] md:text-xs whitespace-nowrap border-secondary/20 bg-secondary/10 text-secondary hover:text-white hover:bg-secondary hover:border-secondary transition-all">
                                                     <Link href={`/clients/${client.id}?tab=payments`}>
                                                         Ödemeler
                                                     </Link>

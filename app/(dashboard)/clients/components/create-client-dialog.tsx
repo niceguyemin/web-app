@@ -111,12 +111,12 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg shadow-blue-500/20 rounded-xl transition-all duration-200 hover:scale-[1.02] border-0">
+                <Button className="btn-primary">
                     <Plus className="w-4 h-4 mr-2" />
                     Yeni Danışan
                 </Button>
             </DialogTrigger>
-            <DialogContent className="glass-card border-white/10 text-white max-w-md max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="text-white text-xl">Yeni Danışan Ekle</DialogTitle>
                 </DialogHeader>
@@ -134,6 +134,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="glass-input text-white rounded-xl"
                                 placeholder="Örn: Ahmet Yılmaz"
+                                autoComplete="off"
                             />
                         </div>
 
@@ -188,12 +189,12 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                 <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                     <SelectValue placeholder="Hizmet seçin" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                                <SelectContent className="bg-popover border-white/10 text-popover-foreground">
                                     {serviceTypes.map((service) => (
                                         <SelectItem
                                             key={service.id}
                                             value={service.id.toString()}
-                                            className="focus:bg-white/10 focus:text-white"
+                                            className="focus:bg-primary/20 focus:text-primary"
                                         >
                                             {service.name}
                                         </SelectItem>
@@ -215,7 +216,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                         value={formData.servicePrice}
                                         onChange={(e) => setFormData({ ...formData, servicePrice: e.target.value })}
                                         className="glass-input text-white rounded-xl"
-                                        placeholder="0.00"
+                                        placeholder="Örn: 500"
                                     />
                                 </div>
                                 <div>
@@ -228,7 +229,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                         value={formData.serviceSessions}
                                         onChange={(e) => setFormData({ ...formData, serviceSessions: e.target.value })}
                                         className="glass-input text-white rounded-xl"
-                                        placeholder="1"
+                                        placeholder="Örn: 5"
                                     />
                                 </div>
                             </div>
@@ -264,7 +265,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                             value={formData.height}
                                             onChange={(e) => setFormData({ ...formData, height: e.target.value })}
                                             className="glass-input text-white rounded-xl"
-                                            placeholder="170"
+                                            placeholder="Örn: 170"
                                         />
                                     </div>
 
@@ -279,7 +280,7 @@ export function CreateClientDialog({ serviceTypes }: CreateClientDialogProps) {
                                             value={formData.weight}
                                             onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
                                             className="glass-input text-white rounded-xl"
-                                            placeholder="70"
+                                            placeholder="Örn: 70"
                                         />
                                     </div>
                                 </div>

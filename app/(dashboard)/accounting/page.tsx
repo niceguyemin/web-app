@@ -81,8 +81,8 @@ export default async function AccountingPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 space-y-4 md:space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
+    <div className="p-0 md:p-8 space-y-4 md:space-y-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 p-4 md:p-0">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Muhasebe</h2>
         <div className="text-text-muted text-sm md:text-base" suppressHydrationWarning>
           {new Intl.DateTimeFormat('tr-TR', {
@@ -94,7 +94,7 @@ export default async function AccountingPage() {
         </div>
       </div>
 
-      <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-4 px-4 md:px-0">
         <Card className="card border-0">
           <CardHeader className="pb-1 p-2 md:p-6 md:pb-2">
             <CardTitle className="text-[10px] md:text-sm font-medium text-text-muted">Toplam Gelir</CardTitle>

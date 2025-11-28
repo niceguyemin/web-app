@@ -26,58 +26,60 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* User Requested Config */
+  /* User Requested Config - 2025 Refresh */
   --color-background-dark: #020617;
   --color-background-card: #0F172A;
-  --color-primary-hover: #204085;
-  --color-secondary-hover: #16A34A;
-  --color-error: #EF4444;
-  --color-warning: #F59E0B;
-  --color-text-base: #F1F5F9;
-  --color-text-muted: #94A3B8;
-  --color-text-heading: #F8FAFC;
+  --color-primary-hover: #0891b2;
+  /* Darker Turquoise */
+  --color-secondary-hover: #15803d;
+  /* Darker Green */
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-text-base: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-heading: #f8fafc;
 
   --radius-card: 1rem;
   --radius-button: 0.75rem;
 }
 
-/* DanışanTakip Theme Variables */
+/* DanışanTakip Theme Variables - 2025 Refresh */
 :root {
-  --background: 240 30% 6%;
-  /* Deep Space Black/Blue */
+  --background: 222 47% 11%;
+  /* Dark Navy (#020617) */
   --foreground: 210 40% 98%;
   /* Soft White */
 
-  --card: 240 25% 10%;
-  /* Darker Glass */
+  --card: 224 45% 14%;
+  /* Deep Navy for Cards */
   --card-foreground: 210 40% 98%;
 
-  --popover: 240 25% 10%;
+  --popover: 237 37% 9%;
+  /* Dark Deep Blue (#0f1021) */
   --popover-foreground: 210 40% 98%;
 
-  /* Updated Primary to User Requested #2b53aa */
-  --primary: 221 59% 41%;
-  --primary-foreground: 210 40% 98%;
+  /* Primary: Turquoise (#06b6d4) */
+  --primary: 189 94% 43%;
+  --primary-foreground: 222 47% 11%;
 
-  /* Updated Secondary to #22C55E (142 71% 45%) */
+  /* Secondary: Vivid Green (#22c55e) */
   --secondary: 142 71% 45%;
   --secondary-foreground: 210 40% 98%;
 
-  --muted: 240 20% 15%;
+  --muted: 217 33% 17%;
   --muted-foreground: 215 20% 65%;
 
-  --accent: 250 60% 30%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 189 94% 43%;
+  --accent-foreground: 222 47% 11%;
 
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 240 20% 20%;
-  --input: 240 20% 20%;
-  --ring: 199 89% 48%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 189 94% 43%;
 
   --radius: 1rem;
-  /* 16px for that rounded iOS feel */
 }
 
 @layer base {
@@ -87,13 +89,31 @@
 
   body {
     @apply text-text-base font-sans antialiased;
-    background: radial-gradient(circle at top right, #1e1b4b, #020617);
-    background-attachment: fixed;
+    background-color: hsl(var(--background));
     min-height: 100vh;
-    /* User requested solid background, overriding gradient */
-    /* background: radial-gradient(circle at top left, #1a1b4b, #000000),
-      radial-gradient(circle at bottom right, #2e1065, #000000); */
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Hide spin buttons for number inputs */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Override browser autofill styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px hsl(var(--popover)) inset !important;
+    -webkit-text-fill-color: hsl(var(--foreground)) !important;
+    caret-color: hsl(var(--foreground));
+    transition: background-color 5000s ease-in-out 0s;
   }
 }
 
@@ -101,7 +121,7 @@
 
   /* Kart ve panel görünümleri */
   .card {
-    @apply bg-white/8 backdrop-blur-md border border-white/10 rounded-card shadow-lg p-6;
+    @apply bg-card border border-white/10 rounded-card shadow-lg p-6;
   }
 
   /* Butonlar */
@@ -126,15 +146,15 @@
 
   /* Glassmorphism Utilities */
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
+    @apply bg-popover/80 backdrop-blur-xl border border-white/10 shadow-xl;
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/5 shadow-lg hover:bg-white/10 transition-all duration-300;
+    @apply bg-card border border-white/5 shadow-lg transition-all duration-300;
   }
 
   .glass-input {
-    @apply bg-black/20 border-white/10 focus:border-primary/50 focus:ring-primary/20 placeholder:text-white/20;
+    @apply bg-white/5 border-white/10 focus:border-primary/50 focus:ring-primary/20 placeholder:text-white/20 text-white;
   }
 
   /* macOS Window Controls */

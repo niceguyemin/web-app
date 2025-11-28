@@ -23,6 +23,24 @@ export async function createLog(
                 previousData: previousData ? JSON.stringify(previousData) : undefined,
             },
         });
+
+        // Cleanup: Keep only the last 30 logs
+        const logsToKeep = await prismadb.log.findMany({
+            take: 30,
+            orderBy: { createdAt: 'desc' },
+            select: { id: true }
+        });
+
+        if (logsToKeep.length >= 30) {
+            const idsToKeep = logsToKeep.map(log => log.id);
+            await prismadb.log.deleteMany({
+                where: {
+                    id: {
+                        notIn: idsToKeep
+                    }
+                }
+            });
+        }
     } catch (error) {
         console.error("Failed to create log:", error);
     }

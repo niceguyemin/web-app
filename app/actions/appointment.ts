@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createLog } from "@/lib/logger";
 import { auth } from "@/lib/auth";
+import { createNotification } from "@/app/actions/notification";
 
 const CreateAppointmentSchema = z.object({
     clientId: z.coerce.number(),
@@ -79,6 +80,18 @@ export async function createAppointment(formData: FormData) {
             });
 
             await createLog("Randevu Oluşturuldu", `${client?.name} - ${date} ${time}`, appointment.id, "Appointment", null);
+
+            // Notification Logic
+            if (userId && userId !== parseInt(session.user.id)) {
+                const creatorName = session.user.name || session.user.email;
+                await createNotification(
+                    userId,
+                    "Yeni Randevu Atandı",
+                    `${creatorName} size ${client?.name} ile ${date} ${time} için bir randevu oluşturdu.`,
+                    "INFO",
+                    "/appointments"
+                );
+            }
         });
 
         revalidatePath("/appointments");
@@ -99,7 +112,10 @@ export async function cancelAppointment(id: number) {
             // Get the appointment to find the serviceId
             const appointment = await tx.appointment.findUnique({
                 where: { id },
-                include: { client: { select: { name: true } } }
+                include: {
+                    client: { select: { name: true } },
+                    user: { select: { id: true } }
+                }
             });
 
             if (!appointment) {
@@ -133,6 +149,18 @@ export async function cancelAppointment(id: number) {
             }
 
             await createLog("Randevu İptal Edildi", `${appointment.client.name} - ${appointment.date.toLocaleString("tr-TR")}`, id, "Appointment", appointment);
+
+            // Notification Logic
+            if (appointment.userId && appointment.userId !== parseInt(session.user.id)) {
+                const cancellerName = session.user.name || session.user.email;
+                await createNotification(
+                    appointment.userId,
+                    "Randevu İptal Edildi",
+                    `${cancellerName}, ${appointment.client.name} ile olan randevunuzu iptal etti.`,
+                    "WARNING",
+                    "/appointments"
+                );
+            }
         });
 
         revalidatePath("/appointments");

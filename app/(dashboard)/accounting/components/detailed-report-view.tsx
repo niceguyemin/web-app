@@ -48,12 +48,14 @@ export function DetailedReportView() {
         expenseByCategory: any[];
     } | null>(null);
 
+    const [granularity, setGranularity] = useState<'day' | 'week' | 'month'>('day');
+
     async function fetchData() {
         if (!date?.from || !date?.to) return;
 
         setLoading(true);
         try {
-            const reportData = await getFinancialReport(date.from, date.to);
+            const reportData = await getFinancialReport(date.from, date.to, granularity);
             setData(reportData);
         } catch (error) {
             toast.error("Rapor verileri alınamadı");
@@ -65,7 +67,7 @@ export function DetailedReportView() {
 
     useEffect(() => {
         fetchData();
-    }, [date]);
+    }, [date, granularity]);
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat("tr-TR", {
@@ -74,18 +76,69 @@ export function DetailedReportView() {
         }).format(amount);
     };
 
+    const formatXAxis = (value: string) => {
+        const d = new Date(value);
+        if (granularity === 'month') {
+            return format(d, "MMM yyyy", { locale: tr });
+        } else if (granularity === 'week') {
+            return `Hafta ${format(d, "w")}`;
+        }
+        return format(d, "d MMM", { locale: tr });
+    };
+
+    const formatTooltipLabel = (value: string) => {
+        const d = new Date(value);
+        if (granularity === 'month') {
+            return format(d, "MMMM yyyy", { locale: tr });
+        } else if (granularity === 'week') {
+            const end = new Date(d);
+            end.setDate(d.getDate() + 6);
+            return `${format(d, "d MMM")} - ${format(end, "d MMM yyyy", { locale: tr })}`;
+        }
+        return format(d, "d MMMM yyyy", { locale: tr });
+    };
+
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <h3 className="text-lg font-medium text-white">Detaylı Finansal Rapor</h3>
-                <div className="grid gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <div className="flex bg-white/5 p-1 rounded-lg border border-white/10">
+                        <button
+                            onClick={() => setGranularity('day')}
+                            className={cn(
+                                "px-3 py-1.5 text-sm font-medium rounded-md transition-all",
+                                granularity === 'day' ? "bg-primary text-white shadow-sm" : "text-white/50 hover:text-white hover:bg-white/5"
+                            )}
+                        >
+                            Günlük
+                        </button>
+                        <button
+                            onClick={() => setGranularity('week')}
+                            className={cn(
+                                "px-3 py-1.5 text-sm font-medium rounded-md transition-all",
+                                granularity === 'week' ? "bg-primary text-white shadow-sm" : "text-white/50 hover:text-white hover:bg-white/5"
+                            )}
+                        >
+                            Haftalık
+                        </button>
+                        <button
+                            onClick={() => setGranularity('month')}
+                            className={cn(
+                                "px-3 py-1.5 text-sm font-medium rounded-md transition-all",
+                                granularity === 'month' ? "bg-primary text-white shadow-sm" : "text-white/50 hover:text-white hover:bg-white/5"
+                            )}
+                        >
+                            Aylık
+                        </button>
+                    </div>
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
                                 id="date"
                                 variant={"outline"}
                                 className={cn(
-                                    "w-[300px] justify-start text-left font-normal",
+                                    "w-full sm:w-[260px] justify-start text-left font-normal hover:text-white hover:bg-white/10 transition-colors",
                                     !date && "text-muted-foreground"
                                 )}
                             >
@@ -104,7 +157,7 @@ export function DetailedReportView() {
                                 )}
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="end">
+                        <PopoverContent className="w-auto p-0 bg-popover border-white/10 text-popover-foreground" align="end">
                             <Calendar
                                 initialFocus
                                 mode="range"
@@ -164,13 +217,14 @@ export function DetailedReportView() {
                             <CardContent className="pl-2">
                                 <ResponsiveContainer width="100%" height={350}>
                                     <BarChart data={data.chartData}>
+                                        <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
                                         <XAxis
                                             dataKey="date"
                                             stroke="#888888"
                                             fontSize={12}
                                             tickLine={false}
                                             axisLine={false}
-                                            tickFormatter={(value) => format(new Date(value), "d MMM", { locale: tr })}
+                                            tickFormatter={formatXAxis}
                                         />
                                         <YAxis
                                             stroke="#888888"
@@ -180,12 +234,15 @@ export function DetailedReportView() {
                                             tickFormatter={(value) => `₺${value}`}
                                         />
                                         <Tooltip
+                                            cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }}
                                             contentStyle={{ backgroundColor: "#1f2937", border: "none", borderRadius: "8px", color: "#fff" }}
-                                            labelFormatter={(value) => format(new Date(value), "d MMMM yyyy", { locale: tr })}
+                                            labelFormatter={formatTooltipLabel}
                                         />
                                         <Legend />
+
                                         <Bar dataKey="income" name="Gelir" fill="#22c55e" radius={[4, 4, 0, 0]} />
                                         <Bar dataKey="expense" name="Gider" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                                        <Bar dataKey="netProfit" name="Net Kâr" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </CardContent>
@@ -201,8 +258,14 @@ export function DetailedReportView() {
                                             data={data.incomeByServiceType}
                                             cx="50%"
                                             cy="50%"
-                                            labelLine={false}
-                                            label={({ name, percent }: { name?: string; percent?: number }) => `${name || ''} ${((percent || 0) * 100).toFixed(0)}%`}
+                                            labelLine={true}
+                                            label={({ x, y, name, percent }: { x: number; y: number; name?: string; percent?: number }) => {
+                                                return (
+                                                    <text x={x} y={y} fill="white" textAnchor={x > 180 ? "start" : "end"} dominantBaseline="central" style={{ fontSize: '11px', fill: 'rgba(255,255,255,0.9)' }}>
+                                                        {`${name} (%${((percent || 0) * 100).toFixed(0)})`}
+                                                    </text>
+                                                );
+                                            }}
                                             outerRadius={80}
                                             fill="#8884d8"
                                             dataKey="value"
@@ -211,7 +274,8 @@ export function DetailedReportView() {
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
-                                        <Tooltip contentStyle={{ backgroundColor: "#1f2937", border: "none", borderRadius: "8px", color: "#fff" }} />
+                                        <Tooltip contentStyle={{ backgroundColor: "#1a1b4b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", color: "#fff", boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }} itemStyle={{ color: "#fff" }} />
+                                        <Legend />
                                     </PieChart>
                                 </ResponsiveContainer>
                             </CardContent>

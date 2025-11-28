@@ -12,6 +12,7 @@ import { DownloadBackupButton } from "@/components/download-backup-button";
 import { UploadBackupButton } from "@/components/upload-backup-button";
 import { DownloadLogsButton } from "@/components/download-logs-button";
 import { UndoButton } from "@/components/undo-button";
+import { cn } from "@/lib/utils";
 
 export default async function SettingsPage() {
     const session = await auth();
@@ -29,7 +30,7 @@ export default async function SettingsPage() {
     });
 
     const logs = await prismadb.log.findMany({
-        take: 100,
+        take: 30,
         orderBy: { createdAt: "desc" },
         include: {
             user: {
@@ -42,11 +43,11 @@ export default async function SettingsPage() {
     });
 
     return (
-        <div className="p-8 space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight text-text-heading">Ayarlar</h2>
+        <div className="p-0 md:p-8 space-y-4 md:space-y-8">
+            <h2 className="text-3xl font-bold tracking-tight text-text-heading p-4 md:p-0">Ayarlar</h2>
 
             <Tabs defaultValue="users" className="space-y-4">
-                <TabsList className="card border-0 p-1">
+                <TabsList className="card border-0 p-1 mx-4 md:mx-0">
                     <TabsTrigger value="users" className="data-[state=active]:bg-primary data-[state=active]:text-white">Kullanıcılar</TabsTrigger>
                     <TabsTrigger value="services" className="data-[state=active]:bg-primary data-[state=active]:text-white">Hizmet Türleri</TabsTrigger>
                     <TabsTrigger value="system" className="data-[state=active]:bg-primary data-[state=active]:text-white">Sistem Kayıtları</TabsTrigger>
@@ -54,7 +55,7 @@ export default async function SettingsPage() {
                 </TabsList>
 
                 <TabsContent value="users" className="space-y-4">
-                    <Card className="card border-0">
+                    <Card className="card border-0 mx-4 md:mx-0">
                         <CardHeader>
                             <CardTitle className="text-text-heading">Yeni Kullanıcı</CardTitle>
                             <CardDescription className="text-text-muted">Sisteme yeni kullanıcı ekleyin.</CardDescription>
@@ -66,12 +67,12 @@ export default async function SettingsPage() {
 
 
 
-                    <Card className="card border-0">
-                        <CardHeader>
+                    <Card className="md:card border-0 shadow-none bg-transparent md:bg-card">
+                        <CardHeader className="px-4 md:px-6">
                             <CardTitle className="text-text-heading">Kullanıcılar</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="rounded-xl border border-white/10 overflow-hidden">
+                        <CardContent className="p-0 md:p-6">
+                            <div className="md:rounded-xl md:border md:border-white/10 overflow-hidden">
                                 <table className="w-full text-sm text-white">
                                     <thead>
                                         <tr className="border-b border-white/10 bg-white/5">
@@ -93,9 +94,10 @@ export default async function SettingsPage() {
                                                     </span>
                                                 </td>
                                                 <td className="p-3">
-                                                    {user.color && (
-                                                        <div className="w-6 h-6 rounded-full border border-white/20" style={{ backgroundColor: user.color }} />
-                                                    )}
+                                                    <div className={cn(
+                                                        "w-6 h-6 rounded-full border border-white/20",
+                                                        user.role === "ADMIN" ? "bg-orange-500" : "bg-primary"
+                                                    )} />
                                                 </td>
                                                 <td className="p-3 text-right">
                                                     {user.username !== "admin" && (
@@ -124,12 +126,12 @@ export default async function SettingsPage() {
 
 
 
-                    <Card className="card border-0">
-                        <CardHeader>
+                    <Card className="md:card border-0 shadow-none bg-transparent md:bg-card">
+                        <CardHeader className="px-4 md:px-6">
                             <CardTitle className="text-text-heading">Mevcut Hizmet Türleri</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="rounded-md border">
+                        <CardContent className="p-0 md:p-6">
+                            <div className="md:rounded-md md:border overflow-hidden">
                                 <table className="w-full text-sm">
                                     <thead>
                                         <tr className="border-b border-white/10 bg-white/5">
@@ -183,17 +185,17 @@ export default async function SettingsPage() {
                     </Card>
                 </TabsContent>
                 <TabsContent value="system" className="space-y-4">
-                    <Card className="card border-0">
+                    <Card className="md:card border-0 shadow-none bg-transparent md:bg-card">
 
-                        <CardHeader className="flex flex-row items-center justify-between">
+                        <CardHeader className="flex flex-row items-center justify-between px-4 md:px-6">
                             <div>
                                 <CardTitle className="text-text-heading">Sistem Kayıtları</CardTitle>
                                 <CardDescription className="text-text-muted">Sistemde gerçekleşen önemli olayların kayıtları.</CardDescription>
                             </div>
                             <DownloadLogsButton variant="outline" size="sm" />
                         </CardHeader>
-                        <CardContent>
-                            <div className="rounded-xl border border-white/10 overflow-hidden">
+                        <CardContent className="p-0 md:p-6">
+                            <div className="md:rounded-xl md:border md:border-white/10 overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-sm text-text-heading">
                                         <thead>

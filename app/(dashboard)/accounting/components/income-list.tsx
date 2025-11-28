@@ -33,23 +33,23 @@ export function IncomeList({ payments }: IncomeListProps) {
     }, [payments, searchQuery]);
 
     return (
-        <Card className="glass-card border-0">
-            <CardHeader>
+        <Card className="md:glass-card border-0 shadow-none bg-transparent md:bg-card">
+            <CardHeader className="px-4 md:px-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <CardTitle className="text-white">Gelir Listesi</CardTitle>
                     <div className="w-full sm:w-64">
                         <input
                             type="text"
-                            placeholder="Danışan veya hizmet ara..."
+                            placeholder="Danışan veya hizmet ara (Örn: Ali Yılmaz, Seans...)"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                            className="w-full px-3 py-2 glass-input text-white rounded-xl border-white/10 placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                         />
                     </div>
                 </div>
             </CardHeader>
-            <CardContent>
-                <div className="rounded-xl border border-white/10 overflow-hidden">
+            <CardContent className="p-0 md:p-6">
+                <div className="md:rounded-xl md:border md:border-white/10 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm">
                             <thead>

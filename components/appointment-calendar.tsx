@@ -12,10 +12,12 @@ import {
     isSameDay,
     addMonths,
     subMonths,
+    addWeeks,
+    subWeeks,
     isToday,
 } from "date-fns";
 import { tr } from "date-fns/locale";
-import { ChevronLeft, ChevronRight, Clock, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, User, Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Appointment, Client, Service, User as PrismaUser } from "@prisma/client";
@@ -46,46 +48,71 @@ interface AppointmentCalendarProps {
 }
 
 export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) {
-    const [currentMonth, setCurrentMonth] = useState<Date | null>(null);
+    const [currentDate, setCurrentDate] = useState<Date | null>(null);
     const [selectedDay, setSelectedDay] = useState<Date | null>(null);
+    const [viewMode, setViewMode] = useState<"month" | "week">("month");
 
     useEffect(() => {
-        setCurrentMonth(new Date());
+        setCurrentDate(new Date());
     }, []);
 
-    if (!currentMonth) {
+    if (!currentDate) {
         return null; // Or a loading skeleton
     }
 
-    const firstDayOfMonth = startOfMonth(currentMonth);
-    const lastDayOfMonth = endOfMonth(currentMonth);
-    const startDate = startOfWeek(firstDayOfMonth, { weekStartsOn: 1 }); // Monday start
-    const endDate = endOfWeek(lastDayOfMonth, { weekStartsOn: 1 });
+    // Calculate date range based on view mode
+    let startDate: Date;
+    let endDate: Date;
+
+    if (viewMode === "month") {
+        const firstDayOfMonth = startOfMonth(currentDate);
+        const lastDayOfMonth = endOfMonth(currentDate);
+        startDate = startOfWeek(firstDayOfMonth, { weekStartsOn: 1 }); // Monday start
+        endDate = endOfWeek(lastDayOfMonth, { weekStartsOn: 1 });
+    } else {
+        startDate = startOfWeek(currentDate, { weekStartsOn: 1 });
+        endDate = endOfWeek(currentDate, { weekStartsOn: 1 });
+    }
 
     const days = eachDayOfInterval({
         start: startDate,
         end: endDate,
     });
 
-    const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
-    const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
-    const goToToday = () => setCurrentMonth(new Date());
+    const nextPeriod = () => {
+        if (viewMode === "month") {
+            setCurrentDate(addMonths(currentDate, 1));
+        } else {
+            setCurrentDate(addWeeks(currentDate, 1));
+        }
+    };
 
+    const prevPeriod = () => {
+        if (viewMode === "month") {
+            setCurrentDate(subMonths(currentDate, 1));
+        } else {
+            setCurrentDate(subWeeks(currentDate, 1));
+        }
+    };
 
+    const goToToday = () => setCurrentDate(new Date());
 
     return (
         <div className="space-y-4">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
                     <h2 className="text-2xl font-bold text-text-heading capitalize">
-                        {format(currentMonth, "MMMM yyyy", { locale: tr })}
+                        {viewMode === "month"
+                            ? format(currentDate, "MMMM yyyy", { locale: tr })
+                            : `${format(startDate, "d MMM", { locale: tr })} - ${format(endDate, "d MMM yyyy", { locale: tr })}`
+                        }
                     </h2>
-                    <div className="flex items-center bg-white/5 rounded-lg p-1 border border-white/10">
+                    <div className="flex items-center bg-white/5 rounded-lg p-1 border border-white/10 ml-4">
                         <Button
                             variant="ghost"
                             size="icon"
-                            onClick={prevMonth}
+                            onClick={prevPeriod}
                             className="h-7 w-7 text-white hover:bg-white/10"
                         >
                             <ChevronLeft className="h-4 w-4" />
@@ -101,12 +128,41 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                         <Button
                             variant="ghost"
                             size="icon"
-                            onClick={nextMonth}
+                            onClick={nextPeriod}
                             className="h-7 w-7 text-white hover:bg-white/10"
                         >
                             <ChevronRight className="h-4 w-4" />
                         </Button>
                     </div>
+                </div>
+
+                <div className="flex items-center bg-white/5 rounded-lg p-1 border border-white/10">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setViewMode("month")}
+                        className={cn(
+                            "h-8 px-3 text-xs transition-all",
+                            viewMode === "month"
+                                ? "bg-primary text-white shadow-lg shadow-primary/20"
+                                : "text-white/70 hover:text-white hover:bg-white/5"
+                        )}
+                    >
+                        Aylık
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setViewMode("week")}
+                        className={cn(
+                            "h-8 px-3 text-xs transition-all",
+                            viewMode === "week"
+                                ? "bg-primary text-white shadow-lg shadow-primary/20"
+                                : "text-white/70 hover:text-white hover:bg-white/5"
+                        )}
+                    >
+                        Haftalık
+                    </Button>
                 </div>
             </div>
 
@@ -137,8 +193,9 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                     key={day.toString()}
                                     onClick={() => setSelectedDay(day)}
                                     className={cn(
-                                        "min-h-[120px] p-2 border-b border-r border-white/10 transition-colors flex flex-col gap-1 cursor-pointer hover:bg-white/5",
-                                        !isSameMonth(day, firstDayOfMonth) && "bg-black/20 text-text-muted/50",
+                                        "p-2 border-b border-r border-white/10 transition-colors flex flex-col gap-1 cursor-pointer hover:bg-white/5",
+                                        viewMode === "week" ? "min-h-[600px]" : "min-h-[120px]",
+                                        !isSameMonth(day, currentDate) && viewMode === "month" && "bg-black/20 text-text-muted/50",
                                         isToday(day) && "bg-primary/5"
                                     )}
                                 >
@@ -155,7 +212,10 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                         </span>
                                     </div>
 
-                                    <div className="flex-1 flex flex-col gap-1 mt-1 overflow-y-auto max-h-[100px] no-scrollbar">
+                                    <div className={cn(
+                                        "flex-1 flex flex-col gap-1 mt-1 overflow-y-auto no-scrollbar",
+                                        viewMode === "month" && "max-h-[100px]"
+                                    )}>
                                         {dayAppointments.map((appt) => {
                                             const userColor = appt.user?.color || "#3B82F6"; // Default blue if no user/color
 
@@ -172,8 +232,8 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                                 className={cn(
                                                                     "text-xs p-1.5 rounded border text-white cursor-pointer truncate flex items-center gap-1 transition-all",
                                                                     appt.status === "CANCELLED"
-                                                                        ? "bg-error/10 border-error/20 opacity-50"
-                                                                        : "border-white/10 hover:border-primary hover:shadow-[0_0_15px_rgba(37,99,235,0.6)] hover:bg-primary/20 hover:scale-[1.02] hover:z-10"
+                                                                        ? "border-error/30 text-white/50 line-through decoration-error/50"
+                                                                        : "border-white/10 hover:border-primary hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:bg-primary/20 hover:scale-[1.02] hover:z-10"
                                                                 )}
                                                                 style={appt.status !== "CANCELLED" ? {
                                                                     backgroundColor: `${userColor}33`, // 20% opacity
@@ -193,12 +253,10 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                                 <span className="font-medium truncate">
                                                                     {appt.client.name}
                                                                 </span>
-                                                                {appt.status === "CANCELLED" && (
-                                                                    <span className="text-[10px] text-error ml-auto">(İptal)</span>
-                                                                )}
+
                                                             </div>
                                                         </PopoverTrigger>
-                                                        <PopoverContent className="w-80 bg-black/80 backdrop-blur-xl border border-white/20 text-white p-4 shadow-2xl z-[100]">
+                                                        <PopoverContent className="w-80 bg-popover backdrop-blur-xl border border-white/20 text-popover-foreground p-4 shadow-2xl z-[100]">
                                                             <div className="flex flex-col space-y-4">
                                                                 <div className="space-y-1">
                                                                     <h4 className="text-sm font-semibold flex items-center gap-2">
@@ -240,7 +298,7 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
                                                                     <Button
                                                                         variant="destructive"
                                                                         size="sm"
-                                                                        className="w-full bg-red-500/20 hover:bg-red-500/30 text-red-500 border border-red-500/50"
+                                                                        className="w-full bg-[#ff3333] hover:bg-[#ff3333]/20 text-white hover:text-[#ff3333] border border-[#ff3333] hover:border-[#ff3333]/50 shadow-[0_0_15px_rgba(255,51,51,0.4)] transition-all duration-200"
                                                                         onClick={async () => {
                                                                             try {
                                                                                 await cancelAppointment(appt.id);
@@ -270,7 +328,7 @@ export function AppointmentCalendar({ appointments }: AppointmentCalendarProps) 
 
             {/* Day View Dialog */}
             <Dialog open={!!selectedDay} onOpenChange={(open) => !open && setSelectedDay(null)}>
-                <DialogContent className="bg-black/80 backdrop-blur-xl border border-white/10 text-white sm:max-w-md">
+                <DialogContent className="bg-popover backdrop-blur-xl border border-white/10 text-popover-foreground sm:max-w-md">
                     <DialogHeader>
                         <DialogTitle>
                             {selectedDay && format(selectedDay, "d MMMM yyyy", { locale: tr })}

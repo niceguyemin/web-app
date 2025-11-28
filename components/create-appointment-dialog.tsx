@@ -60,17 +60,7 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
 
     const selectedClient = clientsList.find((c) => c.id.toString() === selectedClientId);
 
-    // Generate time slots (09:00 to 19:00, 15 min intervals)
-    const timeSlots = useMemo(() => {
-        const slots = [];
-        for (let i = 9; i < 19; i++) {
-            slots.push(`${i.toString().padStart(2, '0')}:00`);
-            slots.push(`${i.toString().padStart(2, '0')}:15`);
-            slots.push(`${i.toString().padStart(2, '0')}:30`);
-            slots.push(`${i.toString().padStart(2, '0')}:45`);
-        }
-        return slots;
-    }, []);
+
 
     // Filter clients based on search term
     const filteredClients = useMemo(() => {
@@ -119,7 +109,7 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                     Yeni Randevu
                 </Button>
             </DialogTrigger>
-            <DialogContent className="glass-panel border-white/10 text-white sm:max-w-[425px] overflow-visible">
+            <DialogContent className="sm:max-w-[425px] overflow-visible">
                 <DialogHeader>
                     <DialogTitle className="text-white">Randevu Oluştur</DialogTitle>
                 </DialogHeader>
@@ -145,7 +135,7 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
                             <Input
                                 type="text"
-                                placeholder="Danışan ara..."
+                                placeholder="Danışan ara (Örn: Ali Yılmaz, 0555...)"
                                 value={searchTerm}
                                 onChange={(e) => {
                                     setSearchTerm(e.target.value);
@@ -172,7 +162,7 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                         </div>
 
                         {isDropdownOpen && (
-                            <div className="absolute top-[calc(100%+0.5rem)] left-0 w-full bg-[#1a1b4b]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-[9999] max-h-[240px] overflow-y-auto animate-in fade-in zoom-in-95 duration-100">
+                            <div className="absolute top-[calc(100%+0.5rem)] left-0 w-full bg-popover/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-[9999] max-h-[240px] overflow-y-auto animate-in fade-in zoom-in-95 duration-100">
                                 {filteredClients.length > 0 ? (
                                     <ul className="p-1">
                                         {filteredClients.map((client) => (
@@ -222,12 +212,12 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                             <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                 <SelectValue placeholder="Uzman Seçin" />
                             </SelectTrigger>
-                            <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                            <SelectContent className="bg-popover border-white/10 text-popover-foreground">
                                 {users.map((user) => (
                                     <SelectItem
                                         key={user.id}
                                         value={user.id.toString()}
-                                        className="focus:bg-white/10 focus:text-white"
+                                        className="focus:bg-primary/20 focus:text-primary"
                                     >
                                         <div className="flex items-center gap-2">
                                             {user.color && (
@@ -248,13 +238,13 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                                 <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                     <SelectValue placeholder="Hizmet Seçin" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                                <SelectContent className="bg-popover border-white/10 text-popover-foreground">
                                     {selectedClient.services.map((service) => (
                                         <SelectItem
                                             key={service.id}
                                             value={service.id.toString()}
                                             disabled={service.remainingSessions <= 0}
-                                            className="focus:bg-white/10 focus:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="focus:bg-primary/20 focus:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {service.type} ({service.remainingSessions} seans kaldı)
                                         </SelectItem>
@@ -280,14 +270,14 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                                         {date ? format(date, "d MMMM yyyy", { locale: tr }) : <span>Tarih seçin</span>}
                                     </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0 bg-[#1a1b4b] border-white/10 text-white" align="start">
+                                <PopoverContent className="w-auto p-0 bg-popover border-white/10 text-popover-foreground" align="start">
                                     <Calendar
                                         mode="single"
                                         selected={date}
                                         onSelect={setDate}
                                         initialFocus
                                         locale={tr}
-                                        className="bg-[#1a1b4b] text-white"
+                                        className="bg-transparent text-popover-foreground"
                                         classNames={{
                                             day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
                                             day_today: "bg-white/10 text-white",
@@ -305,18 +295,23 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                         </div>
                         <div className="grid gap-2">
                             <Label className="text-white/70">Saat</Label>
-                            <Select name="time" required>
-                                <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
-                                    <SelectValue placeholder="Saat seçin" />
-                                </SelectTrigger>
-                                <SelectContent className="bg-[#1a1b4b] border-white/10 text-white max-h-[200px]">
-                                    {timeSlots.map((time) => (
-                                        <SelectItem key={time} value={time} className="focus:bg-white/10 focus:text-white">
-                                            {time}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            <Input
+                                type="text"
+                                name="time"
+                                placeholder="09:00"
+                                required
+                                className="glass-input text-white rounded-xl border-white/10"
+                                onBlur={(e) => {
+                                    let value = e.target.value.replace(/[^0-9]/g, '');
+                                    if (value.length === 3) {
+                                        value = "0" + value;
+                                    }
+                                    if (value.length === 4) {
+                                        const formatted = value.slice(0, 2) + ":" + value.slice(2);
+                                        e.target.value = formatted;
+                                    }
+                                }}
+                            />
                         </div>
                     </div>
 

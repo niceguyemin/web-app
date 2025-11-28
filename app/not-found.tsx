@@ -4,7 +4,7 @@ import { ArrowLeft, FileQuestion } from "lucide-react";
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#0f1021] text-white p-4">
+        <div className="min-h-screen w-full flex flex-col items-center justify-center bg-popover text-white p-4">
             <div className="glass-card p-12 rounded-3xl flex flex-col items-center text-center max-w-md w-full border-white/10 shadow-2xl shadow-blue-900/20">
                 <div className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mb-8 border border-white/10">
                     <FileQuestion className="w-12 h-12 text-blue-400" />

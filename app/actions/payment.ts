@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { createLog } from "@/lib/logger";
 import { auth } from "@/lib/auth";
+import { createNotification } from "@/app/actions/notification";
 
 export async function createPayment(formData: FormData) {
     const session = await auth();
@@ -14,6 +15,10 @@ export async function createPayment(formData: FormData) {
     const serviceId = formData.get("serviceId") ? parseInt(formData.get("serviceId") as string) : null;
     const amount = parseFloat(formData.get("amount") as string);
     const type = formData.get("type") as string;
+
+    if (isNaN(clientId)) {
+        throw new Error("Lütfen bir danışan seçiniz.");
+    }
 
     // Validate amount
     if (amount <= 0) {
@@ -86,6 +91,28 @@ export async function createPayment(formData: FormData) {
         });
 
         await createLog("KDV Gideri Eklendi", `${kdvAmount.toFixed(2)} TL - ${description}`, expense.id, "Expense", null);
+    }
+
+    // Notification Logic: Notify all admins
+    try {
+        const admins = await prismadb.user.findMany({
+            where: { role: "ADMIN" },
+            select: { id: true }
+        });
+
+        const creatorName = session.user.name || session.user.email;
+
+        await Promise.all(admins.map(admin =>
+            createNotification(
+                admin.id,
+                "Yeni Ödeme Alındı",
+                `${creatorName}, ${client?.name} kişisinden ${amount.toFixed(2)} TL ödeme aldı.`,
+                "SUCCESS",
+                `/clients/${clientId}?tab=payments`
+            )
+        ));
+    } catch (error) {
+        console.error("Notification error:", error);
     }
 
     revalidatePath(`/clients/${clientId}`);

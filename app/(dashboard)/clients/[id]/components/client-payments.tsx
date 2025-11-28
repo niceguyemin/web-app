@@ -58,7 +58,7 @@ export function ClientPayments({ client }: ClientPaymentsProps) {
                     </div>
                     <Dialog open={open} onOpenChange={setOpen}>
                         <DialogTrigger asChild>
-                            <Button className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 rounded-xl">
+                            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 rounded-xl">
                                 <Plus className="mr-2 h-4 w-4" />
                                 Ödeme Ekle
                             </Button>

@@ -39,8 +39,8 @@ export default async function AppointmentsPage() {
     });
 
     return (
-        <div className="p-4 md:p-8 space-y-4 md:space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-0 md:p-8 space-y-4 md:space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:p-0">
                 <div>
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">Randevu Takvimi</h2>
                     <p className="text-text-muted text-sm md:text-base">Randevuları görüntüle ve yönet.</p>

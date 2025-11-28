@@ -8,6 +8,7 @@ import { RecentClients } from "@/components/recent-clients";
 import { QuickAddClient } from "@/components/quick-add-client";
 import { QuickAddPayment } from "@/components/quick-add-payment";
 import { startOfDay, endOfDay, addDays, startOfMonth } from "date-fns";
+import { DateTimeDisplay } from "@/components/date-time-display";
 
 import { auth } from "@/lib/auth";
 
@@ -129,9 +130,9 @@ export default async function Page() {
   });
 
   return (
-    <div className="flex-1 space-y-6 p-2 md:p-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
-        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+    <div className="flex-1 space-y-8 p-4 md:p-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
+        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-text-heading">
             {greeting}, {name}
           </h2>
@@ -140,17 +141,10 @@ export default async function Page() {
             <QuickAddClient serviceTypes={serviceTypes} />
           </div>
         </div>
-        <div className="text-text-muted text-sm md:text-base" suppressHydrationWarning>
-          {new Intl.DateTimeFormat('tr-TR', {
-            day: 'numeric',
-            month: 'long',
-            weekday: 'long',
-            timeZone: 'Europe/Istanbul'
-          }).format(new Date())}
-        </div>
+        <DateTimeDisplay />
       </div>
 
-      <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-4">
         <Card className="card border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 md:pb-2 p-2 px-3 md:p-6">
             <CardTitle className="text-xs md:text-sm font-medium text-text-muted">
@@ -212,12 +206,24 @@ export default async function Page() {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4 card border-0">
+      <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-2 card border-0">
           <CardHeader>
-            <CardTitle className="text-text-heading">Bugünkü Randevular</CardTitle>
+            <CardTitle className="text-text-heading">{name} Randevuları</CardTitle>
             <CardDescription className="text-text-muted">
-              Bugün için planlanan görüşmeler
+              Sizin bugünkü görüşmeleriniz
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <TodayAppointments appointments={todayAppointments.filter(appt => appt.userId === parseInt(user?.id || "0"))} />
+          </CardContent>
+        </Card>
+
+        <Card className="col-span-2 card border-0">
+          <CardHeader>
+            <CardTitle className="text-text-heading">Tüm Randevular</CardTitle>
+            <CardDescription className="text-text-muted">
+              Bugün için planlanan tüm görüşmeler
             </CardDescription>
           </CardHeader>
           <CardContent>

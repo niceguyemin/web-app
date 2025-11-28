@@ -46,7 +46,7 @@ export function EditClientDialog({ client }: EditClientDialogProps) {
                     Düzenle
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] max-w-[95vw] bg-[#0f1021] border-white/10 text-white max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-[425px] max-w-[95vw] bg-popover border-white/10 text-popover-foreground max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>Danışan Bilgilerini Düzenle</DialogTitle>
                     <DialogDescription className="text-white/50">

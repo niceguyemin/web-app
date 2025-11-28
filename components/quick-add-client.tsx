@@ -67,6 +67,7 @@ export function QuickAddClient({ serviceTypes = [] }: QuickAddClientProps) {
                             name="name"
                             required
                             className="glass-input text-white rounded-xl border-white/10"
+                            autoComplete="off"
                         />
                     </div>
                     <div className="grid gap-2">
@@ -81,6 +82,7 @@ export function QuickAddClient({ serviceTypes = [] }: QuickAddClientProps) {
                                 placeholder="545 654 4533"
                                 maxLength={10}
                                 className="glass-input text-white rounded-l-none rounded-r-xl border-white/10"
+                                autoComplete="off"
                                 onInput={(e) => {
                                     e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '').slice(0, 10);
                                 }}

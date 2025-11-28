@@ -4,7 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@/lib/auth";
 import { startOfDay, endOfDay } from "date-fns";
 
-export async function getFinancialReport(startDate: Date, endDate: Date) {
+export async function getFinancialReport(startDate: Date, endDate: Date, granularity: 'day' | 'week' | 'month' = 'day') {
     const session = await auth();
     if (!session || (session.user as any).role !== "ADMIN") {
         throw new Error("Bu işlem için yetkiniz yok.");
@@ -41,27 +41,43 @@ export async function getFinancialReport(startDate: Date, endDate: Date) {
     const totalExpense = expenses.reduce((sum, e) => sum + e.amount, 0);
     const netProfit = totalIncome - totalExpense;
 
-    // 4. Prepare Chart Data: Income vs Expense over time (Daily)
-    // We'll group by day.
-    const dailyDataMap = new Map<string, { date: string; income: number; expense: number }>();
+    // 4. Prepare Chart Data: Income vs Expense over time
+    const dataMap = new Map<string, { date: string; income: number; expense: number }>();
+
+    const getKey = (date: Date) => {
+        if (granularity === 'month') {
+            return date.toISOString().slice(0, 7); // YYYY-MM
+        } else if (granularity === 'week') {
+            const d = new Date(date);
+            d.setHours(0, 0, 0, 0);
+            d.setDate(d.getDate() - d.getDay() + 1); // Monday
+            return d.toISOString().split("T")[0];
+        }
+        return date.toISOString().split("T")[0]; // YYYY-MM-DD
+    };
 
     payments.forEach((p) => {
-        const dateKey = p.date.toISOString().split("T")[0]; // YYYY-MM-DD
-        if (!dailyDataMap.has(dateKey)) {
-            dailyDataMap.set(dateKey, { date: dateKey, income: 0, expense: 0 });
+        const key = getKey(p.date);
+        if (!dataMap.has(key)) {
+            dataMap.set(key, { date: key, income: 0, expense: 0 });
         }
-        dailyDataMap.get(dateKey)!.income += p.amount;
+        dataMap.get(key)!.income += p.amount;
     });
 
     expenses.forEach((e) => {
-        const dateKey = e.date.toISOString().split("T")[0];
-        if (!dailyDataMap.has(dateKey)) {
-            dailyDataMap.set(dateKey, { date: dateKey, income: 0, expense: 0 });
+        const key = getKey(e.date);
+        if (!dataMap.has(key)) {
+            dataMap.set(key, { date: key, income: 0, expense: 0 });
         }
-        dailyDataMap.get(dateKey)!.expense += e.amount;
+        dataMap.get(key)!.expense += e.amount;
     });
 
-    const chartData = Array.from(dailyDataMap.values()).sort((a, b) => a.date.localeCompare(b.date));
+    const chartData = Array.from(dataMap.values())
+        .map(item => ({
+            ...item,
+            netProfit: item.income - item.expense
+        }))
+        .sort((a, b) => a.date.localeCompare(b.date));
 
     // 5. Income by Service Type
     const incomeByServiceTypeMap = new Map<string, number>();

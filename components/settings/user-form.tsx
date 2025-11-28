@@ -27,15 +27,15 @@ export function UserForm() {
         >
             <div className="grid gap-2 w-[180px]">
                 <Label className="text-white/70">Kullanıcı Adı</Label>
-                <Input name="username" required className="glass-input text-white rounded-xl border-white/10" />
+                <Input name="username" required className="glass-input text-white rounded-xl border-white/10" placeholder="Örn: ahmet123" />
             </div>
             <div className="grid gap-2 w-[180px]">
                 <Label className="text-white/70">Şifre</Label>
-                <Input name="password" type="password" required className="glass-input text-white rounded-xl border-white/10" />
+                <Input name="password" type="password" required className="glass-input text-white rounded-xl border-white/10" placeholder="******" />
             </div>
             <div className="grid gap-2 w-[180px]">
                 <Label className="text-white/70">İsim</Label>
-                <Input name="name" className="glass-input text-white rounded-xl border-white/10" />
+                <Input name="name" className="glass-input text-white rounded-xl border-white/10" placeholder="Örn: Ahmet Yılmaz" />
             </div>
             <div className="grid gap-2 w-[150px]">
                 <Label className="text-white/70">Rol</Label>

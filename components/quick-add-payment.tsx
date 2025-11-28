@@ -83,6 +83,10 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
     }, [selectedClientId, clients]);
 
     async function onSubmit(formData: FormData) {
+        if (!selectedClientId) {
+            toast.error("Lütfen bir danışan seçiniz");
+            return;
+        }
         try {
             await createPayment(formData);
             toast.success("Ödeme başarıyla alındı");
@@ -91,7 +95,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
             setSelectedClientId("");
             router.refresh();
         } catch (error) {
-            alert("Ödeme eklenirken bir hata oluştu: " + (error as Error).message);
+            toast.error("Ödeme eklenirken bir hata oluştu: " + (error as Error).message);
         }
     }
 
@@ -109,7 +113,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                     Ödeme Ekle
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] max-w-[95vw] bg-[#0f1021] border-white/10 text-white max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-[425px] max-w-[95vw] bg-popover border-white/10 text-popover-foreground max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>Hızlı Ödeme Ekle</DialogTitle>
                     <DialogDescription className="text-white/50">
@@ -123,7 +127,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
                             <Input
                                 type="text"
-                                placeholder="Danışan ara..."
+                                placeholder="Danışan ara (Örn: Ali Yılmaz, 0555...)"
                                 value={searchTerm}
                                 onChange={(e) => {
                                     setSearchTerm(e.target.value);
@@ -149,7 +153,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                         </div>
 
                         {isDropdownOpen && (
-                            <div className="absolute top-[calc(100%+0.5rem)] left-0 w-full bg-[#0f1021] border border-white/10 rounded-xl shadow-xl z-[9999] max-h-[200px] overflow-y-auto">
+                            <div className="absolute top-[calc(100%+0.5rem)] left-0 w-full bg-popover border border-white/10 rounded-xl shadow-xl z-[9999] max-h-[200px] overflow-y-auto">
                                 {filteredClients.length > 0 ? (
                                     <ul className="py-1">
                                         {filteredClients.map((client) => (
@@ -158,12 +162,12 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                                                 onClick={() => handleSelectClient(client)}
                                                 className={cn(
                                                     "px-4 py-2 text-sm cursor-pointer hover:bg-white/10 transition-colors flex items-center justify-between",
-                                                    selectedClientId === client.id.toString() && "bg-white/5 text-green-400"
+                                                    selectedClientId === client.id.toString() && "bg-primary/20 text-primary"
                                                 )}
                                             >
                                                 <span>{client.name}</span>
                                                 {selectedClientId === client.id.toString() && (
-                                                    <div className="h-2 w-2 rounded-full bg-green-500" />
+                                                    <div className="h-2 w-2 rounded-full bg-primary" />
                                                 )}
                                             </li>
                                         ))}
@@ -185,7 +189,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                                 <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                     <SelectValue placeholder="Hizmet Seçiniz" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-[#0f1021] border-white/10 text-white">
+                                <SelectContent className="bg-popover border-white/10 text-popover-foreground">
                                     {activeServices.map((service) => {
                                         const paid = service.payments.reduce((sum, p) => sum + p.amount, 0);
                                         const remaining = service.totalPrice - paid;
@@ -218,7 +222,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                             <SelectTrigger className="glass-input text-white rounded-xl border-white/10">
                                 <SelectValue placeholder="Seçiniz" />
                             </SelectTrigger>
-                            <SelectContent className="bg-[#0f1021] border-white/10 text-white">
+                            <SelectContent className="bg-popover border-white/10 text-popover-foreground">
                                 <SelectItem value="Nakit">Nakit</SelectItem>
                                 <SelectItem value="Kredi Kartı">Kredi Kartı</SelectItem>
                                 <SelectItem value="Havale/EFT">Havale/EFT</SelectItem>
@@ -226,7 +230,7 @@ export function QuickAddPayment({ clients }: QuickAddPaymentProps) {
                         </Select>
                     </div>
 
-                    <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white">
+                    <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white" disabled={!selectedClientId}>
                         Ödeme Al
                     </Button>
                 </form>

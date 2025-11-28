@@ -156,11 +156,11 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                             <SelectTrigger className="w-full sm:w-32 glass-input text-white rounded-xl border-white/10">
                                 <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
-                                <SelectItem value="monthly" className="focus:bg-white/10 focus:text-white">
+                            <SelectContent className="bg-popover border-white/10 text-popover-foreground">
+                                <SelectItem value="monthly" className="focus:bg-primary/20 focus:text-primary">
                                     Aylık
                                 </SelectItem>
-                                <SelectItem value="yearly" className="focus:bg-white/10 focus:text-white">
+                                <SelectItem value="yearly" className="focus:bg-primary/20 focus:text-primary">
                                     Yıllık
                                 </SelectItem>
                             </SelectContent>
@@ -170,13 +170,13 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
                             <SelectTrigger className="w-full sm:w-48 glass-input text-white rounded-xl border-white/10">
                                 <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className="bg-[#1a1b4b] border-white/10 text-white">
+                            <SelectContent className="bg-popover border-white/10 text-white">
                                 {viewType === "monthly"
                                     ? monthOptions.map((option) => (
                                         <SelectItem
                                             key={option.value}
                                             value={option.value}
-                                            className="focus:bg-white/10 focus:text-white"
+                                            className="focus:bg-primary/20 focus:text-primary"
                                         >
                                             {option.label}
                                         </SelectItem>
@@ -198,19 +198,19 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
             <CardContent className="space-y-6">
                 {/* Summary Cards */}
                 <div className="grid gap-3 md:gap-4 grid-cols-3">
-                    <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-center p-3 md:p-4 rounded-xl bg-card border border-white/10">
                         <p className="text-white/50 text-xs md:text-sm mb-1">Toplam Gelir</p>
                         <p className="text-lg md:text-2xl font-bold text-green-500">
                             ₺{formatCurrency(filteredData.totalIncome)}
                         </p>
                     </div>
-                    <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-center p-3 md:p-4 rounded-xl bg-card border border-white/10">
                         <p className="text-white/50 text-xs md:text-sm mb-1">Toplam Gider</p>
                         <p className="text-lg md:text-2xl font-bold text-red-400">
                             ₺{formatCurrency(filteredData.totalExpense)}
                         </p>
                     </div>
-                    <div className="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-center p-3 md:p-4 rounded-xl bg-card border border-white/10">
                         <p className="text-white/50 text-xs md:text-sm mb-1">Net Kâr</p>
                         <p
                             className={`text-lg md:text-2xl font-bold ${filteredData.netProfit >= 0 ? "text-blue-400" : "text-red-400"
