@@ -386,16 +386,46 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                             name="time"
                             placeholder="09:00"
                             required
+                            maxLength={5}
                             className="glass-input text-white rounded-xl border-white/10"
                             onBlur={(e) => {
                                 let value = e.target.value.replace(/[^0-9]/g, '');
+
+                                // Auto-format 3 digits to HH:0M (e.g. 930 -> 09:30)
                                 if (value.length === 3) {
                                     value = "0" + value;
                                 }
-                                if (value.length === 4) {
-                                    const formatted = value.slice(0, 2) + ":" + value.slice(2);
-                                    e.target.value = formatted;
+
+                                if (value.length >= 4) {
+                                    let hours = parseInt(value.slice(0, 2));
+                                    let minutes = parseInt(value.slice(2, 4));
+
+                                    // Validate Hours (00-23)
+                                    if (hours > 23) hours = 23;
+
+                                    // Validate Minutes (00-59)
+                                    if (minutes > 59) minutes = 59;
+
+                                    // Format back to HH:MM
+                                    const formattedHours = hours.toString().padStart(2, '0');
+                                    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+                                    e.target.value = `${formattedHours}:${formattedMinutes}`;
+                                } else if (value.length > 0) {
+                                    // If incomplete but has some numbers, try to fix or clear
+                                    // For now, let's clear if it's garbage to avoid errors
+                                    // or maybe just leave it for the user to fix, but the regex above cleaned it.
+                                    // Let's just ensure it has a colon if it's 2 digits? No, 2 digits is ambiguous.
                                 }
+                            }}
+                            onChange={(e) => {
+                                // Allow only numbers and colon
+                                let value = e.target.value;
+                                if (value.length === 2 && !value.includes(':') && e.nativeEvent instanceof InputEvent && (e.nativeEvent as InputEvent).inputType !== 'deleteContentBackward') {
+                                    // Auto-add colon after 2 digits if typing forward
+                                    value = value + ':';
+                                }
+                                e.target.value = value;
                             }}
                         />
                     </div>
