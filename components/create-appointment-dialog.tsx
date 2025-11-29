@@ -118,6 +118,25 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                     </Button>
                 }
                 className="sm:max-w-[425px] overflow-visible"
+                footer={
+                    <div className="flex flex-col w-full gap-3">
+                        <WhatsAppButton
+                            phoneNumber={successData.phone}
+                            message={`Sayın ${successData.clientName}, ${successData.date} saat ${successData.time} için randevunuz oluşturulmuştur. Sağlıklı günler dileriz.`}
+                            label="WhatsApp ile Bildir"
+                            size="touch"
+                            className="w-full"
+                        />
+                        <Button
+                            variant="outline"
+                            onClick={() => setOpen(false)}
+                            className="w-full glass-button"
+                            size="touch"
+                        >
+                            Kapat
+                        </Button>
+                    </div>
+                }
             >
                 <div className="flex flex-col items-center justify-center py-6 space-y-6">
                     <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -131,23 +150,6 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                         <p className="text-white/50 text-sm">
                             {successData.date} - {successData.time}
                         </p>
-                    </div>
-
-                    <div className="flex flex-col w-full gap-3">
-                        <WhatsAppButton
-                            phoneNumber={successData.phone}
-                            message={`Sayın ${successData.clientName}, ${successData.date} saat ${successData.time} için randevunuz oluşturulmuştur. Sağlıklı günler dileriz.`}
-                            label="WhatsApp ile Bildir"
-                            size="touch"
-                        />
-                        <Button
-                            variant="outline"
-                            onClick={() => setOpen(false)}
-                            className="w-full glass-button"
-                            size="touch"
-                        >
-                            Kapat
-                        </Button>
                     </div>
                 </div>
             </ResponsiveDialog>
@@ -166,8 +168,19 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                 </Button>
             }
             className="sm:max-w-[425px] overflow-visible"
+            footer={
+                <Button
+                    type="submit"
+                    form="create-appointment-form"
+                    className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl"
+                    size="touch"
+                >
+                    Oluştur
+                </Button>
+            }
         >
             <form
+                id="create-appointment-form"
                 action={async (formData) => {
                     try {
                         setError(null);
@@ -402,10 +415,6 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                         {error}
                     </div>
                 )}
-
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl" size="touch">
-                    Oluştur
-                </Button>
             </form>
         </ResponsiveDialog>
     );

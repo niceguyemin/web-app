@@ -27,6 +27,7 @@ interface ResponsiveDialogProps {
     open?: boolean
     onOpenChange?: (open: boolean) => void
     className?: string
+    footer?: React.ReactNode
 }
 
 export function ResponsiveDialog({
@@ -37,6 +38,7 @@ export function ResponsiveDialog({
     open,
     onOpenChange,
     className,
+    footer,
 }: ResponsiveDialogProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)")
 
@@ -50,6 +52,7 @@ export function ResponsiveDialog({
                         {description && <DialogDescription>{description}</DialogDescription>}
                     </DialogHeader>
                     {children}
+                    {footer && <div className="mt-4 flex justify-end gap-2">{footer}</div>}
                 </DialogContent>
             </Dialog>
         )
@@ -59,14 +62,21 @@ export function ResponsiveDialog({
         <Drawer open={open} onOpenChange={onOpenChange}>
             {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
             <DrawerContent>
-                <div className="max-h-[85vh] overflow-y-auto">
-                    <DrawerHeader className="text-left">
-                        {title && <DrawerTitle>{title}</DrawerTitle>}
-                        {description && <DrawerDescription>{description}</DrawerDescription>}
-                    </DrawerHeader>
-                    <div className="px-4 pb-8">
-                        {children}
+                <div className="max-h-[85vh] flex flex-col">
+                    <div className="overflow-y-auto flex-1">
+                        <DrawerHeader className="text-left">
+                            {title && <DrawerTitle>{title}</DrawerTitle>}
+                            {description && <DrawerDescription>{description}</DrawerDescription>}
+                        </DrawerHeader>
+                        <div className="px-4 pb-4">
+                            {children}
+                        </div>
                     </div>
+                    {footer && (
+                        <div className="p-4 border-t border-white/10 bg-background/80 backdrop-blur-xl pb-8">
+                            {footer}
+                        </div>
+                    )}
                 </div>
             </DrawerContent>
         </Drawer>
