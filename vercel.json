@@ -3,10 +3,5 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "crons": [
-    {
-      "path": "/api/cron/reminders",
-      "schedule": "*/10 * * * *"
-    }
-  ]
+  "crons": []
 }

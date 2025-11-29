@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
-import { WhatsAppButton } from "@/components/whatsapp-button";
 
 interface CreateAppointmentDialogProps {
     clients: {
@@ -120,13 +119,6 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                 className="sm:max-w-[425px] overflow-visible"
                 footer={
                     <div className="flex flex-col w-full gap-3">
-                        <WhatsAppButton
-                            phoneNumber={successData.phone}
-                            message={`Sayın ${successData.clientName}, ${successData.date} saat ${successData.time} için randevunuz oluşturulmuştur. Sağlıklı günler dileriz.`}
-                            label="WhatsApp ile Bildir"
-                            size="touch"
-                            className="w-full"
-                        />
                         <Button
                             variant="outline"
                             onClick={() => setOpen(false)}
