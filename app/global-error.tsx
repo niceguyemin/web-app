@@ -19,6 +19,8 @@ export default function GlobalError({
         console.error(error);
     }, [error]);
 
+    const isVersionMismatch = error.message.includes("Server Action") || error.message.includes("failed to find server action") || error.message.includes("Server Components render") || error.digest?.includes("MINIFIED_REACT_ERROR");
+
     return (
         <html lang="tr" className="dark">
             <body className={`${inter.className} bg-popover text-white antialiased`}>
@@ -29,19 +31,27 @@ export default function GlobalError({
                         </div>
 
                         <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-                            Kritik Hata
+                            {isVersionMismatch ? "Güncelleme Gerekli" : "Kritik Hata"}
                         </h1>
 
                         <p className="text-white/50 mb-8">
-                            Uygulama yüklenirken kritik bir hata oluştu.
+                            {isVersionMismatch
+                                ? "Uygulamanın yeni bir versiyonu mevcut. Devam etmek için sayfayı yenileyin."
+                                : "Uygulama yüklenirken kritik bir hata oluştu."}
                         </p>
 
                         <Button
-                            onClick={reset}
+                            onClick={() => {
+                                if (isVersionMismatch) {
+                                    window.location.reload();
+                                } else {
+                                    reset();
+                                }
+                            }}
                             className="w-full bg-white/10 hover:bg-white/20 text-white border-0 h-12 rounded-xl text-base font-medium transition-all duration-300"
                         >
                             <RefreshCcw className="w-5 h-5 mr-2" />
-                            Yeniden Yükle
+                            {isVersionMismatch ? "Uygulamayı Güncelle" : "Yeniden Yükle"}
                         </Button>
                     </div>
                 </div>

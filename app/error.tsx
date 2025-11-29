@@ -15,7 +15,7 @@ export default function Error({
         console.error(error);
     }, [error]);
 
-    const isVersionMismatch = error.message.includes("Server Action") || error.message.includes("failed to find server action") || error.digest?.includes("MINIFIED_REACT_ERROR");
+    const isVersionMismatch = error.message.includes("Server Action") || error.message.includes("failed to find server action") || error.message.includes("Server Components render") || error.digest?.includes("MINIFIED_REACT_ERROR");
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-popover text-white p-4">
