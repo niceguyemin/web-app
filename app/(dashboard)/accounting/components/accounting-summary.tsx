@@ -44,6 +44,7 @@ export function AccountingSummary({ payments, expenses }: AccountingSummaryProps
         const options = [];
         for (let i = 0; i < 12; i++) {
             const date = new Date();
+            date.setDate(1); // Avoid month overflow (e.g. Mar 31 -> Feb 28 -> Mar 3)
             date.setMonth(date.getMonth() - i);
             options.push({
                 value: format(date, "yyyy-MM"),
