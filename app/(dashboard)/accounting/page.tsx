@@ -11,7 +11,7 @@ import { IncomeList } from "./components/income-list";
 import { ExpenseList } from "./components/expense-list";
 import { DetailedReportView } from "./components/detailed-report-view";
 
-export const dynamic = "force-dynamic"; // Prisma için
+// export const dynamic = "force-dynamic"; // Prisma için
 export const runtime = "nodejs";
 
 export default async function AccountingPage() {
@@ -21,12 +21,24 @@ export default async function AccountingPage() {
     redirect("/");
   }
 
+  const currentYearStart = new Date(new Date().getFullYear(), 0, 1);
+
   const payments = await prismadb.payment.findMany({
+    where: {
+      date: {
+        gte: currentYearStart
+      }
+    },
     include: { client: true, service: true },
     orderBy: { date: "desc" },
   });
 
   const expenses = await prismadb.expense.findMany({
+    where: {
+      date: {
+        gte: currentYearStart
+      }
+    },
     orderBy: { date: "desc" },
   });
 

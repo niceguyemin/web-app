@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 import prismadb from "@/lib/prismadb";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -100,9 +100,10 @@ export default async function Page() {
     orderBy: { name: "asc" },
   });
 
-  // 7. Tüm Danışanlar (Hızlı Ödeme için)
+  // 7. Tüm Danışanlar (Hızlı Ödeme için - Performans için limitli)
   const allClients = await prismadb.client.findMany({
-    orderBy: { name: "asc" },
+    take: 50,
+    orderBy: { updatedAt: "desc" },
     select: {
       id: true,
       name: true,

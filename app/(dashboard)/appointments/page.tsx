@@ -56,6 +56,11 @@ export default async function AppointmentsPage() {
                 }
             },
         },
+        where: {
+            date: {
+                gte: new Date(new Date().getFullYear(), 0, 1),
+            },
+        },
         orderBy: {
             date: "asc",
         },
