@@ -38,8 +38,10 @@ export async function createAppointment(formData: FormData) {
 
     const { clientId, serviceId, userId, date, time, notes } = validatedFields.data;
 
-    // Combine date and time
-    const appointmentDate = new Date(`${date}T${time}`);
+    // Combine date and time with explicit Turkey timezone (+03:00)
+    // This ensures that 12:34 entered by user is treated as 12:34 TRT, not 12:34 UTC.
+    // 12:34 TRT -> 09:34 UTC. Displayed back as 12:34 TRT.
+    const appointmentDate = new Date(`${date}T${time}:00+03:00`);
 
     try {
         await prismadb.$transaction(async (tx: Prisma.TransactionClient) => {
