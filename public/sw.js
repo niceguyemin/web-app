@@ -1,6 +1,5 @@
-const CACHE_NAME = 'danisan-takip-v1';
+const CACHE_NAME = 'danisan-takip-v3';
 const urlsToCache = [
-    '/',
     '/offline.html',
     '/manifest.json',
     '/logo.jpg'
@@ -11,6 +10,22 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE_NAME)
             .then((cache) => cache.addAll(urlsToCache))
     );
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (cacheName !== CACHE_NAME) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+    self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -19,45 +34,39 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // For API requests, use Network Only (or Network First)
+    // API requests: Network Only
     if (event.request.url.includes('/api/')) {
         return;
     }
 
+    // Navigation requests (HTML pages): Network First, fall back to offline page
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request)
+                .catch(() => {
+                    return caches.match('/offline.html');
+                })
+        );
+        return;
+    }
+
+    // Static assets (JS, CSS, Images): Cache First, fall back to Network
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // Return cached response if found
                 if (response) {
                     return response;
                 }
-
-                // Clone the request because it's a one-time use stream
-                const fetchRequest = event.request.clone();
-
-                return fetch(fetchRequest).then(
-                    (response) => {
-                        // Check if we received a valid response
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-
-                        // Clone the response
-                        const responseToCache = response.clone();
-
-                        // Cache the response
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, responseToCache);
-                            });
-
+                return fetch(event.request).then((response) => {
+                    // Cache new static assets
+                    if (!response || response.status !== 200 || response.type !== 'basic') {
                         return response;
                     }
-                ).catch(() => {
-                    // If fetch fails (offline), show offline page for navigation requests
-                    if (event.request.mode === 'navigate') {
-                        return caches.match('/offline.html');
-                    }
+                    const responseToCache = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+                    return response;
                 });
             })
     );

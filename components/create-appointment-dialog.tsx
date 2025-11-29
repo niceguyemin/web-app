@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 interface CreateAppointmentDialogProps {
     clients: {
@@ -51,18 +52,19 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
 
     const [clientsList, setClientsList] = useState(clients);
 
+    const [successData, setSuccessData] = useState<{ clientName: string; phone: string; date: string; time: string } | null>(null);
+
     // Fetch fresh clients when dialog opens
     useEffect(() => {
         if (open) {
             import("@/app/actions/client").then(({ getClients }) => {
                 getClients().then(setClientsList);
             });
+            setSuccessData(null); // Reset success state
         }
     }, [open]);
 
     const selectedClient = clientsList.find((c) => c.id.toString() === selectedClientId);
-
-
 
     // Filter clients based on search term
     const filteredClients = useMemo(() => {
@@ -103,6 +105,55 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
         setIsDropdownOpen(false);
     };
 
+    if (successData) {
+        return (
+            <ResponsiveDialog
+                open={open}
+                onOpenChange={setOpen}
+                title="Randevu Oluşturuldu"
+                trigger={
+                    <Button className="btn-primary">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Yeni Randevu
+                    </Button>
+                }
+                className="sm:max-w-[425px] overflow-visible"
+            >
+                <div className="flex flex-col items-center justify-center py-6 space-y-6">
+                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center">
+                        <Check className="w-8 h-8 text-green-500" />
+                    </div>
+                    <div className="text-center space-y-2">
+                        <h3 className="text-xl font-semibold text-white">Başarılı!</h3>
+                        <p className="text-white/70">
+                            {successData.clientName} için randevu oluşturuldu.
+                        </p>
+                        <p className="text-white/50 text-sm">
+                            {successData.date} - {successData.time}
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col w-full gap-3">
+                        <WhatsAppButton
+                            phoneNumber={successData.phone}
+                            message={`Sayın ${successData.clientName}, ${successData.date} saat ${successData.time} için randevunuz oluşturulmuştur. Sağlıklı günler dileriz.`}
+                            label="WhatsApp ile Bildir"
+                            size="touch"
+                        />
+                        <Button
+                            variant="outline"
+                            onClick={() => setOpen(false)}
+                            className="w-full glass-button"
+                            size="touch"
+                        >
+                            Kapat
+                        </Button>
+                    </div>
+                </div>
+            </ResponsiveDialog>
+        );
+    }
+
     return (
         <ResponsiveDialog
             open={open}
@@ -121,8 +172,24 @@ export function CreateAppointmentDialog({ clients, users }: CreateAppointmentDia
                     try {
                         setError(null);
                         await createAppointment(formData);
+
+                        // Set success data instead of closing
+                        if (selectedClient && date) {
+                            const time = formData.get("time") as string;
+                            setSuccessData({
+                                clientName: selectedClient.name,
+                                phone: (selectedClient as any).phone || "", // Assuming phone exists on client
+                                date: format(date, "d MMMM yyyy", { locale: tr }),
+                                time: time
+                            });
+                        } else {
+                            // Fallback if something is missing, though validation should prevent this
+                            setOpen(false);
+                        }
+
                         toast.success("Randevu başarıyla oluşturuldu");
-                        setOpen(false);
+
+                        // Clear form state
                         setSelectedClientId("");
                         setSearchTerm("");
                         setDate(undefined);
